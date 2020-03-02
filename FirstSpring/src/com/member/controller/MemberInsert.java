@@ -11,7 +11,9 @@ import com.member.model.MemberDTO;
 
 public class MemberInsert extends AbstractController {
 	private MemberDAOImpl dao;
-	//setter
+
+	// setter
+	// xml에서 세팅하고 거기 해당하는 값을 받아 세팅함
 	public void setDao(MemberDAOImpl dao) {
 		this.dao = dao;
 	}
@@ -25,14 +27,13 @@ public class MemberInsert extends AbstractController {
 		user.setMemo(req.getParameter("memo"));
 		user.setName(req.getParameter("name"));
 		user.setPass(req.getParameter("pass"));
-		
-		dao.insert(user);		
+
+		dao.insert(user);
 		return null;
 	}
 
-
 	public MemberDAOImpl getDao() {
 		return dao;
-	}	
+	}
 
 }

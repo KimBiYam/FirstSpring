@@ -8,6 +8,7 @@
 <!-- 추가 폼  -->
 <bean name="/member_form_insert.do" class="com.member.controller.MemberFormInsert"></bean>
 <!-- 추가  -->
+<!-- dao 객체를 직접 컨트롤러에서 생성하는것이 아니라 xml파일에서 설정 해 줌 -->
 <!-- property의 ref는 참조하는 클래스의 이름, name은 해당 class의 변수 명  -->
 <bean name="/member_insert.do" class="com.member.controller.MemberInsert">
 <property name="dao" ref="dao"></property>
