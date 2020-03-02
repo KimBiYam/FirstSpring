@@ -8,6 +8,6 @@
 </head>
 <body>
 <a href="test.do">스프링테스트</a><br>
-<a href="memberInsert.do">회원가입</a>
+<a href="member_form_insert.do">회원가입</a>
 </body>
 </html>   

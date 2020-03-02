@@ -4,6 +4,14 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
 
 <bean name="/test.do" class="com.test.controller.TestController"></bean>
-
-<bean name="/memberInsert.do" class="com.member.controller.MemberInsert"></bean>
+<!-- member Controller  -->
+<!-- 추가 폼  -->
+<bean name="/member_form_insert.do" class="com.member.controller.MemberFormInsert"></bean>
+<!-- 추가  -->
+<!-- property의 ref는 참조하는 클래스의 이름, name은 해당 class의 변수 명  -->
+<bean name="/member_insert.do" class="com.member.controller.MemberInsert">
+<property name="dao" ref="dao"></property>
+</bean>
+<!-- dao  -->
+<bean id="dao" class="com.member.model.MemberDAOImpl"></bean>
 </beans>
