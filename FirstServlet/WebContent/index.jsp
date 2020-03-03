@@ -7,8 +7,8 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="test.ser">Servlet 테스트</a>
-<br>
-<a href="member_form_insert.ser">회원가입</a>
+<a href="test.ser">Servlet 테스트</a><br>
+<a href="member_form_insert.ser">회원가입</a><br>
+<a href="member_list.ser">리스트</a>
 </body>
 </html>

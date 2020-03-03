@@ -33,7 +33,7 @@
 			<p><code><b>비밀번호</b></code></p>
 			</td>
 			<td width="359">
-			<p><code><input type="text" name="pass" size="30"></code></p>
+			<p><code><input type="password" name="pass" size="30"></code></p>
 			</td>
 		</tr>
 		<tr>
@@ -73,7 +73,7 @@
 		</tr>
 		<tr>
 			<td width="479" colspan="2" height="9" valign="bottom">
-			<p><code><a href="member_list.do">리스트(L)</a></code></p>
+			<p align="center"><code><a href="member_list.do">리스트</a></code></p>
 			</td>
 		</tr>
 		<tr>

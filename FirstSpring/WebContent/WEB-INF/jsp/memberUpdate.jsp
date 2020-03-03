@@ -8,11 +8,12 @@
 </head>
 <body>
 <body bgcolor="white" >
-	<form name="form1" method="post" action="member_insert.ser">
+	<form name="form1" method="post" action="member_update.do">
+	<input type="hidden" name="id" value="${user.id }">	
 		<table align="center">
 		<tr>
-			<td  colspan="2">
-			<p align="center"><b>회원가입</b></p>
+			<td colspan="2">
+			<p align="center"><b>회원수정</b></p>
 			</td>
 		</tr>
 		<tr>
@@ -25,7 +26,7 @@
 			<p><code><b>아이디</b></code></p>
 			</td>
 			<td width="359">
-			<p><code><input type="text" name="id" size="30"></code></p>
+			<p><code><input type="text" size="30" value="${user.id }" disabled="disabled"></code></p>
 			</td>
 		</tr>
 		<tr>
@@ -33,7 +34,7 @@
 			<p><code><b>비밀번호</b></code></p>
 			</td>
 			<td width="359">
-			<p><code><input type="password" name="pass" size="30"></code></p>
+			<p><code><input type="password" name="pass" size="30" value="${user.pass }" disabled="disabled"></code></p>
 			</td>
 		</tr>
 		<tr>
@@ -41,7 +42,7 @@
 			<p><code><b>성명</b></code></p>
 			</td>
 			<td width="359">
-			<p><code><input type="text" name="name" size="30"></code></p>
+			<p><code><input type="text" name="name" size="30" value="${user.name }" disabled="disabled" ></code></p>
 			</td>
 		</tr>
 		<tr>
@@ -49,7 +50,7 @@
 			<p><code><b>주소</b></code></p>
 			</td>
 			<td width="359">
-			<p><code><input type="text" name="addr" size="51"></code></p>
+			<p><code><input type="text" name="addr" size="51" value="${user.addr }"></code></p>
 			</td>
 		</tr>
 		<tr>
@@ -57,7 +58,7 @@
 			<p><code><b>메모</b></code></p>
 			</td>
 			<td width="359">
-			<p><textarea name="memo" rows="10" cols="50"></textarea></p>
+			<p><textarea name="memo" rows="10" cols="50">${user.memo }</textarea></p>
 			</td>
 		</tr>
 		<tr>
@@ -68,12 +69,12 @@
 		<tr>
 			<td width="479" colspan="2">
 			<p align="center"><input type="submit" name="formbutton1"
-			value="가입"></p>
+			value="수정"></p>
 			</td>
 		</tr>
 		<tr>
 			<td width="479" colspan="2" height="9" valign="bottom">
-			<p align="center"><code><a href="member_list.ser">리스트</a></code></p>
+			<p align="center"><code><a href="member_list.do">리스트</a></code></p>
 			</td>
 		</tr>
 		<tr>

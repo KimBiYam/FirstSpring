@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://xmlns.jcp.org/xml/ns/javaee" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_4_0.xsd" id="WebApp_ID" version="4.0">
   <display-name>FirstSurvelet</display-name>
+  
   <servlet>
   <servlet-name>test-servlet</servlet-name>
   <servlet-class>com.test.TestServlet</servlet-class>
@@ -13,12 +14,32 @@
   
   <servlet>
   <servlet-name>member_form-servlet</servlet-name>
-  <servlet-class>com.member.MemberFormInsert</servlet-class>
+  <servlet-class>com.member.controller.MemberFormInsert</servlet-class>
   </servlet>
   
   <servlet-mapping>
   <servlet-name>member_form-servlet</servlet-name>
   <url-pattern>/member_form_insert.ser</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>member_list-servlet</servlet-name>
+  <servlet-class>com.member.controller.MemberList</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>member_list-servlet</servlet-name>
+  <url-pattern>/member_list.ser</url-pattern>
+  </servlet-mapping>
+  
+  <servlet>
+  <servlet-name>member_insert_servlet</servlet-name>
+  <servlet-class>com.member.controller.MemberInsert</servlet-class>
+  </servlet>
+  
+  <servlet-mapping>
+  <servlet-name>member_insert_servlet</servlet-name>
+  <url-pattern>/member_insert.ser</url-pattern>
   </servlet-mapping>
   
   <welcome-file-list>

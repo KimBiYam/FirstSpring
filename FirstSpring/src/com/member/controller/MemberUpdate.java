@@ -9,11 +9,9 @@ import org.springframework.web.servlet.mvc.AbstractController;
 import com.member.model.MemberDAOImpl;
 import com.member.model.MemberDTO;
 
-public class MemberInsert extends AbstractController {
-	private MemberDAOImpl dao;
+public class MemberUpdate extends AbstractController{
+	MemberDAOImpl dao;
 
-	// setter
-	// xml에서 세팅하고 거기 해당하는 값을 받아 세팅함
 	public void setDao(MemberDAOImpl dao) {
 		this.dao = dao;
 	}
@@ -25,17 +23,10 @@ public class MemberInsert extends AbstractController {
 		user.setId(req.getParameter("id"));
 		user.setAddr(req.getParameter("addr"));
 		user.setMemo(req.getParameter("memo"));
-		user.setName(req.getParameter("name"));
-		user.setPass(req.getParameter("pass"));
-
-		dao.insert(user);
 		
-		resp.sendRedirect("index.jsp");
-		return null;
-	}
-
-	public MemberDAOImpl getDao() {
-		return dao;
+		dao.update(user);
+		
+		return new ModelAndView("redirect:member_list.do");
 	}
 
 }
