@@ -28,8 +28,8 @@ public class PersonDAOImpl implements PersonDAO {
 	@Override
 	public PersonDTO personView(String id) {
 		// TODO Auto-generated method stub
-		String sql = "select * from person where id=?";
-		PersonDTO person = template.queryForObject(sql, new Object[] { id }, new PersonRowMapper());
+		String sql = "select * from person where id="+id;
+		PersonDTO person = template.queryForObject(sql, new PersonRowMapper());
 		return person;
 	}
 
@@ -46,8 +46,8 @@ public class PersonDAOImpl implements PersonDAO {
 	@Override
 	public void personDelete(String id) {
 		// TODO Auto-generated method stub
-		String sql = "delete person where id=?";
-		int i = template.update(sql, new Object[] { id });
+		String sql = "delete person where id="+id;
+		int i = template.update(sql);
 		System.out.println(i + "개 행 삭제");
 	}
 

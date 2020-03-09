@@ -25,8 +25,8 @@ public class PersonInsert extends AbstractController{
 		person.setJob(req.getParameter("job"));
 		person.setName(req.getParameter("name"));
 		person.setPassword(req.getParameter("password"));
-		dao.personInsert(person);	
-		return new ModelAndView("index.jsp");
+		dao.personInsert(person);
+		return new ModelAndView("redirect:personList.sp");
 	}
 
 }
