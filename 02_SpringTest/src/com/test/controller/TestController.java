@@ -1,17 +1,16 @@
 package com.test.controller;
 
-import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
 
-import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.AbstractController;
-
-public class TestController extends AbstractController {
-
-	@Override
-	protected ModelAndView handleRequestInternal(HttpServletRequest req, HttpServletResponse resp) throws Exception {
-		// TODO Auto-generated method stub
-		return new ModelAndView("WEB-INF/jsp/result.jsp");
+// 컨트롤러 선언
+@Controller
+public class TestController {
+	// 매핑
+	@RequestMapping("test.go")
+	// 컨트롤러에서 String은 view(jsp)를 의미함
+	public String test() {
+		return "result"; // WEB-INF/jsp/result.jsp
 	}
 
 }
