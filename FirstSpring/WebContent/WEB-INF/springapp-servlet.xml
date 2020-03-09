@@ -34,7 +34,7 @@
 </bean>
 
 <!-- 상세보기  -->
-<bean name="/member_detail.do" class="com.member.controller.MeberDetail">
+<bean name="/member_detail.do" class="com.member.controller.MemberDetail">
 <property name="dao" ref="dao"></property>
 </bean>
 

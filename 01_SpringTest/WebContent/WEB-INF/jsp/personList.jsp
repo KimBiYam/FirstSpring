@@ -18,14 +18,13 @@
 <c:forEach items="${list }" var="list">
 <tr>
 <td>${list.id }</td>
-<td><a href="personDetail.sp?id=${list.id }">${list.name }</a></td>
+<td><a href="personView.sp?id=${list.id }">${list.name }</a></td>
 <td>${list.job }</td>
 <td>${list.gender }</td>
 </tr>
  </c:forEach>
 </table>
 <a href="index.jsp">돌아가기</a>
-
 
 </body>
 </html>

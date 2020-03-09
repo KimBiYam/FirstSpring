@@ -9,7 +9,7 @@ import org.springframework.web.servlet.mvc.AbstractController;
 import com.person.model.PersonDAOImpl;
 import com.person.model.PersonDTO;
 
-public class PersonDetail extends AbstractController {
+public class PersonView extends AbstractController {
 	private PersonDAOImpl dao;
 	
 
@@ -24,7 +24,7 @@ public class PersonDetail extends AbstractController {
 		PersonDTO dto = dao.personView(id);
 		ModelAndView mv = new ModelAndView();
 		mv.addObject("dto",dto);
-		mv.setViewName("WEB-INF/jsp/personDetail.jsp");
+		mv.setViewName("WEB-INF/jsp/personView.jsp");
 		return mv;
 	}
 

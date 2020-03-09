@@ -26,5 +26,6 @@
 <input type="submit" value="확인">
 <input type="reset" value="취소">
 </form>
+<a href="index.jsp">돌아가기</a>
 </body>
 </html>

@@ -28,5 +28,6 @@
 <button type="button" onclick="location.href='personDelete.sp?id=${dto.id}'">삭제</button>
 <input type="reset" value="취소">
 </form>
+<a href="personList.sp">돌아가기</a>
 </body>
 </html>
