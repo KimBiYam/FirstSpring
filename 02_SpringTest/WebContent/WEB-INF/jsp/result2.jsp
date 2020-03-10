@@ -7,12 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-<a href="test.go">테스트</a>
-<br>
-<a href="test2.go">테스트2222</a>
-<hr>
-<a href="personForm.go">Person 추가하기</a>
-<br>
-<a href="personList.go">Person 리스트</a>
+테스트2222 성공
 </body>
 </html>

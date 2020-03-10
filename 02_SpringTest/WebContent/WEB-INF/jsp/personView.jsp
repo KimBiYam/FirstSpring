@@ -10,7 +10,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"></script>
 <body>
 	<h2>개인 정보 수정</h2>
-	<form action="personUpdate.sp" method="post">
+	<form action="personUpdate.go" method="post">
 		<input type="hidden" name="id" value="${dto.id }">
 		 이름 : <input type="text" name="name" value="${dto.name }"><br>
 		 아이디 : <input type="text" value="${dto.id }" disabled="disabled"><br>
@@ -27,10 +27,10 @@
 			<option value="기타">기타
 		</select><br> <br> <input type="submit" value="수정">
 		<button type="button"
-			onclick="location.href='personDelete.sp?id=${dto.id}'">삭제</button>
+			onclick="location.href='personDelete.go?id=${dto.id}'">삭제</button>
 		<input type="reset" value="취소">
 	</form>
-	<a href="personList.sp">돌아가기</a>
+	<a href="personList.go">돌아가기</a>
 	
 	<script>
 		if ("${dto.gender}" == "남") {

@@ -11,45 +11,50 @@
 		</property>
 		<property name="resourceRef" value="true"></property>
 	</bean>
-	
-	<!-- spring jdbc template  -->
+
+	<!-- spring jdbc template -->
 	<bean id="template"
 		class="org.springframework.jdbc.core.JdbcTemplate">
 		<property name="dataSource" ref="ds"></property>
 	</bean>
 
 	<bean name="/test.sp" class="com.test.controller.TestController"></bean>
-	
+
 	<!-- 추가 폼 -->
 	<bean name="/personForm.sp"
 		class="com.person.controller.PersonForm"></bean>
-	
-	<!-- 추가하기  -->
-	<bean name="/personInsert.sp" class="com.person.controller.PersonInsert">
-	<property name="dao" ref="dao"></property>
+
+	<!-- 추가하기 -->
+	<bean name="/personInsert.sp"
+		class="com.person.controller.PersonInsert">
+		<property name="dao" ref="dao"></property>
 	</bean>
-	
-	<!-- 전체보기  -->
-	<bean name="/personList.sp" class="com.person.controller.PersonList">
-	<property name="dao" ref="dao"></property>
-	</bean>	
-	
-	<!-- 상세보기  -->
-	<bean name="/personView.sp" class="com.person.controller.PersonView">
-	<property name="dao" ref="dao"></property>
+
+	<!-- 전체보기 -->
+	<bean name="/personList.sp"
+		class="com.person.controller.PersonList">
+		<property name="dao" ref="dao"></property>
 	</bean>
-	
-	<!-- 삭제하기  -->
-	<bean name="/personDelete.sp" class="com.person.controller.PersonDelete">
-	<property name="dao" ref="dao"></property>
+
+	<!-- 상세보기 -->
+	<bean name="/personView.sp"
+		class="com.person.controller.PersonView">
+		<property name="dao" ref="dao"></property>
 	</bean>
-	
-	<!-- 수정하기  -->
-	<bean name="/personUpdate.sp" class="com.person.controller.PersonUpdate">
-	<property name="dao" ref="dao"></property>
+
+	<!-- 삭제하기 -->
+	<bean name="/personDelete.sp"
+		class="com.person.controller.PersonDelete">
+		<property name="dao" ref="dao"></property>
 	</bean>
-	
-	<!-- dao  -->
+
+	<!-- 수정하기 -->
+	<bean name="/personUpdate.sp"
+		class="com.person.controller.PersonUpdate">
+		<property name="dao" ref="dao"></property>
+	</bean>
+
+	<!-- dao -->
 	<bean id="dao" class="com.person.model.PersonDAOImpl">
 		<property name="template" ref="template"></property>
 	</bean>
