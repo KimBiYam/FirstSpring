@@ -5,20 +5,20 @@
  
  <mapper namespace="com.member.config.Member">
  <!-- insert  -->
- <insert id="insertData" parameterType="com.member.model.MemberVO">
+ <insert id="insertData" parameterType="mvo">
  insert into springmember(id,pass,name,addr,memo,reg_date)
  values(#{id},#{pass},#{name},#{addr},#{memo},sysdate)
  </insert>
  <!-- list -->
- <select id="listData" resultType="com.member.model.MemberVO">
+ <select id="listData" resultType="mvo">
  select * from springmember order by id
  </select>
  <!-- 상세보기  -->
- <select id="viewData" parameterType="String" resultType="com.member.model.MemberVO">
+ <select id="viewData" parameterType="String" resultType="mvo">
  select * from springmember where id = #{id}
  </select>
  <!-- 수정 -->
- <update id="updateData" parameterType="com.member.model.MemberVO">
+ <update id="updateData" parameterType="mvo">
  update springmember set name=#{name},addr=#{addr},memo=#{memo}
  where id = #{id} 
  </update>
