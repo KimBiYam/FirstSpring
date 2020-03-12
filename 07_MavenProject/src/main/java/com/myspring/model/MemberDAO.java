@@ -9,7 +9,7 @@ public interface MemberDAO {
 	//수정
 	//삭제
 	public void dao_insert(MemberVO member);
-	public List<MemberVO> dao_list();
+	public List<MemberVO> dao_list(String field, String word);
 	public MemberVO dao_view(String id);
 	public void dao_update(MemberVO member);
 	public void dao_delete(String id);

@@ -24,9 +24,14 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public List<MemberVO> dao_list() {
+	public List<MemberVO> dao_list(String field, String word) {
 		// TODO Auto-generated method stub
-		String sql = "select * from springmember order by id";
+		String sql = "";
+		if (word.equals("")) {
+			sql = "select * from springmember order by id";
+		} else {
+			sql = "select * from springmember where " + field + " like '%" + word + "%' order by id";
+		}
 		List<MemberVO> list = template.query(sql, new RowMapper() {
 			@Override
 			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -48,7 +53,7 @@ public class MemberDAOImpl implements MemberDAO {
 	@Override
 	public MemberVO dao_view(String id) {
 		// TODO Auto-generated method stub
-		String sql = "select * from springmember where id='"+id+"'";
+		String sql = "select * from springmember where id='" + id + "'";
 		MemberVO user = (MemberVO) template.queryForObject(sql, new RowMapper() {
 			@Override
 			public Object mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -70,16 +75,15 @@ public class MemberDAOImpl implements MemberDAO {
 	public void dao_update(MemberVO member) {
 		// TODO Auto-generated method stub
 		String sql = "update springmember set pass=?,name=?,addr=?,memo=? where id=?";
-		Object[] param = new Object[] {
-				member.getPass(),member.getName(),member.getAddr(),member.getMemo(),member.getId()
-		};
+		Object[] param = new Object[] { member.getPass(), member.getName(), member.getAddr(), member.getMemo(),
+				member.getId() };
 		template.update(sql, param);
 	}
 
 	@Override
 	public void dao_delete(String id) {
 		// TODO Auto-generated method stub
-		String sql = "delete from springmember where id='"+id+"'";
+		String sql = "delete from springmember where id='" + id + "'";
 		template.update(sql);
 	}
 

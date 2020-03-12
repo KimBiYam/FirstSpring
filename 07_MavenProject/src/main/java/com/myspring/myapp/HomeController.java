@@ -58,8 +58,10 @@ public class HomeController {
 
 	// 리스트
 	@RequestMapping("mList")
-	public String list(Model model) {
-		List<MemberVO> list = service.list();
+	public String list(Model model, String field, String word) {
+		field = field == null ? "" : field;
+		word = word == null ? "" : word;
+		List<MemberVO> list = service.list(field, word);
 		model.addAttribute("userlist", list);
 		return "list";
 	}
@@ -71,22 +73,22 @@ public class HomeController {
 		model.addAttribute("user", member);
 		return "detail";
 	}
-	
-	//수정
+
+	// 수정
 	@RequestMapping(value = "mUpdate", method = RequestMethod.GET)
 	public String update(Model model, String id) {
 		MemberVO member = service.view(id);
 		model.addAttribute("user", member);
 		return "member_form_update";
 	}
-	
+
 	@RequestMapping(value = "mUpdate", method = RequestMethod.POST)
 	public String update(MemberVO member) {
-		service.update(member);		
+		service.update(member);
 		return "redirect:mList";
 	}
-	
-	//삭제
+
+	// 삭제
 	@RequestMapping("mDelete")
 	public String Delete(String id) {
 		service.delete(id);
