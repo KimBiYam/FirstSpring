@@ -10,7 +10,7 @@
 	</insert>
 	<!-- 리스트 -->
 	<select id="listData" resultType="mvo">
-		select * from springmember
+		select * from springmember order by id
 	</select>
 	<!-- 상세보기 -->
 	<select id="viewData" parameterType="String" resultType="mvo">
