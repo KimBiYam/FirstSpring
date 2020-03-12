@@ -13,7 +13,7 @@
 	<!-- DB설정 spring 이용 -->
 	<bean id="dataSource"
 		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
-		<property name="driverClass" value="${drvier}" />
+		<property name="driverClass" value="${driver}" />
 		<property name="url" value="${url}" />
 		<property name="username" value="${username}" />
 		<property name="password" value="${password}" />
@@ -30,9 +30,8 @@
 		<constructor-arg index="0" ref="sqlSessionFactoryBean" />
 	</bean>
 
-
 	<context:component-scan
-		base-package="com.member"></context:component-scan>
+		base-package="com.member"></context:component-scan>	
 	<bean id="viewResolver"
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">
 		<property name="prefix" value="WEB-INF/views/"></property>
