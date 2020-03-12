@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	<!-- properties 설정 -->
+	<bean
+		class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
+		<property name="locations" value="classpath:jdbc.properties" />
+	</bean>
+	<!-- DB설정 spring 이용 -->
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.SimpleDriverDataSource">
+		<property name="driverClass" value="${driver}" />
+		<property name="url" value="${url}" />
+		<property name="username" value="${username}" />
+		<property name="password" value="${password}" />
+	</bean>
+	<!-- Mybatis 설정 -->
+	<bean id="sqlSessionFactoryBean"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="configLocation"
+			value="classpath:/com/mybatis/config/Configuration.xml" />
+	</bean>
+	<!-- sqlSession 설정 -->
+	<bean id="sqlMapper" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSessionFactoryBean" />
+	</bean>
+
+</beans>
