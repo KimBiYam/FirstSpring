@@ -10,7 +10,7 @@ public interface MemberDAO {
 	// ªË¡¶
 	public void dao_insert(String idName, MemberVO member);
 
-	public List<MemberVO> dao_list(String idName);
+	public List<MemberVO> dao_list(String idName, String field, String word);
 
 	public MemberVO dao_view(String idName, String id);
 

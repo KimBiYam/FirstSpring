@@ -10,7 +10,7 @@ public interface MemberService {
 	// ªË¡¶
 	public void insert(MemberVO member);
 
-	public List<MemberVO> list();
+	public List<MemberVO> list(String field, String word);
 
 	public MemberVO view(String id);
 

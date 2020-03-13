@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.person.Person">
+	<!-- 추가 -->
+	<insert id="insertPerson" parameterType="com.person.vo.PersonVO">
+		insert into person values(#{id},#{name},#{password},#{gender},#{job})
+	</insert>
+	<!-- 리스트 -->
+	<select id="listPerson" resultType="com.person.vo.PersonVO" parameterType="java.util.HashMap">
+		select * from person
+		<if test="word!=null">
+			where ${field} like '%'||#{word}||'%'
+		</if>
+		 order by id
+	</select>
+	<!-- 상세보기 -->
+	<select id="viewPerson" parameterType="String" resultType="com.person.vo.PersonVO">
+		select * from person where id = #{id}
+	</select>
+	<!-- 수정 -->
+	<update id="updatePerson" parameterType="com.person.vo.PersonVO">
+		update person set name=#{name},password=#{password},gender=#{gender},job=#{job}
+		where id = #{id}
+	</update>
+	<!-- 삭제 -->
+	<delete id="deletePerson" parameterType="String">
+		delete from person where id = #{id}	
+	</delete>
+	<!-- count -->
+	<select id="countPerson" resultType="int" parameterType="java.util.HashMap">
+		select count(*) from person
+		<if test="word!=null">
+		where ${field} like '%'||#{word}||'%'
+		</if>
+	</select>
+</mapper>

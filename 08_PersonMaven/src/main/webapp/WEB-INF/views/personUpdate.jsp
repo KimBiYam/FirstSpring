@@ -10,8 +10,9 @@
 <body>
 <h2>수정하기</h2>
 <form action="personUpdate.go " method="post">
+<input type="hidden" name="id" value="${person.id }">
 이름: <input type="text" name="name"  value="${person.name }" ><br>
-아이디: <input type="text" name="id" value="${person.id }" readonly="readonly"><br>
+아이디: <input type="text" value="${person.id }" disabled="disabled"><br>
 패스워드 : <input type="password" name="password"><br>
 성별: 
  <label for="man">  남</label> 

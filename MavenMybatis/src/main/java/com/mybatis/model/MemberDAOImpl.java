@@ -1,6 +1,6 @@
 package com.mybatis.model;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.apache.ibatis.session.ExecutorType;
@@ -23,10 +23,19 @@ public class MemberDAOImpl implements MemberDAO {
 	}
 
 	@Override
-	public List<MemberVO> dao_list(String idName) {
+	public List<MemberVO> dao_list(String idName, String field, String word) {
 		// TODO Auto-generated method stub
 		SqlSession session = sqlMapper.openSession(ExecutorType.REUSE);
-		List<MemberVO> list = session.selectList(idName);
+		List<MemberVO> list = null;
+		if (word.equals("")) {
+			list = session.selectList(idName);
+		} else {
+			HashMap<String, String> map = new HashMap<>();
+			map.put("field", field);
+			map.put("word", word);
+			idName = "searchData";
+			list = session.selectList(idName, map);
+		}
 		return list;
 	}
 

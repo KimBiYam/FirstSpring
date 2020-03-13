@@ -17,9 +17,9 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public List<MemberVO> list() {
+	public List<MemberVO> list(String field, String word) {
 		// TODO Auto-generated method stub
-		List<MemberVO> list = dao.dao_list("listData");
+		List<MemberVO> list = dao.dao_list("listData", field, word);
 		return list;
 	}
 

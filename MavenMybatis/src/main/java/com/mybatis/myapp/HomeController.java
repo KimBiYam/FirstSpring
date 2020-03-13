@@ -58,8 +58,12 @@ public class HomeController {
 
 	// ¸®½ºÆ®
 	@RequestMapping("mList")
-	public String list(Model model) {
-		List<MemberVO> list = service.list();
+	public String list(Model model, String field, String word) {
+		if (field == null)
+			field = "";
+		if (word == null)
+			word = "";
+		List<MemberVO> list = service.list(field, word);
 		model.addAttribute("userlist", list);
 		return "list";
 	}

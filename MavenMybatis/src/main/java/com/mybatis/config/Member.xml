@@ -12,6 +12,11 @@
 	<select id="listData" resultType="mvo">
 		select * from springmember order by id
 	</select>
+	<!-- 검색  -->
+	<select id="searchData" resultType="mvo" parameterType="java.util.HashMap">
+		select * from springmember where ${field} like '%${word}%' 		
+		order by id
+	</select>
 	<!-- 상세보기 -->
 	<select id="viewData" parameterType="String" resultType="mvo">
 		select * from springmember where id = #{id}
