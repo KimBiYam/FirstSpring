@@ -21,7 +21,7 @@ public class PersonDAOImpl implements PersonDAO {
 		// TODO Auto-generated method stub
 //		SqlSession sqlMap = sqlMapper.openSession(ExecutorType.REUSE);
 		sqlMap.insert(mid, person);
-		sqlMap.commit();
+//		sqlMap.commit();
 	}
 
 	@Override
@@ -45,7 +45,7 @@ public class PersonDAOImpl implements PersonDAO {
 		// TODO Auto-generated method stub
 //		SqlSession sqlMap = sqlMapper.openSession(ExecutorType.REUSE);
 		sqlMap.update(mid, person);
-		sqlMap.commit();
+//		sqlMap.commit();
 	}
 
 	@Override
@@ -53,7 +53,7 @@ public class PersonDAOImpl implements PersonDAO {
 		// TODO Auto-generated method stub
 //		SqlSession sqlMap = sqlMapper.openSession(ExecutorType.REUSE);
 		sqlMap.delete(mid, id);
-		sqlMap.commit();
+//		sqlMap.commit();
 	}
 
 	public int dao_count(String mid, HashMap<String, String> map) {
