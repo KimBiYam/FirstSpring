@@ -3,7 +3,10 @@
   PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+<typeAliases>
+<typeAlias type="com.guestapp.vo.GuestVO" alias="gvo"/>
+</typeAliases>
 <mappers>
-<mapper />
+<mapper resource="mapper/MyGuest.xml" />
 </mappers>
 </configuration>
