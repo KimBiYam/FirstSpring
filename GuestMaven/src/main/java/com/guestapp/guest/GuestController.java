@@ -9,7 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.guestapp.model.GuestServiceImpl;
 import com.guestapp.vo.GuestVO;
@@ -28,7 +30,8 @@ public class GuestController {
 
 	// 추가
 	@PostMapping("gInsert")
-	public String insert(GuestVO guest) {
+	//@ModelAttribute : 모델에 해당 이름으로 객체를 담아줌
+	public String insert(@ModelAttribute("guest") GuestVO guest) {
 		InetAddress local;
 		try {
 			local = InetAddress.getLocalHost();
@@ -43,16 +46,20 @@ public class GuestController {
 
 	// 리스트
 	@GetMapping("gList")
-	public String list(Model model) {
-		List<GuestVO> list = service.list();
+	public String list(Model model, String field, String word) {
+		HashMap<String, String> hm = new HashMap<String, String>();
+		hm.put("field", field);
+		hm.put("word", word);
+		List<GuestVO> list = service.list(hm);
 		model.addAttribute("guestlist", list);
 		return "list";
 	}
 
 	// 상세보기
 	@GetMapping("gView")
-	public String view(Model model, int num) {
-		GuestVO guest = service.findById(num);
+	//@RequestParam("num") int no : num으로 넘어오는 값을 no로 받겠다는 뜻 
+	public String view(Model model, @RequestParam("num") int no) {
+		GuestVO guest = service.findById(no);
 		model.addAttribute("guest", guest);
 		return "view";
 	}

@@ -33,6 +33,5 @@
 	</bean>
 	
 	<mybatis-spring:scan base-package="com.guestapp.mapper"/>
-		
 
 </beans>

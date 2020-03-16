@@ -32,9 +32,9 @@ public class GuestServiceImpl implements GuestService {
 	}
 
 	@Override
-	public List<GuestVO> list() {
+	public List<GuestVO> list(HashMap<String, String> hm) {
 		// TODO Auto-generated method stub
-		return dao.dao_list();
+		return dao.dao_list(hm);
 	}
 
 	@Override

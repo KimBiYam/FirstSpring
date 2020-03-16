@@ -1,11 +1,9 @@
 package com.guestapp.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Delete;
 import org.apache.ibatis.annotations.Insert;
-import org.apache.ibatis.annotations.Select;
-import org.apache.ibatis.annotations.Update;
 
 import com.guestapp.vo.GuestVO;
 
@@ -16,20 +14,11 @@ public interface GuestMapper {
 			)
 	public void insert(GuestVO guest);
 	
-	@Select("select * from guestbook order by num desc")
-	public List<GuestVO> list();
+	public List<GuestVO> list(HashMap<String, String> hm);
 	
-	@Update("update guestbook set "
-			+"content=#{content}, grade=#{grade} "
-			+"where num=#{num}"
-			)
 	public void update(GuestVO guest);
 	
-	@Delete("delete from guestbook "
-			+ "where num=#{num}")
 	public void delete(int num);
 	
-	@Select("select * from guestbook "
-			+ "where num=#{num}")
 	public GuestVO view(int num);
 }

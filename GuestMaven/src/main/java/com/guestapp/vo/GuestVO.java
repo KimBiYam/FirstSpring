@@ -1,5 +1,9 @@
 package com.guestapp.vo;
 
+import org.springframework.stereotype.Component;
+
+//@Component : 빈에 등록하는 어노테이션 (Autowired를 사용할때는 굳이 넣지않아도 됨)
+@Component
 public class GuestVO {
 	private int num;
 	private String name;

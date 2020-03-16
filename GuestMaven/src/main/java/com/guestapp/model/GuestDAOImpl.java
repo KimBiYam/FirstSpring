@@ -35,9 +35,9 @@ public class GuestDAOImpl implements GuestDAO {
 	}
 
 	@Override
-	public List<GuestVO> dao_list() {
+	public List<GuestVO> dao_list(HashMap<String, String> hm) {
 		// TODO Auto-generated method stub
-		return mapper.list();
+		return mapper.list(hm);
 	}
 
 	@Override
