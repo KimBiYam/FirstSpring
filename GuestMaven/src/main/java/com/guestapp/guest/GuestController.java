@@ -17,14 +17,22 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.SessionAttributes;
+import org.springframework.web.bind.support.SessionStatus;
 
 import com.guestapp.model.GuestServiceImpl;
+import com.guestapp.util.PageAction;
 import com.guestapp.vo.GuestVO;
 
+
+//@SessionAttributes("login") : login이라는 값을 섹션값으로 사용한다는 의미
+@SessionAttributes("login")
 @Controller
 public class GuestController {
 	@Autowired
 	GuestServiceImpl service;
+	@Autowired
+	private PageAction page;
 
 	// GetMapping, PostMapping을 이용하면 method를 따로 적어주지않아도 됨
 	// 추가 폼
@@ -54,14 +62,31 @@ public class GuestController {
 
 	// 리스트
 	@GetMapping("gList")
-	public String list(Model model, String field, String word) {
-		HashMap<String, String> hm = new HashMap<String, String>();
+	public String list(String pageNum, String field, String word, Model model) {
+		HashMap<String, Object> hm = new HashMap<String, Object>();
+		hm.clear();
 		hm.put("field", field);
 		hm.put("word", word);
+		int count = service.count(hm);		
+		int pageSize = 5; // 한 화면에 보여지는 글 수
+		if (pageNum == null)
+			pageNum = "1";
+		int currentPage = Integer.parseInt(pageNum);
+
+		int startRow = (currentPage - 1) * pageSize + 1;
+		int endRow = startRow + pageSize - 1;
+		if (endRow > count)
+			endRow = count;
+
+		hm.put("startRow", startRow);
+		hm.put("endRow", endRow);
+
 		List<GuestVO> list = service.list(hm);
-		int count = service.count(hm);
+		String pageHtml = page.paging(count, pageSize, currentPage, field, word);
+		
 		model.addAttribute("count", count);
 		model.addAttribute("guestlist", list);
+		model.addAttribute("pageHtml", pageHtml);
 		return "list";
 	}
 
@@ -109,7 +134,8 @@ public class GuestController {
 	@GetMapping("login")
 	public void login() {
 	}
-
+	/*
+	// 기존 서블릿 방식
 	// 로그인
 	@PostMapping("login")
 	// HttpSession 객체를 바로 인자값으로 받아와도 됨	
@@ -130,6 +156,25 @@ public class GuestController {
 //		HttpSession session = req.getSession();
 		session.invalidate();
 		return "insert";
+	}
+	*/
+	@PostMapping("login")
+	public String login(String id, String pwd, Model model) {
+		if (id.equals("admin") && pwd.equals("1234")) {
+			model.addAttribute("login", true);
+			return "insert";
+		} else {
+			model.addAttribute("errMsg", "아이디 / 패스워드 오류");
+			return "login";
+		}
+	}
+	
+	@GetMapping("logout")
+	//SessionStatus : 스프링이 제공하는 세션
+	public String logout(SessionStatus session) {
+		// setComplete() : 세션 초기화
+		session.setComplete();
+		return "redirect:/";
 	}
 
 }

@@ -38,6 +38,7 @@
 		</div>
 <br><hr>
 <div id="result" align="center"></div>
+<div id="pageHtml" align="center"></div>
 <br><hr>
 <div id="views" align="center"></div>
 
@@ -52,8 +53,9 @@
 		getData();
 	})
 	// 리스트
-	function getData(field, word) {
+	function getData(pageNum, field, word) {
 		$.get("gList", {
+			"pageNum" : pageNum,
 			"field" : field,
 			"word" : word
 		}, function(retData) {

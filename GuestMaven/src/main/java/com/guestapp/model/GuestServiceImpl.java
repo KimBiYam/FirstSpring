@@ -32,7 +32,7 @@ public class GuestServiceImpl implements GuestService {
 	}
 
 	@Override
-	public List<GuestVO> list(HashMap<String, String> hm) {
+	public List<GuestVO> list(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
 		return dao.dao_list(hm);
 	}
@@ -44,7 +44,7 @@ public class GuestServiceImpl implements GuestService {
 		return guest;
 	}
 	
-	public int count(HashMap<String, String> hm){
+	public int count(HashMap<String, Object> hm){
 		return dao.dao_count(hm);		
 	}
 	

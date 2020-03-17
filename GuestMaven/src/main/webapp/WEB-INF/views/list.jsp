@@ -21,10 +21,13 @@
 					<td>${gl.created }</td>
 					<c:if test="${login!=null }">
 					<td>
-					<a href="javascript:fdelete(${gl.num},'${gl.name }')">삭제</a>
+					<a href="javascript:fdelete(${gl.num},'${gl.name }')">삭제</a>					
 					</td>
 					</c:if>
 				</tr>
 			</c:forEach>
 		</table>
+		<div>
+		${pageHtml }
+		</div>
 	</div>

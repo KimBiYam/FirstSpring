@@ -34,7 +34,7 @@ public class GuestDAOImpl implements GuestDAO {
 	}
 
 	@Override
-	public List<GuestVO> dao_list(HashMap<String, String> hm) {
+	public List<GuestVO> dao_list(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
 		return mapper.list(hm);
 	}
@@ -45,7 +45,7 @@ public class GuestDAOImpl implements GuestDAO {
 		return mapper.view(num);
 	}
 	
-	public int dao_count(HashMap<String, String> hm) {
+	public int dao_count(HashMap<String, Object> hm) {
 		return mapper.count(hm);		
 	}
 

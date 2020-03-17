@@ -17,7 +17,7 @@ public interface GuestDAO {
 
 	public void dao_delete(int num);
 
-	public List<GuestVO> dao_list(HashMap<String, String> hm);
+	public List<GuestVO> dao_list(HashMap<String, Object> hm);
 
 	public GuestVO dao_findById(int num);
 }

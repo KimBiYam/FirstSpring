@@ -15,11 +15,13 @@
 	</sql>
 	<!-- 리스트 -->
 	<select id="list" resultType="com.guestapp.vo.GuestVO">
-		select * from guestbook
+	select * from
+	 	(select rownum rnum,aa.* from
+		(select * from guestbook
 		<include refid="searchword"></include>
-		order by num desc
+		order by num desc)aa)
+	where rnum>=#{startRow} and rnum &lt;=#{endRow}
 	</select>
-
 	<!-- 상세보기 -->
 	<select id="view" resultType="com.guestapp.vo.GuestVO">
 		select * from guestbook where num=#{num}
@@ -41,9 +43,7 @@
 	
 	<!-- 카운트  -->
 	<select id="count" resultType="int">
-		select count(*) from guestbook
-		<include refid="searchword"></include>
-		order by num desc
+	select count(*) from guestbook
+	<include refid="searchword"></include>
 	</select>
-	
 </mapper>

@@ -14,7 +14,7 @@ public interface GuestMapper {
 			)
 	public void insert(GuestVO guest);
 	
-	public List<GuestVO> list(HashMap<String, String> hm);
+	public List<GuestVO> list(HashMap<String, Object> hm);
 	
 	public void update(GuestVO guest);
 	
@@ -22,5 +22,5 @@ public interface GuestMapper {
 	
 	public GuestVO view(int num);
 	
-	public int count(HashMap<String, String> hm);
+	public int count(HashMap<String, Object> hm);
 }
