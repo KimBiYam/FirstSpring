@@ -47,7 +47,7 @@
 	$(function() {
 		$("#submit").click(sendIt);
 		$("#search").click(function() {
-			getData($("#field").val(), $("#word").val());
+			getData(1, $("#field").val(), $("#word").val());
 			$("#word").val("");
 		});
 		getData();

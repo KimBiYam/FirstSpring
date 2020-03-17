@@ -13,9 +13,8 @@ public class PageAction {
 		int endPage = startPage + pageBlock - 1;
 		if (endPage > pageCount)
 			endPage = pageCount;
-		
+						
 		StringBuilder sb = new StringBuilder();
-		if(count>0) {
 			//이전
 			if(startPage>pageBlock) { //getData(2,'name','홍길동')				
 				sb.append("<a href=");
@@ -40,7 +39,7 @@ public class PageAction {
 			}
 			
 			//다음
-			if(endPage>pageBlock) {
+			if(endPage<pageCount) {
 				sb.append("<a href=");
 				sb.append(file);
 				sb.append((startPage+pageBlock));
@@ -49,7 +48,6 @@ public class PageAction {
 				sb.append(">다음</a>");
 			}
 			
-		}
 
 		return sb.toString();
 	}

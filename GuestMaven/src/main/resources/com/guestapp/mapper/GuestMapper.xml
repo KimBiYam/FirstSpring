@@ -7,9 +7,14 @@
 <!-- parametertype을 따로 주지 않아도 해당 메소드에서 알아서 불러와줌 -->
 <mapper namespace="com.guestapp.mapper.GuestMapper">
 	<sql id="searchword">
-		<if test="word!=null">
+		<if test='word!=null and field=="name"'>		
 			<where>
-				${field} like '%${word}%'
+				name like '%'||#{word}||'%'
+			</where>
+		</if>
+			<if test='word!=null and field=="content"'>		
+			<where>
+				content like '%'||#{word}||'%'
 			</where>
 		</if>
 	</sql>

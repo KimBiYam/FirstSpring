@@ -67,14 +67,14 @@ public class GuestController {
 		hm.clear();
 		hm.put("field", field);
 		hm.put("word", word);
-		int count = service.count(hm);		
+		int count = service.count(hm);
 		int pageSize = 5; // 한 화면에 보여지는 글 수
 		if (pageNum == null)
 			pageNum = "1";
 		int currentPage = Integer.parseInt(pageNum);
 
 		int startRow = (currentPage - 1) * pageSize + 1;
-		int endRow = startRow + pageSize - 1;
+		int endRow = currentPage * pageSize;
 		if (endRow > count)
 			endRow = count;
 
