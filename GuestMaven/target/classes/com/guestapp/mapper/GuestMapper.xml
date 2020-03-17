@@ -9,7 +9,7 @@
 	<sql id="searchword">
 		<if test="word!=null">
 			<where>
-				${field} like '%'||#{word}||'%'
+				${field} like '%${word}%'
 			</where>
 		</if>
 	</sql>
@@ -38,6 +38,12 @@
 		delete from guestbook
 		where num=#{num}
 	</delete>
-
-
+	
+	<!-- 카운트  -->
+	<select id="count" resultType="int">
+		select count(*) from guestbook
+		<include refid="searchword"></include>
+		order by num desc
+	</select>
+	
 </mapper>

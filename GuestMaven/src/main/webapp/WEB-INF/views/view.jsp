@@ -14,10 +14,8 @@
  등급 : ${guest.grade } <br>
  날짜 : ${guest. created } <br>
  IP주소 : ${guest.ipaddr } <br>
-  
  <input type="button" onclick="location.href='gUpdate?num=${guest.num}'" value="수정하기">
  <input type="button" onclick="location.href='gDelete.go?num=${guest.num}'" value="삭제하기">
  </div>
-
 </body>
 </html>

@@ -44,5 +44,9 @@ public class GuestServiceImpl implements GuestService {
 		return guest;
 	}
 	
+	public int count(HashMap<String, String> hm){
+		return dao.dao_count(hm);		
+	}
+	
 
 }

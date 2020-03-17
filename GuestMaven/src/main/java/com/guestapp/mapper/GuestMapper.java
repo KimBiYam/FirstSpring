@@ -21,4 +21,6 @@ public interface GuestMapper {
 	public void delete(int num);
 	
 	public GuestVO view(int num);
+	
+	public int count(HashMap<String, String> hm);
 }

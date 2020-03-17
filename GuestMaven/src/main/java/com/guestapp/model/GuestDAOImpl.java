@@ -3,7 +3,6 @@ package com.guestapp.model;
 import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -44,6 +43,10 @@ public class GuestDAOImpl implements GuestDAO {
 	public GuestVO dao_findById(int num) {
 		// TODO Auto-generated method stub
 		return mapper.view(num);
+	}
+	
+	public int dao_count(HashMap<String, String> hm) {
+		return mapper.count(hm);		
 	}
 
 }

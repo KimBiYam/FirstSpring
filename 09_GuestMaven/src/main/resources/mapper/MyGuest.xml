@@ -41,7 +41,7 @@
 	</select>
 	<!-- 카운트 -->
 	<select id="guestCount" parameterType="gvo" resultType="int">
-		select * from guestbook
+		select count(*) from guestbook
 		<include refid="searchword" />
 		order by num desc
 	</select>
