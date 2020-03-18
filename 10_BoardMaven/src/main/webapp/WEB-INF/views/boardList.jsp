@@ -14,20 +14,23 @@
 </head>
 <body>
 	<div class="container my-5">
-	<p class="h2 text-center">게 시 판</p>
+		<p class="h2 text-center">게 시 판</p>
 		<div id="result"></div>
 		<div class="text-center my-5">
 			<form action="boardList" method="get">
 				<div class="input-group">
-					<select class="input-group-prepend custom-select" id="field"
-						name="field">
+					<select class="input-group-prepend custom-select col-lg-2"
+						id="field" name="field">
+						<option value="">선택하세요</option>
 						<option value="title">제목</option>
 						<option value="content">내용</option>
 						<option value="writer">작성자</option>
 					</select> <input type="text" id="word" name="word"
 						class="form-control input-group-text">
-					<button type="button" id="search" name="search"
-						class="btn btn-outline-primary input-group-append">검색</button>
+					<div class="input-group-append">
+						<button type="button" id="search" name="search"
+							class="btn btn-outline-primary">검색</button>
+					</div>
 				</div>
 			</form>
 		</div>
@@ -38,10 +41,14 @@
 	<script type="text/javascript">
 		$(function() {
 			getData(1, "", "");
-			$("#search").click(function(){
-				getData(1,$("#field").val(),$("#word").val());
+			$("#search").click(function() {
+				if ($("#field").val() == "") {
+					alert("검색 내용을 선택하세요");
+					return false;
+				}
+				getData(1, $("#field").val(), $("#word").val());
 				$("#word").val("");
-				})
+			})
 		})
 		function getData(pageNum, field, word) {
 			$.post("boardList", {
