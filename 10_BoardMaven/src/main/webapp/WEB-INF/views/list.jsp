@@ -11,9 +11,9 @@
 			<th style="width: 10%">조회수</th>
 		</tr>
 	</thead>
-	<c:forEach items="${list }" var="list">
+	<c:forEach items="${list }" var="list" varStatus="st"> 
 		<tr>
-			<td>${list.num}</td>
+			<td>${rowNo-st.index }</td>
 			<td><a href='boardView?num=${list.num }'>${list.title }</a></td>
 			<td>${list.writer }</td>
 			<td>${list.regdate }</td>

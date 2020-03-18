@@ -67,7 +67,9 @@ public class MyBoardController {
 		List<MyBoardVO> list = service.list(hm);
 		String pageHtml = page.paging(count, pageSize, currentPage, field, word);
 
+		int rowNo = count - ((currentPage - 1) * pageSize);
 		model.addAttribute("pageHtml", pageHtml);
+		model.addAttribute("rowNo", rowNo);
 		model.addAttribute("count", count);
 		model.addAttribute("list", list);
 		return "list";
