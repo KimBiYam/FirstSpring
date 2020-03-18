@@ -13,7 +13,7 @@
 				<th>삭제</th>
 				</c:if>
 			</tr>
-			<c:forEach items="${guestlist}" var="gl">
+			<c:forEach items="${guestlist}" var="gl" varStatus="status">
 				<tr>
 					<td>${gl.num }</td>
 					<td><a href="javascript:fview(${gl.num })">${gl.name }</a></td>

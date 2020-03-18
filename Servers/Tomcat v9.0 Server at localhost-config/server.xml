@@ -153,7 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-      <Context docBase="07_MavenProject" path="/07_MavenProject" reloadable="true" source="org.eclipse.jst.jee.server:07_MavenProject"/><Context docBase="MavenMybatis" path="/myapp" reloadable="true" source="org.eclipse.jst.jee.server:MavenMybatis"/><Context docBase="08_PersonMaven" path="/person" reloadable="true" source="org.eclipse.jst.jee.server:08_PersonMaven"/><Context docBase="09_GuestMaven" path="/guest" reloadable="true" source="org.eclipse.jst.jee.server:09_GuestMaven"/><Context docBase="GuestMaven" path="/GuestMaven" reloadable="true" source="org.eclipse.jst.jee.server:GuestMaven"/><Context docBase="FirstSpring" path="/FirstSpring" reloadable="true" source="org.eclipse.jst.jee.server:FirstSpring"/></Host>
+      <Context docBase="MavenMybatis" path="/MavenMybatis" reloadable="true" source="org.eclipse.jst.jee.server:MavenMybatis"/><Context docBase="09_GuestMaven" path="/09_GuestMaven" reloadable="true" source="org.eclipse.jst.jee.server:09_GuestMaven"/><Context docBase="GuestMaven" path="/GuestMaven" reloadable="true" source="org.eclipse.jst.jee.server:GuestMaven"/><Context docBase="10_BoardMaven" path="/myboard" reloadable="true" source="org.eclipse.jst.jee.server:10_BoardMaven"/></Host>
     </Engine>
   </Service>
 </Server>

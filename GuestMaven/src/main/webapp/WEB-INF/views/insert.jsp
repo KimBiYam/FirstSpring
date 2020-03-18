@@ -50,7 +50,7 @@
 			getData(1, $("#field").val(), $("#word").val());
 			$("#word").val("");
 		});
-		getData();
+		getData(1,"","");
 	})
 	// 리스트
 	function getData(pageNum, field, word) {

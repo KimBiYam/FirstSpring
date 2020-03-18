@@ -6,6 +6,14 @@
 <!-- GuestMapper.java 의 메소드를 id로 불러오면 됨 -->
 <!-- parametertype을 따로 주지 않아도 해당 메소드에서 알아서 불러와줌 -->
 <mapper namespace="com.guestapp.mapper.GuestMapper">
+
+	<sql id="searchword1">
+	<if test="word!=''">
+		<where>
+			${field} like '%'||#{word}||'%'
+		</where>
+	</if>
+</sql>
 	<sql id="searchword">
 		<if test='word!=null and field=="name"'>		
 			<where>
@@ -23,7 +31,7 @@
 	select * from
 	 	(select rownum rnum,aa.* from
 		(select * from guestbook
-		<include refid="searchword"></include>
+		<include refid="searchword1"></include>
 		order by num desc)aa)
 	where rnum>=#{startRow} and rnum &lt;=#{endRow}
 	</select>
@@ -49,6 +57,6 @@
 	<!-- 카운트  -->
 	<select id="count" resultType="int">
 	select count(*) from guestbook
-	<include refid="searchword"></include>
+	<include refid="searchword1"></include>
 	</select>
 </mapper>

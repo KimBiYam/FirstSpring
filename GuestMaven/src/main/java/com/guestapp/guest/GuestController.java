@@ -65,6 +65,10 @@ public class GuestController {
 	public String list(String pageNum, String field, String word, Model model) {
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		hm.clear();
+		if(field==null)
+			field="";
+		if(word==null)
+			word="";		
 		hm.put("field", field);
 		hm.put("word", word);
 		int count = service.count(hm);

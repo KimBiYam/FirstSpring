@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myboard.mapper.MyBoardMapper">
+	<sql id="searchword">
+		<if test="word!=''">
+			<where>
+				${field} like '%'||#{word}||'%'
+			</where>
+		</if>
+	</sql>
+	<!-- 추가 -->
+	<insert id="insert">
+		insert into springboard
+		values(springboard_seq.nextval,#{title},#{content},#{writer},sysdate,0,#{password})
+	</insert>
+	<!-- 전체보기 -->
+	<select id="list" resultType="com.myboard.vo.MyBoardVO">
+		select * from
+		(select rownum rnum,aa.* from
+		(select * from springboard
+		<include refid="searchword"></include>
+		order by num desc)aa)
+		where rnum>=#{startRow} and rnum &lt;=#{endRow}
+	</select>
+	<!-- 상세보기 -->
+	<select id="view" resultType="com.myboard.vo.MyBoardVO">
+		select * from springboard where num
+		= #{num}
+	</select>
+	<!-- 수정 -->
+	<update id="update">
+		update springboard set
+		title=#{title},
+		content=#{content}
+		where num=#{num}
+	</update>
+	<!-- 삭제 -->
+	<delete id="delete">
+		delete from springboard
+		where num=#{num}
+	</delete>
+	<!-- 조회수 -->
+	<update id="hitcount">
+		update springboard set
+		hitcount = #{hitcount}+1
+		where
+		num=#{num}
+	</update>
+	<!-- 패스워드 체크 -->
+	<select id="check" resultType="String">
+		select password from springboard
+		where num=#{num}
+	</select>
+	<!-- 카운트 -->
+	<select id="count" resultType="int">
+		select count(*) from springboard
+		<include refid="searchword"></include>
+	</select>
+
+</mapper>
