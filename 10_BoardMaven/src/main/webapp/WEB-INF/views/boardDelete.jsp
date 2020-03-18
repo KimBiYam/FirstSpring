@@ -12,8 +12,8 @@
 <script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
 </head>
 <body>
-	<div class="container text-center">
-		<p class="h2">비밀번호 입력</p>
+	<div class="container text-center my-2">
+		<p class="h3">비밀번호 입력</p>
 		<div class="form-group">
 			<input type="password" name="password" id="password"
 				class="form-control">
