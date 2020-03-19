@@ -71,10 +71,6 @@ public class MyBoardController {
 		String pageHtml = page.paging(count, pageSize, currentPage, field, word);
 
 		int rowNo = count - ((currentPage - 1) * pageSize);
-//		model.addAttribute("pageHtml", pageHtml);
-//		model.addAttribute("rowNo", rowNo);
-//		model.addAttribute("count", count);
-//		model.addAttribute("list", list);
 		JSONArray jarr = new JSONArray();
 		for (MyBoardVO board : list) {
 			JSONObject obj = new JSONObject();
