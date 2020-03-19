@@ -55,11 +55,31 @@
 				"pageNum" : pageNum,
 				"field" : field,
 				"word" : word
-			}, function(data) {
-				$("#result").html(data);
+			}, function(retData) {
+				var data = $.parseJSON(retData);
+				var htmlStr = "";
+				htmlStr += "<table class='table small table-bordered my-5'>";
+				htmlStr += "<thead><tr>";
+				htmlStr += "<th style='width: 10%'>번호</th>";
+				htmlStr += "<th style='width: 40%'>제목</th>";
+				htmlStr += "<th style='width: 20%'>작성자</th>";
+				htmlStr += "<th style='width: 20%'>작성일</th>";
+				htmlStr += "<th style='width: 10%'>조회수</th>";
+				htmlStr += "</tr></thead>";
+				$.each(data,function(index, item){
+					htmlStr += "<tr>";
+					htmlStr += "<td>"+item.num+"</td>";
+					htmlStr += "<td><a href='boardView?num="+item.num+"'>"+item.title+"</a></td>";
+					htmlStr += "<td>"+item.writer+"</td>";
+					htmlStr += "<td>"+item.regdate+"</td>";
+					htmlStr += "<td>"+item.hitcount+"</td></tr>";					
+					})
+				htmlStr += "</table>";			
+				$("#result").html(htmlStr);
 			})
 		}
 	</script>
 
 </body>
 </html>
+

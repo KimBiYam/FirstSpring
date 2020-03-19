@@ -43,7 +43,8 @@ public class MyBoardController {
 	}
 
 //	리스트
-	@PostMapping("boardList")
+	@PostMapping(value = "boardList", produces = "application/text; charset=utf8")
+	@ResponseBody
 	public String list(Model model, String field, String word, String pageNum) {
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		if (field == null)
@@ -70,12 +71,22 @@ public class MyBoardController {
 		String pageHtml = page.paging(count, pageSize, currentPage, field, word);
 
 		int rowNo = count - ((currentPage - 1) * pageSize);
-		model.addAttribute("pageHtml", pageHtml);
-		model.addAttribute("rowNo", rowNo);
-		model.addAttribute("count", count);
-		model.addAttribute("list", list);
+//		model.addAttribute("pageHtml", pageHtml);
+//		model.addAttribute("rowNo", rowNo);
+//		model.addAttribute("count", count);
+//		model.addAttribute("list", list);
 		JSONArray jarr = new JSONArray();
-		return "list";		
+		for (MyBoardVO board : list) {
+			JSONObject obj = new JSONObject();
+			obj.put("num", board.getNum());
+			obj.put("title", board.getTitle());
+			obj.put("writer", board.getWriter());
+			obj.put("regdate", board.getRegdate());
+			obj.put("hitcount", board.getHitcount());
+			jarr.add(obj);
+		}
+		
+		return jarr.toString();		
 	}
 
 //	상세보기
