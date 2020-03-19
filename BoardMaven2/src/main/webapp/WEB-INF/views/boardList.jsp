@@ -56,7 +56,6 @@
 				"field" : field,
 				"word" : word
 			}, function(data) {
-				
 				$("#result").empty();
 				$("#result").append(
 						"<p class='h3'>게시물 수 : "+data.count+"</p>"

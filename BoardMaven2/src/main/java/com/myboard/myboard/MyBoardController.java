@@ -1,11 +1,8 @@
 package com.myboard.myboard;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
-import org.json.simple.JSONArray;
-import org.json.simple.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,6 +13,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.myboard.model.MyBoardServiceImpl;
 import com.myboard.util.PageUtil;
 import com.myboard.vo.BoardListVO;
+import com.myboard.vo.CommentVO;
 import com.myboard.vo.MyBoardVO;
 
 @Controller
@@ -131,4 +129,27 @@ public class MyBoardController {
 		str = (pwd.equals(password)) ? "yes" : "no";
 		return str;
 	}
+	
+//	¥Ò±€ √ﬂ∞°
+	@GetMapping("commentInsert")
+	public String commentInsert(CommentVO comment) {
+		service.commentInsert(comment);
+		return "redirect:boardView?num="+comment.getBnum();
+	}
+	
+//	¥Ò±€ ∏ÆΩ∫∆Æ
+	@GetMapping("commentList")
+	@ResponseBody
+	public List<CommentVO> commentList(int bnum){
+		return service.commentList(bnum);
+	}
+//	¥Ò±€ ªË¡¶
+	@GetMapping("commentDelete")
+	public String commentDelete(int num,int bnum) {
+		System.out.println(num);
+		service.commentDelete(num);
+		return "redirect:boardView?num="+bnum;
+	}
+	
+	
 }

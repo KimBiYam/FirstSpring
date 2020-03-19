@@ -3,6 +3,7 @@ package com.myboard.mapper;
 import java.util.HashMap;
 import java.util.List;
 
+import com.myboard.vo.CommentVO;
 import com.myboard.vo.MyBoardVO;
 
 public interface MyBoardMapper {
@@ -22,4 +23,10 @@ public interface MyBoardMapper {
 	public String check(int num);
 //	카운트
 	public int count(HashMap<String, Object> hm);
+//	댓글 추가
+	public void commentInsert(CommentVO comment);
+//	댓글 리스트
+	public List<CommentVO> commentList(int bnum);
+//	댓글 삭제
+	public void commentDelete(int num);
 }

@@ -58,5 +58,21 @@
 		select count(*) from springboard
 		<include refid="searchword"></include>
 	</select>
+	
+	<!-- 댓글 추가 -->
+	<insert id="commentInsert">
+		insert into springcomment values
+		(springcomment_seq.nextval,#{name},#{content},#{password},#{bnum})
+	</insert>
+	<!-- 댓글 리스트  -->
+	<select id="commentList" resultType="com.myboard.vo.CommentVO">
+		select * from springcomment
+		where bnum = #{bnum}
+		order by num desc
+	</select>
+	<!-- 댓글 삭제 -->
+	<delete id="commentDelete">
+		delete from springcomment where num = #{num}
+	</delete>
 
 </mapper>

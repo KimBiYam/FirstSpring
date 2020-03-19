@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.myboard.mapper.MyBoardMapper;
+import com.myboard.vo.CommentVO;
 import com.myboard.vo.MyBoardVO;
 
 @Repository
@@ -57,6 +58,18 @@ public class MyBoardDAOImpl implements MyBoardDAO {
 //	카운트
 	public int dao_count(HashMap<String, Object> hm) {
 		return mapper.count(hm);
+	}
+// 댓글 추가
+	public void dao_commentInsert(CommentVO comment) {
+		mapper.commentInsert(comment);
+	}
+//	댓글 리스트
+	public List<CommentVO> dao_commentList(int bnum){
+		return mapper.commentList(bnum);
+	}
+//	댓글 삭제
+	public void dao_commentDelete(int num) {
+		mapper.commentDelete(num);
 	}
 
 

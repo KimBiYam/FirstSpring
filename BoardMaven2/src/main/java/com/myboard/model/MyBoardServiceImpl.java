@@ -6,6 +6,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.myboard.vo.CommentVO;
 import com.myboard.vo.MyBoardVO;
 
 @Service
@@ -56,5 +57,17 @@ public class MyBoardServiceImpl implements MyBoardService {
 // 카운트
 	public int count(HashMap<String, Object> hm) {
 		return dao.dao_count(hm);
+	}
+// 댓글 추가
+	public void commentInsert(CommentVO comment) {
+		dao.dao_commentInsert(comment);
+	}
+//	댓글 리스트
+	public List<CommentVO> commentList(int bnum){
+		return dao.dao_commentList(bnum);
+	}
+//	댓글 삭제
+	public void commentDelete(int num) {
+		dao.dao_commentDelete(num);
 	}
 }
