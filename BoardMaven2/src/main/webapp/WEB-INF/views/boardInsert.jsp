@@ -37,7 +37,7 @@
 					<div class="form-group text-right">
 						<button type="button" name="writeBtn" id="writeBtn"
 							class="btn btn-sm btn-outline-info">글쓰기</button>
-						<a href="boardList" class="btn btn-sm btn-outline-secondary">목록으로</a>
+						<a href="goList" class="btn btn-sm btn-outline-secondary">목록으로</a>
 					</div>
 				</div>
 			</form>

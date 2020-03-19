@@ -40,7 +40,7 @@
 					<div class="form-group text-right">
 						<button type="button" name="updateBtn" id="updateBtn"
 							class="btn btn-sm btn-outline-info">수정하기</button>
-						<a href="boardList" class="btn btn-sm btn-outline-secondary">목록으로</a>
+						<a href="goList" class="btn btn-sm btn-outline-secondary">목록으로</a>
 					</div>
 				</div>
 			</form>

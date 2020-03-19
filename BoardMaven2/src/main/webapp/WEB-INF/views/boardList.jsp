@@ -51,12 +51,16 @@
 			})
 		})
 		function getData(pageNum, field, word) {
-			$.post("boardList", {
+			$.getJSON("boardList", {
 				"pageNum" : pageNum,
 				"field" : field,
 				"word" : word
-			}, function(retData) {
-				var data = $.parseJSON(retData);
+			}, function(data) {
+				
+				$("#result").empty();
+				$("#result").append(
+						"<p class='h3'>게시물 수 : "+data.count+"</p>"
+						)
 				var htmlStr = "";
 				htmlStr += "<table class='table small table-bordered my-5'>";
 				htmlStr += "<thead><tr>";
@@ -66,16 +70,18 @@
 				htmlStr += "<th style='width: 20%'>작성일</th>";
 				htmlStr += "<th style='width: 10%'>조회수</th>";
 				htmlStr += "</tr></thead>";
-				$.each(data,function(index, item){
-					htmlStr += "<tr>";
-					htmlStr += "<td>"+item.num+"</td>";
-					htmlStr += "<td><a href='boardView?num="+item.num+"'>"+item.title+"</a></td>";
-					htmlStr += "<td>"+item.writer+"</td>";
-					htmlStr += "<td>"+item.regdate+"</td>";
-					htmlStr += "<td>"+item.hitcount+"</td></tr>";					
-					})
-				htmlStr += "</table>";			
-				$("#result").html(htmlStr);
+				for(i=0;i<data.list.length;i++){	
+					htmlStr+= "<tr>";
+					htmlStr += "<td>"+eval(data.rowNo-i)+"</td>";
+					htmlStr += "<td><a href='boardView?num="+data.list[i].num+"'>"+data.list[i].title+"</a></td>";
+					htmlStr += "<td>"+data.list[i].writer+"</td>";
+					htmlStr += "<td>"+data.list[i].regdate+"</td>";
+					htmlStr += "<td>"+data.list[i].hitcount+"</td>";
+					htmlStr += "</tr>";			
+					}
+				$("#result").append(htmlStr);
+				htmlStr += "</table>";
+				$("#result").append("<div align='center'>"+data.pageHtml+"</div>");
 			})
 		}
 	</script>

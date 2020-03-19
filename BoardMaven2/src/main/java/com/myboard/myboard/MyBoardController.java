@@ -1,5 +1,6 @@
 package com.myboard.myboard;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.myboard.model.MyBoardServiceImpl;
 import com.myboard.util.PageUtil;
+import com.myboard.vo.BoardListVO;
 import com.myboard.vo.MyBoardVO;
 
 @Controller
@@ -37,15 +39,15 @@ public class MyBoardController {
 	}
 
 //	리스트 폼
-	@GetMapping("boardList")
+	@GetMapping("goList")
 	public String list() {
 		return "boardList";
 	}
 
 //	리스트
-	@PostMapping(value = "boardList", produces = "application/text; charset=utf8")
+	@GetMapping(value = "boardList")
 	@ResponseBody
-	public String list(Model model, String field, String word, String pageNum) {
+	public BoardListVO list(Model model, String field, String word, String pageNum) {
 		HashMap<String, Object> hm = new HashMap<String, Object>();
 		if (field == null)
 			field = "";
@@ -71,18 +73,14 @@ public class MyBoardController {
 		String pageHtml = page.paging(count, pageSize, currentPage, field, word);
 
 		int rowNo = count - ((currentPage - 1) * pageSize);
-		JSONArray jarr = new JSONArray();
-		for (MyBoardVO board : list) {
-			JSONObject obj = new JSONObject();
-			obj.put("num", board.getNum());
-			obj.put("title", board.getTitle());
-			obj.put("writer", board.getWriter());
-			obj.put("regdate", board.getRegdate());
-			obj.put("hitcount", board.getHitcount());
-			jarr.add(obj);
-		}
-		
-		return jarr.toString();		
+//		List<Object> obj = new ArrayList<Object>();
+//		obj.add(count);
+//		obj.add(list);
+//		obj.add(pageHtml);
+//		obj.add(rowNo);
+		BoardListVO listVO = new BoardListVO(count, list, pageHtml, rowNo);
+
+		return listVO;
 	}
 
 //	상세보기
