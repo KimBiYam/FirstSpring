@@ -146,7 +146,6 @@ public class MyBoardController {
 //	¥Ò±€ ªË¡¶
 	@GetMapping("commentDelete")
 	public String commentDelete(int num,int bnum) {
-		System.out.println(num);
 		service.commentDelete(num);
 		return "redirect:boardView?num="+bnum;
 	}
