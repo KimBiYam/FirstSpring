@@ -134,7 +134,7 @@ public class MyBoardController {
 	@GetMapping("commentInsert")
 	public String commentInsert(CommentVO comment) {
 		service.commentInsert(comment);
-		return "redirect:boardView?num="+comment.getBnum();
+		return "redirect:commentList?bnum="+comment.getBnum();
 	}
 	
 //	´ñ±Û ¸®½ºÆ®
@@ -147,7 +147,7 @@ public class MyBoardController {
 	@GetMapping("commentDelete")
 	public String commentDelete(int num,int bnum) {
 		service.commentDelete(num);
-		return "redirect:boardView?num="+bnum;
+		return "redirect:commentList?bnum="+bnum;
 	}
 	
 	

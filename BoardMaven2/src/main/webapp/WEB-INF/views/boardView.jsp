@@ -39,8 +39,8 @@
 			</tr>
 		</table>
 		<div id="result"></div>
-		<form action="commentInsert" id="frm" method="get">
-			<input type="hidden" name="bnum" value="${board.num }">
+		<form>
+			<input type="hidden" id="bnum" name="bnum" value="${board.num }">
 			<table class="table small table-bordered my-5">
 				<tr>
 					<th colspan="2">댓글 작성</th>
@@ -62,7 +62,7 @@
 				</tr>
 				<tr class="text-right">
 					<td colspan="2">
-						<button id="commentInsertBtn"
+						<button id="commentInsertBtn" type="button"
 							class="btn btn-sm btn-outline-primary">댓글 작성</button>
 					</td>
 				</tr>
@@ -83,11 +83,70 @@
 			getComment();
 			$("#deleteBtn").click(
 					function() {
-						window.open("deletePopup?num=${board.num}",
+						ndow.open("deletePopup?num=${board.num}",
 								"deletePopup",
 								"width=500,height=300,top=300,left=700");
 					})
-			$("#commentInsertBtn").click(function() {
+			$("#commentInsertBtn").click(commentInsert);
+
+		})
+
+		function getComment() {
+			$.getJSON("commentList", {
+				"bnum" : $("#bnum").val()
+			}, function(data) {
+				$("#result").empty();
+				var htmlStr = "";
+				htmlStr += "<table class='table small table-bordered my-5'>";
+				htmlStr += "<tr>";
+				htmlStr += "<th>댓글</th>";
+				htmlStr += "</tr>";
+				for (i = 0; i < data.length; i++) {
+					htmlStr += "<tr>";
+					htmlStr += "<td>작성자 : " + data[i].name;
+					htmlStr += "<br> 내용 : " + data[i].content;
+					htmlStr += "<p class='text-right'>";
+					htmlStr += "<a href='javascript:commentDelete("
+							+ data[i].num + ")'>삭제</p></td>";
+					htmlStr += "</tr>";
+				}
+				htmlStr += "</table>";
+				$("#result").append(htmlStr);
+			})
+		}
+		function commentInsert() {
+			var name = $("#name").val();
+			var content = $("#content").val();
+			var password = $("#password").val();
+			var bnum = $("#bnum").val();
+			$.getJSON("commentInsert", {
+				"name" : name,
+				"content" : content,
+				"password" : password,
+				"bnum" : bnum
+			}, function(data) {
+				$("#result").empty();
+				var htmlStr = "";
+				htmlStr += "<table class='table small table-bordered my-5'>";
+				htmlStr += "<tr>";
+				htmlStr += "<th>댓글</th>";
+				htmlStr += "</tr>";
+				for (i = 0; i < data.length; i++) {
+					htmlStr += "<tr>";
+					htmlStr += "<td>작성자 : " + data[i].name;
+					htmlStr += "<br> 내용 : " + data[i].content;
+					htmlStr += "<p class='text-right'>";
+					htmlStr += "<a href='javascript:commentDelete("
+							+ data[i].num + ")'>삭제</p></td>";
+					htmlStr += "</tr>";
+				}
+				htmlStr += "</table>";
+				$("#result").append(htmlStr);
+				$("#name").val("");
+				$("#content").val("");
+				$("#password").val("");
+			})
+			function showRequest() {
 				if ($("#name").val() == "") {
 					alert("작성자를 입력하세요");
 					return false;
@@ -100,37 +159,40 @@
 					alert("패스워드를 입력하세요");
 					return false;
 				}
-				$("#frm").submit();
-				getComment();
-			})
-
-		})
-
-		function getComment() {
-			$.getJSON("commentList", {
-				"bnum" : ${board.num}
-			}, function(data) {
-				$("#result").empty();
-				var htmlStr = "";
-				htmlStr += "<table class='table small table-bordered my-5'>";
-				htmlStr += "<tr>";
-				htmlStr += "<th>댓글</th>";	
-				htmlStr += "</tr>";
-				for(i=0;i<data.length;i++){
-				htmlStr += "<tr>";
-				htmlStr += "<td>작성자 : "+data[i].name;
-				htmlStr += " 내용 : "+data[i].content;
-				htmlStr += "<p class='text-right'>";
-				htmlStr += "<a href='javascript:commentDelete("+data[i].num+","+data[i].bnum+")'>삭제</p></td>";
-				htmlStr += "</tr>";
-				}
-				htmlStr += "</table>";
-				$("#result").append(htmlStr);
-			})
-		}
-		function commentDelete(num,bnum){
-			location.href="commentDelete?num="+num+"&bnum="+bnum;
+				return true;
 			}
+		}
+		function commentDelete(num) {
+			if (confirm("댓글을 삭제할까요?")) {
+				$.getJSON(
+								"commentDelete",
+								{
+									"bnum" : $("#bnum").val(),
+									"num" : num
+								},
+								function(data) {
+									$("#result").empty();
+									var htmlStr = "";
+									htmlStr += "<table class='table small table-bordered my-5'>";
+									htmlStr += "<tr>";
+									htmlStr += "<th>댓글</th>";
+									htmlStr += "</tr>";
+									for (i = 0; i < data.length; i++) {
+										htmlStr += "<tr>";
+										htmlStr += "<td>작성자 : " + data[i].name;
+										htmlStr += "<br> 내용 : "
+												+ data[i].content;
+										htmlStr += "<p class='text-right'>";
+										htmlStr += "<a href='javascript:commentDelete("
+												+ data[i].num
+												+ ")'>삭제</p></td>";
+										htmlStr += "</tr>";
+									}
+									htmlStr += "</table>";
+									$("#result").append(htmlStr);
+								})
+			}
+		}
 	</script>
 
 </body>
