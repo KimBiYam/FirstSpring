@@ -83,12 +83,25 @@
 			getComment();
 			$("#deleteBtn").click(
 					function() {
-						ndow.open("deletePopup?num=${board.num}",
+						window.open("deletePopup?num=${board.num}",
 								"deletePopup",
 								"width=500,height=300,top=300,left=700");
 					})
-			$("#commentInsertBtn").click(commentInsert);
-
+			$("#commentInsertBtn").click(function(){
+				if($("#name").val()==""){
+					alert("작성자를 입력하세요");
+					return false;
+					}
+				if($("#content").val()==""){
+					alert("내용을 입력하세요");
+					return false;
+					}
+				if($("#password").val()==""){
+					alert("패스워드를 입력하세요");
+					return false;
+					}
+				commentInsert();
+				})
 		})
 
 		function getComment() {
