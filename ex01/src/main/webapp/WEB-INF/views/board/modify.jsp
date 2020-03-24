@@ -19,7 +19,7 @@
 				<!-- /.panel-heading  -->
 				<div class="panel-body">
 					<form action="/board/modify" id="frm" role="form" method="post">
-					<input type="hidden" name="bno" value="${board.bno }">
+						<input type="hidden" name="bno" value="${board.bno }">
 						<div class="form-group">
 							<label>제목</label> <input class="form-control" type="text"
 								name="title" id="title" value="${board.title }">
@@ -34,9 +34,23 @@
 							<label>작성자</label> <input class="form-control" type="text"
 								name="writer" id="writer" value="${board.writer }">
 						</div>
-						<button type="button" id="submitBtn" class="btn btn-default">수정하기</button>
-						<button type="reset" class="btn btn-default">리셋</button>
-						<a href="/board/list" class="btn btn-default">리스트</a>
+						
+						<div class="form-group hidden">
+							<label>RegDate</label>
+							<input class="form-control" name='regDate'
+							value='<fmt:formatDate pattern = "yyyy/MM/dd" value= "${board.regdate }" />' readonly="readonly">
+						</div>
+						
+						<div class="form-group hidden">
+							<label>Update Date</label>
+							<input class="form-control" name='updateDate'
+							value='<fmt:formatDate pattern = "yyyy/MM/dd" value= "${board.updateDate}" />' readonly="readonly">
+						</div>
+						
+						
+						<button type="submit" data-oper="modify" class="btn btn-default">수정하기</button>
+						<button type="submit" data-oper="remove" class="btn btn-default">삭제하기</button>
+						<button type="submit" data-oper="list" class="btn btn-default">리스트</button>
 					</form>
 
 				</div>
@@ -49,20 +63,24 @@
 </div>
 <!-- ./page-wrapper  -->
 <script type="text/javascript">
-	$("#submitBtn").click(function() {
-		if ($("#title").val() == "") {
-			alert("제목을 입력해주세요");
-			return false;
-		}
-		if ($("#content").val() == "") {
-			alert("내용을 입력해주세요");
-			return false;
-		}
-		if ($("#writer").val() == "") {
-			alert("작성자를 입력해주세요");
-			return false;
-		}
-		$("#frm").submit();
+	$(function() {
+		var formObj = $("form");
+
+		$('button').on("click", function(e) {
+			e.preventDefault();
+
+			var operation = $(this).data("oper");
+
+			console.log(operation);
+
+			if (operation === 'remove') {
+				formObj.attr("action", "/board/remove");
+			} else if (operation === 'list') {
+				self.location = "/board/list";
+				return;
+			}
+			formObj.submit();
+		})
 	})
 </script>
 
