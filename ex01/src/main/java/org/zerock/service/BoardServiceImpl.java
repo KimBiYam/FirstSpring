@@ -31,19 +31,21 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public BoardVO get(Long bno) {
 		// TODO Auto-generated method stub
-		return null;
+		return mapper.read(bno);
 	}
 
 	@Override
 	public boolean modify(BoardVO board) {
 		// TODO Auto-generated method stub
-		return false;
+		mapper.update(board);
+		return true;
 	}
 
 	@Override
 	public boolean remove(Long bno) {
 		// TODO Auto-generated method stub
-		return false;
+		mapper.delete(bno);
+		return true;
 	}
 
 	@Override

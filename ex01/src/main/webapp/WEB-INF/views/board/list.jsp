@@ -2,10 +2,9 @@
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
-<%@include file="includes/header.jsp"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
-
+<%@include file="includes/header.jsp"%>
 <div id="page-wrapper">
 	<div class="row">
 		<div class="col-lg-12">
@@ -34,7 +33,7 @@
 						</thead>
 						<c:forEach items="${list }" var="board">
 						<tr>
-							<td><c:out value="${board.bno }"/></td>
+							<td><a href="/board/get?bno=${board.bno }"><c:out value="${board.bno }"/></a></td>
 							<td><c:out value="${board.title }"/></td>
 							<td><c:out value="${board.writer }"/></td>
 							<td><fmt:formatDate pattern="yyyy-MM-dd" value="${board.regdate }"/></td>

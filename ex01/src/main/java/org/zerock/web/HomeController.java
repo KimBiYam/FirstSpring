@@ -43,5 +43,6 @@ public class HomeController {
 
 		return "board/list";
 	}
+	
 
 }

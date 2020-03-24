@@ -13,24 +13,27 @@
 
     <title>SB Admin 2 - Bootstrap Admin Theme</title>
 
-	<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
+	<script src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
     <!-- Bootstrap Core CSS -->
-    <link href="resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/resources/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
 
     <!-- MetisMenu CSS -->
-    <link href="resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
+    <link href="/resources/vendor/metisMenu/metisMenu.min.css" rel="stylesheet">
 
     <!-- DataTables CSS -->
-    <link href="resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
+    <link href="/resources/vendor/datatables-plugins/dataTables.bootstrap.css" rel="stylesheet">
 
     <!-- DataTables Responsive CSS -->
-    <link href="resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
+    <link href="/resources/vendor/datatables-responsive/dataTables.responsive.css" rel="stylesheet">
 
     <!-- Custom CSS -->
-    <link href="resources/dist/css/sb-admin-2.css" rel="stylesheet">
+    <link href="/resources/dist/css/sb-admin-2.css" rel="stylesheet">
 
     <!-- Custom Fonts -->
-    <link href="resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    <link href="/resources/vendor/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+    
 
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -54,7 +57,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="/">SB Admin v2.0</a>
+                <a class="navbar-brand" href="/board/list">게시판</a>
             </div>
             <!-- /.navbar-header -->
 
@@ -283,13 +286,13 @@
                             <!-- /input-group -->
                         </li>
                         <li>
-                            <a href="/"><i class="fa fa-dashboard fa-fw"></i> 게시판</a>
+                            <a href="/board/list"><i class="fa fa-dashboard fa-fw"></i> 게시판</a>
                         </li>
                         <li>
-                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
+                            <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> 글<span class="fa arrow"></span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="flot.html">Flot Charts</a>
+                                    <a href="/board/register">글쓰기</a>
                                 </li>
                                 <li>
                                     <a href="morris.html">Morris.js Charts</a>
