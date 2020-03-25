@@ -1,5 +1,6 @@
 package org.zerock.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -49,9 +50,13 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public List<BoardVO> getList() {
+	public List<BoardVO> getList(HashMap<String, Object> hm) {
 		// TODO Auto-generated method stub
-		return mapper.getList();
+		return mapper.getList(hm);
+	}
+	
+	public int count(HashMap<String, Object> hm) {
+		return mapper.count(hm);
 	}
 	
 

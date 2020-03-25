@@ -19,6 +19,7 @@
 				<!-- /.panel-heading  -->
 				<div class="panel-body">
 					<form action="/board/register" id="frm" role="form" method="post">
+					<input type="hidden" name="writer" id="writer" value="${id }">
 						<div class="form-group">
 							<label>제목</label> <input class="form-control" type="text"
 								name="title" id="title">
@@ -31,11 +32,11 @@
 
 						<div class="form-group">
 							<label>작성자</label> <input class="form-control" type="text"
-								name="writer" id="writer">
+								id="writerView" disabled="disabled" value="${id }">
 						</div>
 						<button type="button" id="submitBtn" class="btn btn-default">입력</button>
 						<button type="reset" class="btn btn-default">리셋</button>
-						<a href="/board/list" class="btn btn-default">리스트</a>
+						<a href="/" class="btn btn-default">리스트</a>
 					</form>
 
 				</div>
@@ -57,10 +58,6 @@
 			}
 			if ($("#content").val() == "") {
 				alert("내용을 입력해주세요");
-				return false;
-			}
-			if ($("#writer").val() == "") {
-				alert("작성자를 입력해주세요");
 				return false;
 			}
 			$("#frm").submit();

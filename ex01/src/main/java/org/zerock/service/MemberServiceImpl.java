@@ -19,7 +19,13 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public MemberVO get(String id) {
 		// TODO Auto-generated method stub
-		return null;
+		return mapper.get(id);
 	}
+	
+	public String idcheck(String id) {
+		return mapper.idcheck(id);
+	}
+	
+	
 
 }

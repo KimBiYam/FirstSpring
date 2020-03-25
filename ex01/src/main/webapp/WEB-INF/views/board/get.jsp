@@ -32,8 +32,10 @@
 							<label>작성자</label> <input class="form-control" type="text"
 								name="writer" id="writer" disabled="disabled" value="${board.writer }"> 
 						</div>
+						<c:if test="${id == board.writer }">
 						<a href="/board/modify?bno=${board.bno }" class="btn btn-default">수정하기</a>
-						<a href="/board/list" class="btn btn-default">리스트</a>								
+						</c:if>
+						<a href="/" class="btn btn-default">리스트</a>								
 
 				</div>
 				<!-- end panel-body  -->

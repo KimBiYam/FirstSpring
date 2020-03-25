@@ -1,13 +1,18 @@
 package org.zerock.mapper;
 
+import java.util.HashMap;
 import java.util.List;
 
-import org.apache.ibatis.annotations.Select;
 import org.zerock.domain.BoardVO;
 
 public interface BoardMapper {
-	//@Select("select * from tbl_board where bno>0")
-	public List<BoardVO> getList();
+	//글 목록
+	//글쓰기
+	//글쓰기(시퀀스)
+	//상세보기
+	//삭제
+	//수정
+	public List<BoardVO> getList(HashMap<String, Object> hm);
 	
 	public void insert(BoardVO board);
 	
@@ -18,5 +23,9 @@ public interface BoardMapper {
 	public int delete(Long bno);
 	
 	public int update(BoardVO board);
+	
+	public int count(HashMap<String, Object> hm);
+	
 
 }
+

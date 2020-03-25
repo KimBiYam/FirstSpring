@@ -1,5 +1,6 @@
 package org.zerock.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.zerock.domain.BoardVO;
@@ -14,6 +15,6 @@ public interface BoardService {
 	
 	public boolean remove(Long bno);
 	
-	public List<BoardVO> getList();
+	public List<BoardVO> getList(HashMap<String, Object> hm);
 
 }

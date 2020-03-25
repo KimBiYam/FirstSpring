@@ -6,5 +6,5 @@ public interface MemberService {
 	public void register(MemberVO member);
 	
 	public MemberVO get(String id);	
-
+	
 }
