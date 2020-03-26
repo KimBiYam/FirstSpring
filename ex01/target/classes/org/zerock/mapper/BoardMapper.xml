@@ -3,24 +3,24 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="org.zerock.mapper.BoardMapper">
-	<sql id="searchword">
-		<if test="word!=''">
-			<where>
-				${field} like '%'||#{word}||'%'
-			</where>
-		</if>
-	</sql>
-	<!-- 게시판 리스트 -->
 	<select id="getList" resultType="org.zerock.domain.BoardVO">
+		select * from
+		tbl_board
+	</select>
+
+	<select id="getListWithPaging" resultType="org.zerock.domain.BoardVO">
 	<![CDATA[
-	select * from
-	(select rownum rnum,aa.* from
-	(select * from tbl_board where bno >0
-	]]>
-	<include refid="searchword"></include>
-	<![CDATA[
-	order by bno desc)aa)
-	where rnum >= ${startRow} and rnum <= #{endRow}
+	select
+	bno, title, content, writer, regdate, updatedate, replycnt
+	from 
+	(
+	select /*+INDEX_DESC(tbl_board pk_board) */
+	rownum rn, bno, title, content, writer, regdate, updatedate, replycnt
+	from
+	tbl_board
+	where rownum <= #{pageNum} * #{amount}
+	)
+	where rn > (#{pageNum} -1) * #{amount}
 	]]>
 	</select>
 	<!-- 게시판 글쓰기 -->
@@ -36,7 +36,7 @@
 		</selectKey>
 
 		insert into tbl_board (bno,title,content,writer)
-		values
+		values 
 		(#{bno},#{title},#{content},#{writer})
 
 	</insert>
@@ -56,13 +56,17 @@
 		content=#{content},
 		writer=#{writer},
 		updateDate=sysdate
-		where bno =
-		#{bno}
+		where bno = #{bno}
 	</update>
-	<!-- 카운트  -->
-	<select id="count" resultType="int">
-		select count(*) from tbl_board
-		<include refid="searchword"></include>
+	
+	<select id="getTotalCount" resultType="int">
+	select count(*) from tbl_board where bno > 0
 	</select>
+	
+	<update id="updateReplyCnt">
+		update tbl_board set replycnt = replycnt + #{amount}
+		where bno = #{bno}
+	</update>
+	
 
 </mapper>

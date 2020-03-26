@@ -1,12 +1,13 @@
 package org.zerock.service;
 
-import java.util.HashMap;
 import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 import org.zerock.domain.BoardVO;
+import org.zerock.domain.Criteria;
+import org.zerock.domain.ReplyPageDTO;
 import org.zerock.mapper.BoardMapper;
 import org.zerock.web.SampleController;
 
@@ -49,15 +50,21 @@ public class BoardServiceImpl implements BoardService {
 		return true;
 	}
 
+
 	@Override
-	public List<BoardVO> getList(HashMap<String, Object> hm) {
+	public List<BoardVO> getList(Criteria cri) {
 		// TODO Auto-generated method stub
-		return mapper.getList(hm);
+		return mapper.getListWithPaging(cri);
+	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		// TODO Auto-generated method stub
+		return mapper.getTotalCount(cri);
 	}
 	
-	public int count(HashMap<String, Object> hm) {
-		return mapper.count(hm);
-	}
+	
+
 	
 
 }

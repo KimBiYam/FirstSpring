@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.zerock.domain.MemberVO;
+import org.zerock.service.MemberService;
 import org.zerock.service.MemberServiceImpl;
 
 @SessionAttributes("id")
@@ -17,7 +18,7 @@ import org.zerock.service.MemberServiceImpl;
 @RequestMapping("/member/")
 public class MemberController {
 	@Autowired
-	MemberServiceImpl service;
+	MemberService service;
 
 //	È¸¿ø °¡ÀÔ Æû
 	@GetMapping("/register")
