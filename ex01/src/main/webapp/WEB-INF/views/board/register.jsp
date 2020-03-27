@@ -3,7 +3,6 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@include file="includes/header.jsp"%>
-<div id="page-wrapper">
 	<div class="row">
 		<div class="col-lg-12">
 			<h1 class="page-header">글쓰기</h1>
@@ -19,6 +18,8 @@
 				<!-- /.panel-heading  -->
 				<div class="panel-body">
 					<form action="/board/register" id="frm" role="form" method="post">
+					<input type="hidden" name="writer" id="writer" value="${member.name }">
+					<input type="hidden" name="id" id="id" value="${member.id }">
 						<div class="form-group">
 							<label>제목</label> <input class="form-control" type="text"
 								name="title" id="title">
@@ -31,11 +32,11 @@
 
 						<div class="form-group">
 							<label>작성자</label> <input class="form-control" type="text"
-								name="writer" id="writer">
+								id="writerView" disabled="disabled" value="${member.name }">
 						</div>
 						<button type="button" id="submitBtn" class="btn btn-default">입력</button>
 						<button type="reset" class="btn btn-default">리셋</button>
-						<a href="/board/list" class="btn btn-default">리스트</a>
+						<a href="/" class="btn btn-default">리스트</a>
 					</form>
 
 				</div>
@@ -57,10 +58,6 @@
 			}
 			if ($("#content").val() == "") {
 				alert("내용을 입력해주세요");
-				return false;
-			}
-			if ($("#writer").val() == "") {
-				alert("작성자를 입력해주세요");
 				return false;
 			}
 			$("#frm").submit();

@@ -2,7 +2,6 @@ package org.zerock.web;
 
 import java.text.DateFormat;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 
 import org.slf4j.Logger;
@@ -12,7 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.zerock.domain.BoardVO;
+import org.zerock.service.BoardService;
 import org.zerock.service.BoardServiceImpl;
 
 /**
@@ -21,7 +20,6 @@ import org.zerock.service.BoardServiceImpl;
 @Controller
 public class HomeController {
 	@Autowired
-	BoardServiceImpl service;
 
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
@@ -36,12 +34,9 @@ public class HomeController {
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
 
 		String formattedDate = dateFormat.format(date);
-		List<BoardVO> list = service.getList();
+		
 
-		model.addAttribute("serverTime", formattedDate);
-		model.addAttribute("list", list);
-
-		return "board/list";
+		return "redirect:/board/list";
 	}
 	
 
