@@ -42,17 +42,17 @@
 						value='<c:out value="${board.writer }"/>' readonly="readonly">
 				</div>
 
-				<c:if test="${id == board.writer }">
+				<c:if test="${member.id == board.id }">
 				<button data-oper='modify' class="btn btn-default">수정하기</button>
 				</c:if>
 				<button data-oper='list' class="btn btn-info">리스트</button>
 
 				<form id='operForm' action="/board/modify" method="get">
-					<input type='hidden' id='bno' name='bno'
-						value='<c:out value="${board.bno}"/>'> <input
-						type='hidden' name='pageNum'
-						value='<c:out value="${cri.pageNum}"/>'> <input
-						type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+					<input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'>
+					<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
+					<input type='hidden' name='amount' value='<c:out value="${cri.amount}"/>'>
+					<input type="hidden" name="type" value='<c:out value="${cri.type }"/>' >
+					<input type="hidden" name="keyword" value='<c:out value="${cri.keyword }"/>' >
 				</form>
 			</div>
 			<!--  end panel-body -->
@@ -75,9 +75,10 @@
       </div> -->
 
 			<div class="panel-heading">
-				<i class="fa fa-comments fa-fw"></i> Reply
-				<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>New
-					Reply</button>
+				<i class="fa fa-comments fa-fw"></i> 댓글
+				<c:if test="${member != null }">
+				<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>댓글 쓰기</button>
+				</c:if>
 			</div>
 
 
@@ -108,28 +109,30 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal"
 					aria-hidden="true">&times;</button>
-				<h4 class="modal-title" id="myModalLabel">REPLY MODAL</h4>
+				<h4 class="modal-title" id="myModalLabel">댓글</h4>
 			</div>
 			<div class="modal-body">
 				<div class="form-group">
-					<label>Reply</label> <input class="form-control" name='reply'
+					<label>내용</label> <input class="form-control" name='reply'
 						value='New Reply!!!!'>
 				</div>
-				<div class="form-group">
-					<label>Replyer</label> <input class="form-control" name='replyer'
-						value='replyer'>
+				<div class="form-group">							
+					<label>작성자</label>
+					 <input class="form-control" name='replyer' id="replyer"
+						value='replyer' disabled="disabled">
 				</div>
+				<input type="hidden" name="id" value="id">
 				<div class="form-group">
-					<label>Reply Date</label> <input class="form-control"
+					<label>작성일</label> <input class="form-control"
 						name='replyDate' value='2018-01-01 13:13'>
 				</div>
 
 			</div>
 			<div class="modal-footer">
-				<button id='modalModBtn' type="button" class="btn btn-warning">Modify</button>
-				<button id='modalRemoveBtn' type="button" class="btn btn-danger">Remove</button>
-				<button id='modalRegisterBtn' type="button" class="btn btn-primary">Register</button>
-				<button id='modalCloseBtn' type="button" class="btn btn-default">Close</button>
+				<button id='modalModBtn' type="button" class="btn btn-warning">수정하기</button>
+				<button id='modalRemoveBtn' type="button" class="btn btn-danger">삭제하기</button>
+				<button id='modalRegisterBtn' type="button" class="btn btn-primary">글쓰기</button>
+				<button id='modalCloseBtn' type="button" class="btn btn-default">닫기</button>
 			</div>
 		</div>
 		<!-- /.modal-content -->
@@ -143,6 +146,7 @@
 						var bnoValue = '<c:out value="${board.bno}"/>';
 						var replyUL = $(".chat");
 						showList(1);
+						
 
 						function showList(page) {
 
@@ -167,14 +171,14 @@
 												var str = "";
 
 												if (list == null || list.length == 0) {
-													return;
+													replyUL.html("");
 												}
 
 												for (var i = 0, len = list.length || 0; i < len; i++) {
 													str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";
-													str += "<div><div class='header'><strong class='primary-font'>"
+													str += "<div><div class='header'><strong class='primary-font'>["+list[i].rno+"]"
 															+list[i].replyer+"</strong>";
-													str += "<small class='pull-right text-muted'>"+list[i].replyDate+"</small></div>";
+													str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small></div>";
 													str += "<p>"+list[i].reply+"</p></div></li>";
 												}
 
@@ -252,6 +256,7 @@
 						var modalInputReply = modal.find("input[name='reply']");
 						var modalInputReplyer = modal.find("input[name='replyer']");
 						var modalInputReplyDate = modal.find("input[name='replyDate']");
+						var modalInputReplyId = modal.find("input[name='id']");
 						var modalModBtn = $("#modalModBtn");
 						var modalRemoveBtn = $("#modalRemoveBtn");
 						var modalRegisterBtn = $("#modalRegisterBtn");
@@ -262,15 +267,17 @@
 						});
 						$("#addReplyBtn").on("click", function(e) {
 							modal.find("input").val("");
-							modalInputReplyDate.closest("div").hide();
+							$("#replyer").val("${member.name}");
+							modalInputReplyDate.closest("div").hide();							
 							modal.find("button[id !='modalCloseBtn']").hide();
-							modalRegisterBtn.show();
+							modalRegisterBtn.show();							
 							$(".modal").modal("show");
 						});
 						modalRegisterBtn.on("click", function(e) {
 							var reply = {
 								reply : modalInputReply.val(),
-								replyer : modalInputReplyer.val(),
+								replyer : "${member.name}",
+								id : "${member.id}",								
 								bno : bnoValue
 							};
 							replyService.add(reply, function(result) {
@@ -280,6 +287,57 @@
 								showList(1);
 							});
 						});
+						
+						$(".chat").on("click","li",function(e){
+							var rno = $(this).data("rno");
+							var id = "${member.id}";
+
+							replyService.get(rno, function(reply){
+								modalInputReplyDate.closest("div").show();
+								modalInputReply.val(reply.reply);
+								modalInputReplyer.val(reply.replyer);
+								modalInputReplyDate.val(replyService.displayTime(reply.replyDate)).attr("readonly","readonly");
+								modal.data("rno",reply.rno);
+
+								modal.find("button[id != 'modalCloseBtn']").hide();
+
+								if(id == reply.id){
+								modalModBtn.show();
+								modalRemoveBtn.show();
+								}
+
+								$(".modal").modal("show");
+								
+								})
+							
+							})
+						
+						modalModBtn.on("click",function(e){
+							var reply = {rno:modal.data("rno"), reply: modalInputReply.val()};
+
+							replyService.update(reply,function(result){
+
+								alert(result);
+								modal.modal("hide");
+								showList(1);								
+								})
+							
+							})	
+
+						modalRemoveBtn.on("click",function(e){
+							var rno = modal.data("rno");
+
+							replyService.remove(rno, function(result){
+
+								alert(result);
+								modal.modal("hide");
+								showList(1);
+								
+								})
+							
+							})
+
+							
 					});
 </script>
 

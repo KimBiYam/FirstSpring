@@ -7,6 +7,11 @@ public interface MemberService {
 	
 	public MemberVO get(String id);
 	
+	public void modify(MemberVO member);
+	
+	public void delete(MemberVO member);
+	
 	public String idcheck(String id);
+	
 	
 }

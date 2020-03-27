@@ -9,5 +9,8 @@ public interface MemberMapper {
 	public MemberVO get(String id);
 //	아이디 중복체크
 	public String idcheck(String id);
-
+//	회원 수정
+	public void modify(MemberVO member);
+//	회원 탈퇴
+	public void delete(MemberVO member);
 }

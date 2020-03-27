@@ -22,7 +22,7 @@ public class ReplyServiceImpl implements ReplyService{
 	@Setter(onMethod_ = @Autowired)
 	private BoardMapper boardMapper;
 
-//	@Transactional
+	@Transactional
 	@Override
 	public int register(ReplyVO vo) {
 		// TODO Auto-generated method stub
@@ -44,7 +44,7 @@ public class ReplyServiceImpl implements ReplyService{
 		return mapper.update(vo);
 	}
 
-//	@Transactional
+	@Transactional
 	@Override
 	public int remove(Long rno) {
 		// TODO Auto-generated method stub

@@ -50,8 +50,7 @@
 		base-package="org.zerock.service"/>
 	
 	
-	<aop:aspectj-autoproxy></aop:aspectj-autoproxy>
-
+	
 
 
 </beans>

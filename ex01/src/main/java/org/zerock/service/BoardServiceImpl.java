@@ -4,14 +4,18 @@ import java.util.List;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 import org.zerock.domain.BoardVO;
 import org.zerock.domain.Criteria;
 import org.zerock.domain.ReplyPageDTO;
 import org.zerock.mapper.BoardMapper;
+import org.zerock.mapper.ReplyMapper;
 import org.zerock.web.SampleController;
 
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 
 
 @Service
@@ -19,15 +23,18 @@ import lombok.AllArgsConstructor;
 public class BoardServiceImpl implements BoardService {
 	private static final Logger log = LoggerFactory.getLogger(SampleController.class);
 	
+	@Setter(onMethod_= @Autowired)
 	private BoardMapper mapper;
+	@Setter(onMethod_= @Autowired)
+	private ReplyMapper replyMapper;
 
 	@Override
-	public void register(BoardVO board) {
+	public boolean register(BoardVO board) {
 		// TODO Auto-generated method stub
 		log.info("register....."+board);
 		
 		mapper.insertSelectKey(board);
-		
+		return true;
 	}
 
 	@Override
@@ -43,9 +50,11 @@ public class BoardServiceImpl implements BoardService {
 		return true;
 	}
 
+	@Transactional
 	@Override
 	public boolean remove(Long bno) {
 		// TODO Auto-generated method stub
+		replyMapper.deleteByBno(bno);
 		mapper.delete(bno);
 		return true;
 	}

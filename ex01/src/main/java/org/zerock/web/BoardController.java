@@ -22,18 +22,16 @@ import org.zerock.service.BoardServiceImpl;
 @RequestMapping("/board/")
 public class BoardController {
 	@Autowired
-	BoardService service;
+	private BoardService service;
 
 	private static final Logger log = LoggerFactory.getLogger(BoardController.class);
 
 	@GetMapping("/list")
 	public void list(Criteria cri, Model model) {
-//		System.out.println("aa");
+		int total = service.getTotal(cri);
 		List<BoardVO> list = service.getList(cri);
 		model.addAttribute("list", list);
-//		System.out.println(list.get(0).getTitle());
-		int total = service.getTotal(cri);
-//		model.addAttribute("pageMaker", new PageDTO(cri, 123));
+		model.addAttribute("total", total);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}
 
@@ -44,9 +42,11 @@ public class BoardController {
 
 	@PostMapping("/register")
 	public String regsiter(BoardVO board, RedirectAttributes rttr) {
-		service.register(board);
-		rttr.addFlashAttribute("result", board.getBno());
-		return "redirect:/";
+
+		if (service.register(board)) {
+			rttr.addFlashAttribute("result", "success");
+		}
+		return "redirect:/board/list";
 	}
 
 	@GetMapping({ "/get", "/modify" })
@@ -58,13 +58,16 @@ public class BoardController {
 	@PostMapping("/modify")
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("modify:" + board);
+
 		if (service.modify(board)) {
 			rttr.addFlashAttribute("result", "success");
 		}
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
+//		rttr.addAttribute("pageNum", cri.getPageNum());
+//		rttr.addAttribute("amount", cri.getAmount());
+//		rttr.addAttribute("type", cri.getType());
+//		rttr.addAttribute("keyword", cri.getKeyword());
 
-		return "redirect:/board/list";
+		return "redirect:/board/list" + cri.getListLink();
 	}
 
 	@PostMapping("/remove")
@@ -73,11 +76,12 @@ public class BoardController {
 		if (service.remove(bno)) {
 			rttr.addFlashAttribute("result", "success");
 		}
+//		rttr.addAttribute("pageNum", cri.getPageNum());
+//		rttr.addAttribute("amount", cri.getAmount());
+//		rttr.addAttribute("type", cri.getType());
+//		rttr.addAttribute("keyword", cri.getKeyword());
 
-		rttr.addAttribute("pageNum", cri.getPageNum());
-		rttr.addAttribute("amount", cri.getAmount());
-
-		return "redirect:/board/list";
+		return "redirect:/board/list" + cri.getListLink();
 	}
 
 }

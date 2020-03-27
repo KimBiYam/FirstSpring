@@ -13,12 +13,12 @@ import org.zerock.domain.MemberVO;
 import org.zerock.service.MemberService;
 import org.zerock.service.MemberServiceImpl;
 
-@SessionAttributes("id")
+@SessionAttributes("member")
 @Controller
 @RequestMapping("/member/")
 public class MemberController {
 	@Autowired
-	MemberService service;
+	private MemberService service;
 
 //	회원 가입 폼
 	@GetMapping("/register")
@@ -65,7 +65,8 @@ public class MemberController {
 //	로그인
 	@GetMapping("/login")
 	public String login(Model model, String id) {
-		model.addAttribute("id", id);
+		MemberVO member = service.get(id);
+		model.addAttribute("member", member);
 		return "redirect:/";
 	}
 //	로그아웃
@@ -73,6 +74,19 @@ public class MemberController {
 	public String logout(SessionStatus session) {
 		session.setComplete();
 		return "redirect:/";
+	}
+	
+//	정보수정 폼
+	@GetMapping("/modify")
+	public void modify() {
+		
+	}
+//	정보 수정
+	@PostMapping("/modify")
+	public String modfiy(SessionStatus session, MemberVO member) {
+		service.modify(member);
+		session.setComplete();		
+		return "redirect:/member/login?id="+member.getId();		
 	}
 	
 	

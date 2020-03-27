@@ -17,12 +17,14 @@
 				<div class="panel-heading">글 수정</div>
 				<!-- /.panel-heading  -->
 				<div class="panel-body">
-				<form action="/board/modify" method="post" role="form">
-				<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>' >
-				<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>' >
-				</form>
 					<form action="/board/modify" id="frm" role="form" method="post">
+						<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>' >
+						<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>' >
+						<input type="hidden" name="type" value='<c:out value="${cri.type }"/>' >
+						<input type="hidden" name="keyword" value='<c:out value="${cri.keyword }"/>' >
+						<input type="hidden" name="id" id="id" value="${member.id }">
 						<input type="hidden" name="bno" value="${board.bno }">
+						
 						<div class="form-group">
 							<label>제목</label> <input class="form-control" type="text"
 								name="title" id="title" value="${board.title }">
@@ -35,7 +37,7 @@
 
 						<div class="form-group">
 							<label>작성자</label> <input class="form-control" type="text"
-								name="writer" id="writer" value="${board.writer }">
+								id="writer" value="${board.writer }" disabled="disabled">
 						</div>
 						
 						<div class="form-group hidden">
@@ -82,10 +84,14 @@
 				formObj.attr("action", "/board/list").attr("method","get");
 				var pageNumTag = $("input[name='pageNum']").clone();
 				var amountTag = $("input[name='amount']").clone();
+				var keywordTag = $("input[name='keyword']").clone();
+				var typeTag = $("input[name='type']").clone();
 
 				formObj.empty();
 				formObj.append(pageNumTag);
 				formObj.append(amountTag);
+				formObj.append(keywordTag);
+				formObj.append(typeTag);
 			}
 			formObj.submit();
 		})

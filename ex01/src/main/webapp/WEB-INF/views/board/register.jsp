@@ -18,7 +18,8 @@
 				<!-- /.panel-heading  -->
 				<div class="panel-body">
 					<form action="/board/register" id="frm" role="form" method="post">
-					<input type="hidden" name="writer" id="writer" value="${id }">
+					<input type="hidden" name="writer" id="writer" value="${member.name }">
+					<input type="hidden" name="id" id="id" value="${member.id }">
 						<div class="form-group">
 							<label>제목</label> <input class="form-control" type="text"
 								name="title" id="title">
@@ -31,7 +32,7 @@
 
 						<div class="form-group">
 							<label>작성자</label> <input class="form-control" type="text"
-								id="writerView" disabled="disabled" value="${id }">
+								id="writerView" disabled="disabled" value="${member.name }">
 						</div>
 						<button type="button" id="submitBtn" class="btn btn-default">입력</button>
 						<button type="reset" class="btn btn-default">리셋</button>
