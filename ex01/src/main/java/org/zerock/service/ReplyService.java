@@ -26,4 +26,6 @@ public interface ReplyService {
 	//리스트 페이징
 	public ReplyPageDTO getListPage(Criteria cri, Long bno);
 	
+	public int getTotal(Long bno);
+	
 }

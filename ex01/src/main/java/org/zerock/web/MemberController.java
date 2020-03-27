@@ -88,6 +88,13 @@ public class MemberController {
 		session.setComplete();		
 		return "redirect:/member/login?id="+member.getId();		
 	}
+//	È¸¿ø Å»Åð
+	@GetMapping("/delete")
+	public String delete(String id) {
+		MemberVO member = service.get(id);
+		service.delete(member);
+		return "redirect:/member/logout";		
+	}
 	
 	
 //	·Î±×ÀÎ Ã¼Å©

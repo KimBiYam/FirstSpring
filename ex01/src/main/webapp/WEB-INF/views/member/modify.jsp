@@ -25,6 +25,14 @@
 			alert("회원 정보 수정이 완료 되었습니다!");
 			$("#frm").submit();
 		})
+
+		$("#deleteBtn").click(function(){
+			var id = "${member.id}";
+			if(confirm("정말 탈퇴하시겠습니까?")){
+				location.href="/member/delete?id="+id;
+				}
+
+			})
 	})
 
 	function goPopup() {

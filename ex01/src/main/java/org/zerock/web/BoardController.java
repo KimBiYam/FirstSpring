@@ -30,7 +30,9 @@ public class BoardController {
 	public void list(Criteria cri, Model model) {
 		int total = service.getTotal(cri);
 		List<BoardVO> list = service.getList(cri);
+		int rowNo = total - ((cri.getPageNum() - 1) * 10);
 		model.addAttribute("list", list);
+		model.addAttribute("rowNo", rowNo);
 		model.addAttribute("total", total);
 		model.addAttribute("pageMaker", new PageDTO(cri, total));
 	}

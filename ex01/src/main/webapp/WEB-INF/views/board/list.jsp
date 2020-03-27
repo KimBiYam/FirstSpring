@@ -34,7 +34,7 @@
 
 					<c:forEach items="${list}" var="board" varStatus="st">
 						<tr>
-							<td><c:out value="${board.bno}" /></td>
+							<td><c:out value="${rowNo - st.index}" /></td>
 							<td>
 							<a class="move" href='<c:out value="${board.bno }"/>'>
 							<c:out value="${board.title }"/>
