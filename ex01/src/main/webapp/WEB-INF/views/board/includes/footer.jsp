@@ -27,7 +27,7 @@
 <script>
 	$(document).ready(
 			function() {
-				$('#dataTables-example').DataTable({
+				$('#dataTables-example').DataTable({d
 					responsive : true
 				});
 				$(".sidebar-nav").attr("class",

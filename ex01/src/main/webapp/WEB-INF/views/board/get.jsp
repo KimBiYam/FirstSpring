@@ -146,12 +146,9 @@
 						var bnoValue = '<c:out value="${board.bno}"/>';
 						var replyUL = $(".chat");
 						showList(1);
-						
 
 						function showList(page) {
-
 							console.log("show list " + page);
-
 							replyService.getList(
 											{
 												bno : bnoValue,
@@ -274,6 +271,10 @@
 							$(".modal").modal("show");
 						});
 						modalRegisterBtn.on("click", function(e) {
+							if(modalInputReply.val()==""){
+								alert("댓글 내용을 입력하세요!");
+								return false;
+								}
 							var reply = {
 								reply : modalInputReply.val(),
 								replyer : "${member.name}",
@@ -300,10 +301,13 @@
 								modal.data("rno",reply.rno);
 
 								modal.find("button[id != 'modalCloseBtn']").hide();
+								
+								modalInputReply.attr("disabled", "disabled");
 
 								if(id == reply.id){
 								modalModBtn.show();
 								modalRemoveBtn.show();
+								modalInputReply.removeAttr("disabled");
 								}
 
 								$(".modal").modal("show");
@@ -313,6 +317,11 @@
 							})
 						
 						modalModBtn.on("click",function(e){
+							if(modalInputReply.val()==""){
+								alert("댓글 내용을 입력하세요!");
+								return false;
+								}
+							
 							var reply = {rno:modal.data("rno"), reply: modalInputReply.val()};
 
 							replyService.update(reply,function(result){
