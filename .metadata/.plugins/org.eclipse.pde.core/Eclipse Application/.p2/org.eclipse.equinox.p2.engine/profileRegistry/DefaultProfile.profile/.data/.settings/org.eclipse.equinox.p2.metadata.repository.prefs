@@ -1,0 +1,8 @@
+eclipse.preferences.version=1
+repositories/http\:__downloads.genuitec.com_downloads_products_devstyle_updates_ds20200324a/enabled=true
+repositories/http\:__downloads.genuitec.com_downloads_products_devstyle_updates_ds20200324a/isSystem=false
+repositories/http\:__downloads.genuitec.com_downloads_products_devstyle_updates_ds20200324a/name=
+repositories/http\:__downloads.genuitec.com_downloads_products_devstyle_updates_ds20200324a/suffix=content.xml
+repositories/http\:__downloads.genuitec.com_downloads_products_devstyle_updates_ds20200324a/type=org.eclipse.equinox.internal.p2.metadata.repository.LocalMetadataRepository
+repositories/http\:__downloads.genuitec.com_downloads_products_devstyle_updates_ds20200324a/uri=http\://downloads.genuitec.com/downloads/products/devstyle/updates/ds20200324a
+repositories/http\:__downloads.genuitec.com_downloads_products_devstyle_updates_ds20200324a/version=1.0.0

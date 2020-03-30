@@ -1,0 +1,8 @@
+package org.zerock.util;
+
+import lombok.Data;
+
+@Data
+public class Criteria {
+
+}

@@ -1,0 +1,10 @@
+package org.zerock.mapper;
+
+import org.zerock.domain.MemberVO;
+
+public interface MemberMapper {
+	public void register(MemberVO);
+	
+	public void get(String id);
+
+}

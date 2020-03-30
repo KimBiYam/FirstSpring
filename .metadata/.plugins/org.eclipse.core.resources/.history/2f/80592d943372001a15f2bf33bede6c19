@@ -1,0 +1,6 @@
+package org.zerock.security.domain;
+
+public class CustomUser {
+		
+
+}

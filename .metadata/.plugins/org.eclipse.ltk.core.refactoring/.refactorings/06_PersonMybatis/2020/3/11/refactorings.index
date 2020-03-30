@@ -1,0 +1,6 @@
+1583903966560	Move 3 resources to 'views'
+1583904076456	Rename type 'personDAO'
+1583904078761	Rename type 'personVO'
+1583904082333	Delete element
+1583905649860	Move 'personapp-servlet.xml' to 'META-INF'
+1583905651908	Move 'personapp-servlet.xml' to 'WEB-INF'

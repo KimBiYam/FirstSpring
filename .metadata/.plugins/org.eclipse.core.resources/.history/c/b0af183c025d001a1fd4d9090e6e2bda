@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.0.xsd">
+
+<bean name="/test.do" class="com.test.controller.TestController"></bean>
+
+<!-- db 설정  -->
+<bean id="ds" class="org.springframework.jndi.JndiObjectFactoryBean">
+<property name="jndiName">
+<value>jdbc/spring</value>
+</property>
+<property name="resourceRef" value="true"></property>
+</bean>
+
+<bean id="template" class="org.springframework.jdbc.core.JdbcTemplate">
+<property name="dataSource" ref="ds"></property>
+</bean>
+
+<!-- member Controller  -->
+<!-- 추가 폼  -->
+<bean name="/member_form_insert.do" class="com.member.controller.MemberFormInsert"></bean>
+
+<!-- 추가  -->
+<!-- dao 객체를 직접 컨트롤러에서 생성하는것이 아니라 xml파일에서 설정 해 줌 -->
+<!-- property의 ref는 참조하는 클래스의 이름, name은 해당 class의 변수 명  -->
+<bean name="/member_insert.do" class="com.member.controller.MemberInsert">
+<property name="dao" ref="dao"></property>
+</bean>
+
+<!-- 전체보기  -->
+<bean name="/member_list.do" class="com.member.controller.MemberList">
+<property name="dao" ref="dao"></property>
+</bean>
+
+<!-- 상세보기  -->
+<bean name="/member_detail.do" class="com.member.controller.MeberDetail">
+<property name="dao" ref="dao"></property>
+</bean>
+
+<!-- 수정 폼  -->
+<bean name="/member_form_update.do" class="com.member.controller.MemberFormUpdate">
+<property name="dao" ref="dao"></property>
+</bean>
+
+<!-- 수정하기  -->
+<bean name="/member_update.do" class="com.member.controller.MemberUpdate">
+<property name="dao" ref="dao"></property>
+</bean>
+
+
+<!-- dao  -->
+<!-- dao에 template 연결  -->
+<bean id="dao" class="com.member.model.MemberDAOImpl">
+ <property name="template" ref="template"></property>
+</bean>
+
+
+</beans>

@@ -1,0 +1,5 @@
+package org.zerock.util;
+
+public class Criteria {
+
+}

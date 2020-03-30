@@ -1,0 +1,11 @@
+package org.zerock.service;
+
+import org.zerock.domain.BoardVO;
+import org.zerock.domain.MemberVO;
+
+public interface MemberService {
+	public void register(MemberVO member);
+	
+	public BoardVO get(String id);	
+
+}

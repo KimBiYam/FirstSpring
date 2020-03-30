@@ -1,0 +1,6 @@
+package org.zerock.domain;
+
+public class BoardListVO {
+	int count;
+
+}

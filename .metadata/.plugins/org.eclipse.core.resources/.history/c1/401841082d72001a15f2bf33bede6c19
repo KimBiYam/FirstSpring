@@ -1,0 +1,8 @@
+package org.zerock.securitys;
+
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
+	
+
+}

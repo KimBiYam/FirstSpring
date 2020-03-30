@@ -1,0 +1,51 @@
+package org.zerock.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.zerock.domain.MemberVO;
+import org.zerock.mapper.BoardMapper;
+import org.zerock.mapper.MemberMapper;
+import org.zerock.mapper.ReplyMapper;
+
+import lombok.Setter;
+
+@Service
+public class MemberServiceImpl implements MemberService {
+	@Setter(onMethod_ = @Autowired)
+	private MemberMapper mapper;
+	@Setter(onMethod_ = @Autowired)
+	private BoardMapper boardMapper;
+	@Setter(onMethod_ = @Autowired)
+	private ReplyMapper replyMapper;
+
+	@Override
+	public void register(MemberVO member) {
+		// TODO Auto-generated method stub
+		mapper.register(member);
+	}
+
+	@Override
+	public MemberVO get(String id) {
+		// TODO Auto-generated method stub
+		return mapper.get(id);
+	}
+	
+	public String idcheck(String id) {
+		return mapper.idcheck(id);
+	}
+
+	@Override
+	public void modify(MemberVO member) {
+		// TODO Auto-generated method stub
+		mapper.modify(member);
+	}
+
+	@Override
+	public void delete(MemberVO member) {
+		// TODO Auto-generated method stub
+		mapper.delete(member);
+	}
+	
+	
+
+}

@@ -1,0 +1,3 @@
+
+3월 26, 2020 15:37:08.23 NEW SESSION
+3월 26, 2020 15:37:08.23 [6832:5996:0326/153708.237:ERROR:CONSOLE(109)] "Uncaught (in promise) TypeError: Cannot read property 'parentNode' of null", source: devtools://devtools/bundled/elements/ElementsPanel.js (109)

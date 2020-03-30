@@ -1,0 +1,8 @@
+package org.zerock.securitys;
+
+
+//p629
+public class CustomAccessDeniedHandler {
+	
+
+}

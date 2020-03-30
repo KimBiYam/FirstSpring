@@ -1,0 +1,10 @@
+package org.zerock.domain;
+
+public class MemberVO {
+	private String id;
+	private String password;
+	private String id;
+	private String id;
+	
+
+}

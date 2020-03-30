@@ -1,0 +1,202 @@
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+<link rel="stylesheet"
+	href="//unpkg.com/bootstrap@4/dist/css/bootstrap.min.css">
+<script src='//unpkg.com/jquery@3/dist/jquery.min.js'></script>
+<script src='//unpkg.com/popper.js@1/dist/umd/popper.min.js'></script>
+<script src='//unpkg.com/bootstrap@4/dist/js/bootstrap.min.js'></script>
+</head>
+<body>
+	<div class="container my-5">
+		<table class="table small table-bordered my-5">
+			<tr>
+				<td style="width: 10%">번호</td>
+				<td>${board.num }</td>
+			</tr>
+			<tr>
+				<td style="width: 10%">제목</td>
+				<td>${board.title }</td>
+			</tr>
+			<tr>
+				<td style="width: 10%">작성자</td>
+				<td>${board.writer }</td>
+			</tr>
+			<tr>
+				<td style="width: 10%">작성일</td>
+				<td>${board.regdate }</td>
+			</tr>
+			<tr>
+				<td style="width: 10%">조회수</td>
+				<td>${board.hitcount }</td>
+			</tr>
+			<tr>
+				<td colspan="2">${board.content }</td>
+			</tr>
+		</table>
+		<div id="result"></div>
+		<form>
+			<input type="hidden" id="bnum" name="bnum" value="${board.num }">
+			<table class="table small table-bordered my-5">
+				<tr>
+					<th colspan="2">댓글 작성</th>
+				</tr>
+				<tr>
+					<td>작성자</td>
+					<td><input type="text" name="name" id="name"
+						class="form-control"></td>
+				</tr>
+				<tr>
+					<td>내용</td>
+					<td><input type="text" name="content" id="content"
+						class="form-control"></td>
+				</tr>
+				<tr>
+					<td>패스워드</td>
+					<td><input type="password" name="password" id="password"
+						class="form-control"></td>
+				</tr>
+				<tr class="text-right">
+					<td colspan="2">
+						<button id="commentInsertBtn" type="button"
+							class="btn btn-sm btn-outline-primary">댓글 작성</button>
+					</td>
+				</tr>
+			</table>
+		</form>
+
+
+		<div class="text-right">
+			<a href="boardUpdate?num=${board.num }"
+				class="btn btn-sm btn-outline-info">수정하기</a>
+			<button type="button" name="deleteBtn" id="deleteBtn"
+				class="btn btn-sm btn-outline-danger">삭제하기</button>
+			<a href="goList" class="btn btn-sm btn-outline-secondary">목록으로</a>
+		</div>
+	</div>
+	<script type="text/javascript">
+		$(function() {
+			getComment();
+			$("#deleteBtn").click(
+					function() {ndow.open("deletePopup?num=${board.num}",
+								"deletePopup",
+								"width=500,height=300,top=300,left=700");
+					})
+			$("#commentInsertBtn").click(commentInsert);
+
+		})
+		
+		function getComment() {
+			$.getJSON("commentList", {
+				"bnum" : $("#bnum").val()
+			}, function(data) {
+				$("#result").empty();
+				var htmlStr = "";
+				htmlStr += "<table class='table small table-bordered my-5'>";
+				htmlStr += "<tr>";
+				htmlStr += "<th>댓글</th>";	
+				htmlStr += "</tr>";
+				for(i=0;i<data.length;i++){
+				htmlStr += "<tr>";
+				htmlStr += "<td>작성자 : "+data[i].name;
+				htmlStr += "<br> 내용 : "+data[i].content;
+				htmlStr += "<p class='text-right'>";
+				htmlStr += "<a href='javascript:commentDelete("+data[i].num+")'>삭제</p></td>";
+				htmlStr += "</tr>";
+				}
+				htmlStr += "</table>";
+				$("#result").append(htmlStr);
+			})
+		}
+		function commentInsert(){
+			var name = $("#name").val();
+			var content = $("#content").val();
+			var password = $("#password").val();
+			var bnum = $("#bnum").val();
+			$.ajax({
+				type:"post",
+				url:"commentInsert",
+				data : {
+					"name" : name,
+					"content" : content,
+					"password" : password,
+					"bnum" : bnum
+					},
+				success : function(retData){
+					var data = $.parseJSON(retData);
+					$("#result").empty();
+					var htmlStr = "";
+					htmlStr += "<table class='table small table-bordered my-5'>";
+					htmlStr += "<tr>";
+					htmlStr += "<th>댓글</th>";	
+					htmlStr += "</tr>";
+					for(i=0;i<data.length;i++){
+					htmlStr += "<tr>";
+					htmlStr += "<td>작성자 : "+data[i].name;
+					htmlStr += "<br> 내용 : "+data[i].content;
+					htmlStr += "<p class='text-right'>";
+					htmlStr += "<a href='javascript:commentDelete("+data[i].num+")'>삭제</p></td>";
+					htmlStr += "</tr>";
+					}
+					htmlStr += "</table>";
+					$("#result").append(htmlStr);
+					$("#name").val("");
+					$("#content").val("");
+					$("#password").val("");
+					},
+					beforeSend : showRequest,
+					error: function(e){
+						alert("error :" +e);
+						}
+				})
+				function showRequest() {
+				if ($("#name").val() == "") {
+					alert("작성자를 입력하세요");
+					return false;
+				}
+				if ($("#content").val() == "") {
+					alert("내용을 입력하세요");
+					return false;
+				}
+				if ($("#password").val() == "") {
+					alert("패스워드를 입력하세요");
+					return false;
+				}
+			return true;
+				}
+		}
+		function commentDelete(num){
+			if (confirm("댓글을 삭제할까요?")) {
+				$.get("commentDelete", {
+					"bnum" : $("#bnum").val(),
+					"num" : num
+				}, function(retData) {
+					data = $.parseJSON(retData);
+					$("#result").empty();
+					var htmlStr = "";
+					htmlStr += "<table class='table small table-bordered my-5'>";
+					htmlStr += "<tr>";
+					htmlStr += "<th>댓글</th>";	
+					htmlStr += "</tr>";
+					for(i=0;i<data.length;i++){
+					htmlStr += "<tr>";
+					htmlStr += "<td>작성자 : "+data[i].name;
+					htmlStr += "<br> 내용 : "+data[i].content;
+					htmlStr += "<p class='text-right'>";
+					htmlStr += "<a href='javascript:commentDelete("+data[i].num+")'>삭제</p></td>";
+					htmlStr += "</tr>";
+					}
+					htmlStr += "</table>";
+					$("#result").append(htmlStr);
+				})
+			}
+		}
+		
+	</script>
+
+</body>
+</html>

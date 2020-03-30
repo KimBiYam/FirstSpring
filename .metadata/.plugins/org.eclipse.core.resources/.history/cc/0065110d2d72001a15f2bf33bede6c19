@@ -1,0 +1,11 @@
+package org.zerock.securitys;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
+
+public class CustomLoginSuccessHandler implements AuthenticationSuccessHandler{
+	private static final Logger log = LoggerFactory.getLogger(CustomLoginSuccessHandler.class);
+	
+
+}

@@ -1,0 +1,5 @@
+package org.zerock.securitys;
+
+public class CustomLoginSuccessHandler {
+
+}
