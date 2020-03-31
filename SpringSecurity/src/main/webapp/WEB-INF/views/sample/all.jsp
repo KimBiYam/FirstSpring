@@ -22,7 +22,7 @@
 
 <sec:authorize access="isAuthenticated()">
 
-<a href="/customLogout">Logout</a>
+<a href="/security/customLogout">Logout</a>
 
 </sec:authorize>
 

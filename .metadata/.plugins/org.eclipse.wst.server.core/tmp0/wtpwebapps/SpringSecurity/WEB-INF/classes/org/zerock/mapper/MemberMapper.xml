@@ -11,6 +11,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		<result property="userName" column="username" />
 		<result property="regDate" column="regdate" />
 		<result property="updateDate" column="updatedate" />
+		<!-- 1 : n 인 경우 collection을 사용  -->
 		<collection property="authList" resultMap="authMap">
 		</collection>
 	</resultMap>
