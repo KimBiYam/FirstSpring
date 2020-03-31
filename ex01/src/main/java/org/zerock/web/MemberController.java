@@ -1,5 +1,6 @@
 package org.zerock.web;
 
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,7 +12,6 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.zerock.domain.MemberVO;
 import org.zerock.service.MemberService;
-import org.zerock.service.MemberServiceImpl;
 
 @SessionAttributes("member")
 @Controller
