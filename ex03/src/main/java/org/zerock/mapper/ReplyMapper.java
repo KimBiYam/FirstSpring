@@ -31,12 +31,9 @@ public interface ReplyMapper {
 
 	//갯수
 	public int getCountByBno(Long bno);
+	
 	//글 삭제 시 댓글 삭제
 	public void deleteByBno(Long bno);
-	//회원 탈퇴 시 댓글 삭제
-	public void deleteById(String id);
-	//회원 이름 수정 시 업데이트
-	public void updateName(MemberVO member);	
 	
 	
 }

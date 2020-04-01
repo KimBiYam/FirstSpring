@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -51,21 +52,6 @@
     <![endif]-->
 
 </head>
-<script type="text/javascript">
-	function logout() {
-		alert("로그아웃 되었습니다");
-		location.href = "/member/logout"
-	}
-	function register(){
-		var id = "${member.id}";
-		if(id == ""){
-			alert("로그인 혹은 회원가입을 하세요");
-			return false;
-			}
-		location.href = "/board/register";
-		}
-	
-</script>
 
 <body>
 
@@ -86,8 +72,39 @@
 			<!-- /.navbar-header -->
 
 			<ul class="nav navbar-top-links navbar-right">
-					<li class="nav-item"><a href="/customLogin">로그인</a></li>
-					<li class="nav-item"><a href="/member/register">회원가입</a></li>
+<!-- 					<li class="nav-item"><a href="/customLogin">로그인</a></li>
+						<li class="nav-item"><a href="/customLogout">로그아웃</a></li>	
+					<li class="nav-item"><a href="/member/register">회원가입</a></li> -->
+                <!-- /.dropdown -->
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                        <i class="fa fa-user fa-fw"></i> <i class="fa fa-caret-down"></i>
+                    </a>
+                    <ul class="dropdown-menu dropdown-user">
+                    	<sec:authorize access="isAuthenticated()">
+                        <li><a href='/member/modify?userid=<sec:authentication property="principal.member.userid"/>'><i class="fa fa-user fa-fw"></i> 유저 정보</a>
+                        </li>
+                        <li class="divider"></li>
+                        </sec:authorize>
+                        <sec:authorize access="isAuthenticated()">
+                        <li><a href="/customLogout"><i class="fa fa-sign-out fa-fw"></i> 로그아웃</a>
+                        </li>
+                        </sec:authorize>
+                        
+                        <sec:authorize access="isAnonymous()">
+                        <li><a href="/customLogin"><i class="fa fa-sign-out fa-fw"></i> 로그인</a>
+                        </li>
+                        </sec:authorize>
+                        
+                     	<sec:authorize access="isAnonymous()">
+                        <li><a href="/member/register"><i class="fa fa-sign-out fa-fw"></i> 회원가입</a>
+                        </li>
+                        </sec:authorize>
+                        
+                    </ul>
+                    <!-- /.dropdown-user -->
+                </li>
+                <!-- /.dropdown -->
 			</ul>
 			<!-- /.navbar-top-links -->
 
@@ -98,7 +115,7 @@
 							<a href="/"><i class="fa fa-dashboard fa-fw"></i> 게시판</a>
 						</li>
 						<li>
-							<a href="javascript:register()">
+							<a href="/board/register">
 							<i class="fa fa-bar-chart-o fa-fw"></i> 글쓰기</a>
 						</li>
 					</ul>

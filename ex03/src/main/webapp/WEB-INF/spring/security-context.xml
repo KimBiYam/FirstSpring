@@ -25,7 +25,7 @@
 			<security:form-login login-page="/customLogin"/>
 			
 			<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID"/>
-									
+			
 			<!-- 자동로그인 설정  -->
 			<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
 			
@@ -43,3 +43,5 @@
 		</security:authentication-manager>
 
 </beans>
+
+

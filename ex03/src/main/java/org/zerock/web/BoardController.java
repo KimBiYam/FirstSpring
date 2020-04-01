@@ -52,14 +52,16 @@ public class BoardController {
 		
 		return "redirect:/board/list";
 	}
-
+	
+	
 	@GetMapping({ "/get", "/modify" })
 	public void get(Long bno, @ModelAttribute("cri") Criteria cri, Model model) {
 		BoardVO board = service.get(bno);
 		model.addAttribute("board", board);
 	}
 
-	@PostMapping("/modify")
+	@PreAuthorize("principal.username == #board.writer")
+	@PostMapping("/modify")	
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		log.info("modify:" + board);
 
@@ -73,9 +75,10 @@ public class BoardController {
 
 		return "redirect:/board/list" + cri.getListLink();
 	}
-
+	
+	@PreAuthorize("principal.username == #writer")
 	@PostMapping("/remove")
-	public String remove(Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String remove(Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr, String writer) {
 		log.info("remove..." + bno);
 		if (service.remove(bno)) {
 			rttr.addFlashAttribute("result", "success");

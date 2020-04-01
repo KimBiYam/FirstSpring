@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@include file="includes/header.jsp"%>
 	<div class="row">
 		<div class="col-lg-12">
@@ -17,13 +18,15 @@
 				<div class="panel-heading">글 수정</div>
 				<!-- /.panel-heading  -->
 				<div class="panel-body">
-					<form action="/board/modify" id="frm" role="form" method="post">
+					<form action="/board/modify" role="form" method="post">
+						<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+						<input type="hidden" name="writer" id="writer" value=${board.writer } >
 						<input type="hidden" name="pageNum" value='<c:out value="${cri.pageNum}"/>' >
 						<input type="hidden" name="amount" value='<c:out value="${cri.amount}"/>' >
 						<input type="hidden" name="type" value='<c:out value="${cri.type }"/>' >
 						<input type="hidden" name="keyword" value='<c:out value="${cri.keyword }"/>' >
-						<input type="hidden" name="id" id="id" value="${member.id }">
 						<input type="hidden" name="bno" value="${board.bno }">
+						
 						
 						<div class="form-group">
 							<label>제목</label> <input class="form-control" type="text"
@@ -37,7 +40,7 @@
 
 						<div class="form-group">
 							<label>작성자</label> <input class="form-control" type="text"
-								id="writer" value="${board.writer }" disabled="disabled">
+								id="writerView" value="${board.writer }" disabled="disabled" readonly="readonly">
 						</div>
 						
 						<div class="form-group hidden">
@@ -52,9 +55,13 @@
 							value='<fmt:formatDate pattern = "yyyy/MM/dd" value= "${board.updateDate}" />' readonly="readonly">
 						</div>
 						
-						
+						<sec:authentication property="principal" var="pinfo"/>
+						<sec:authorize access="isAuthenticated()">
+						<c:if test="${pinfo.username eq board.writer }">
 						<button type="submit" data-oper="modify" class="btn btn-default">수정하기</button>
 						<button type="submit" data-oper="remove" class="btn btn-default">삭제하기</button>
+						</c:if>
+						</sec:authorize>						
 						<button type="submit" data-oper="list" class="btn btn-default">리스트</button>
 					</form>
 

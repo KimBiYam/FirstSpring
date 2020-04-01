@@ -53,9 +53,8 @@
 	</select>
 	<!-- 게시판 글쓰기 -->
 	<insert id="insert">
-		insert into tbl_board (bno, title, content, writer,
-		id)
-		values (seq_board.nextval, #{title}, #{content}, #{writer}, #{id})
+		insert into tbl_board (bno, titl`e, content, writer)
+		values (seq_board.nextval, #{title}, #{content}, #{writer})
 	</insert>
 	<!-- 게시판 글쓰기(시퀀스를 자체적으로 구함) -->
 	<insert id="insertSelectKey">
@@ -64,15 +63,14 @@
 			select seq_board.nextval from dual
 		</selectKey>
 
-		insert into tbl_board (bno,title,content,writer,id)
+		insert into tbl_board (bno,title,content,writer)
 		values
-		(#{bno},#{title},#{content},#{writer},#{id})
+		(#{bno},#{title},#{content},#{writer})
 
 	</insert>
 	<!-- 상세보기 -->
 	<select id="read" resultType="org.zerock.domain.BoardVO">
-		select * from tbl_board where bno =
-		#{bno}
+		select * from tbl_board where bno = #{bno}
 	</select>
 	<!-- 삭제 -->
 	<delete id="delete">
@@ -81,9 +79,8 @@
 	<!-- 수정 -->
 	<update id="update">
 		update tbl_board
-		set title=#{title},
-		content=#{content},
-		updateDate=sysdate
+		set
+		title=#{title}, content=#{content}, updateDate=sysdate 
 		where bno = #{bno}
 	</update>
 	<!-- 전체 갯수 -->
@@ -91,7 +88,6 @@
 		select count(*) from tbl_board
 		where
 		<include refid="criteria"></include>
-		
 		bno > 0
 	</select>
 	<!-- 댓글 갯수 -->

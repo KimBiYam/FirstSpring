@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
+<%@taglib prefix="sec" uri="http://www.springframework.org/security/tags" %>
 <%@include file="includes/header.jsp"%>
 
 
@@ -42,11 +43,15 @@
 						value='<c:out value="${board.writer }"/>' readonly="readonly">
 				</div>
 
-				<c:if test="${member.id == board.id }">
-				<button data-oper='modify' class="btn btn-default">수정하기</button>
-				</c:if>
-				<button data-oper='list' class="btn btn-info">리스트</button>
-
+				<sec:authentication property="principal" var="pinfo"/>
+					<sec:authorize access="isAuthenticated()">
+						<c:if test="${pinfo.username eq board.writer }">
+							<button data-oper='modify' class="btn btn-default">수정하기</button>
+						</c:if>
+					</sec:authorize>
+					
+				<button data-oper='list' class="btn btn-info">리스트</button>		
+	
 				<form id='operForm' action="/board/modify" method="get">
 					<input type='hidden' id='bno' name='bno' value='<c:out value="${board.bno}"/>'>
 					<input type='hidden' name='pageNum' value='<c:out value="${cri.pageNum}"/>'>
@@ -76,9 +81,9 @@
 
 			<div class="panel-heading">
 				<i class="fa fa-comments fa-fw"></i> 댓글
-				<c:if test="${member != null }">
+				<sec:authorize access="isAuthenticated()">
 				<button id='addReplyBtn' class='btn btn-primary btn-xs pull-right'>댓글 쓰기</button>
-				</c:if>
+				</sec:authorize>
 			</div>
 
 
@@ -121,12 +126,10 @@
 					 <input class="form-control" name='replyer' id="replyer"
 						value='replyer' disabled="disabled">
 				</div>
-				<input type="hidden" name="id" value="id">
 				<div class="form-group">
 					<label>작성일</label> <input class="form-control"
 						name='replyDate' value='2018-01-01 13:13'>
 				</div>
-
 			</div>
 			<div class="modal-footer">
 				<button id='modalModBtn' type="button" class="btn btn-warning">수정하기</button>
@@ -253,21 +256,42 @@
 						var modalInputReply = modal.find("input[name='reply']");
 						var modalInputReplyer = modal.find("input[name='replyer']");
 						var modalInputReplyDate = modal.find("input[name='replyDate']");
-						var modalInputReplyId = modal.find("input[name='id']");
-						var modalModBtn = $("#modalModBtn");
+
+						var modalModBtn = $("#modalModBtn");													
 						var modalRemoveBtn = $("#modalRemoveBtn");
 						var modalRegisterBtn = $("#modalRegisterBtn");
 						//var bnoValue = $("#bno").val();
 						//alert(bnoValue)
+						
+						var replyer = null;
+
+						<sec:authorize access="isAuthenticated()">
+
+						replyer = '<sec:authentication property="principal.username"/>';
+						
+
+						</sec:authorize>
+
+						var csrfHeaderName = "${_csrf.headerName}";
+						var csrfTokenValue = "${_csrf.token}";
+
+						//Ajax spring security header...
+						 $(document).ajaxSend(function(e, xhr, options){
+							xhr.setRequestHeader(csrfHeaderName, csrfTokenValue);
+							}) 
+						
+						
 						$("#modalCloseBtn").on("click", function(e) {
 							modal.modal('hide');
 						});
 						$("#addReplyBtn").on("click", function(e) {
 							modal.find("input").val("");
-							$("#replyer").val("${member.name}");
-							modalInputReplyDate.closest("div").hide();							
-							modal.find("button[id !='modalCloseBtn']").hide();
-							modalRegisterBtn.show();							
+							modal.find("input[name='replyer']").val(replyer);
+							modalInputReplyDate.closest("div").hide();
+							modal.find("button[id !='modalCloseBtn']").hide();		
+												
+							modalRegisterBtn.show();
+														
 							$(".modal").modal("show");
 						});
 						modalRegisterBtn.on("click", function(e) {
@@ -277,8 +301,7 @@
 								}
 							var reply = {
 								reply : modalInputReply.val(),
-								replyer : "${member.name}",
-								id : "${member.id}",								
+								replyer : replyer,
 								bno : bnoValue
 							};
 							replyService.add(reply, function(result) {
@@ -291,7 +314,6 @@
 						
 						$(".chat").on("click","li",function(e){
 							var rno = $(this).data("rno");
-							var id = "${member.id}";
 
 							replyService.get(rno, function(reply){
 								modalInputReplyDate.closest("div").show();
@@ -304,11 +326,9 @@
 								
 								modalInputReply.attr("disabled", "disabled");
 
-								if(id == reply.id){
 								modalModBtn.show();
 								modalRemoveBtn.show();
 								modalInputReply.removeAttr("disabled");
-								}
 
 								$(".modal").modal("show");
 								
@@ -317,12 +337,32 @@
 							})
 						
 						modalModBtn.on("click",function(e){
-							if(modalInputReply.val()==""){
-								alert("댓글 내용을 입력하세요!");
-								return false;
+
+							var originalReplyer = modalInputReplyer.val();
+
+							var reply = {
+								rno : modal.data("rno"),
+								reply: modalInputReply.val(),
+								replyer : originalReplyer};							
+
+							if(!replyer){
+								alert("로그인후 수정이 가능합니다.");
+								modal.modal("hide");
+								return;
+								}
+
+							console.log("Original Replyer : " + originalReplyer);
+
+							if(replyer != originalReplyer){
+								alert("자신이 작성한 댓글만 삭제가 가능합니다.");
+								modal.modal("hide");
+								return;
 								}
 							
-							var reply = {rno:modal.data("rno"), reply: modalInputReply.val()};
+							if(modalInputReply.val()==""){
+								alert("댓글 내용을 입력하세요!");
+								return;
+								}
 
 							replyService.update(reply,function(result){
 
@@ -336,11 +376,30 @@
 						modalRemoveBtn.on("click",function(e){
 							var rno = modal.data("rno");
 
-							replyService.remove(rno, function(result){
+							console.log("RNO : " + rno);
+							console.log("REPLAYER : " + replyer);
+
+							if(!replyer){
+								alert("로그인후 삭제가 가능합니다.");
+								modal.modal("hide");
+								return;
+								}
+
+							var originalReplyer = modalInputReplyer.val();
+
+							console.log("Original Replyer : " + originalReplyer);
+
+							if(replyer != originalReplyer){
+								alert("자신이 작성한 댓글만 삭제가 가능합니다.");
+								modal.modal("hide");
+								return;
+								}
+
+							replyService.remove(rno, originalReplyer, function(result){
 
 								alert(result);
 								modal.modal("hide");
-								showList(1);
+								showList(pageNum);
 								
 								})
 							

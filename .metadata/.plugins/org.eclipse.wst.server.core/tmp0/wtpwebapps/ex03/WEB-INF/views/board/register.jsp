@@ -18,9 +18,9 @@
 				<div class="panel-heading">글쓰기</div>
 				<!-- /.panel-heading  -->
 				<div class="panel-body">
-					<form action="/board/register" id="frm" role="form" method="post">
-					<input type="hidden" name="${_csrf.parameterName }" value="${csrf.token }">
-					<input type="hidden" name="writer" id="writer" value="${member.name }">
+					<form action="/board/register" role="form" method="post">
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+					<input type="hidden" name="writer" id="writer" value='<sec:authentication property="principal.username"/>' >
 					<input type="hidden" name="id" id="id" value="${member.id }">
 						<div class="form-group">
 							<label>제목</label> <input class="form-control" type="text"
@@ -40,7 +40,6 @@
 						<button type="reset" class="btn btn-default">리셋</button>
 						<a href="/" class="btn btn-default">리스트</a>
 					</form>
-
 				</div>
 				<!-- end panel-body  -->
 			</div>
@@ -62,7 +61,7 @@
 				alert("내용을 입력해주세요");
 				return false;
 			}
-			$("#frm").submit();
+			$("form").submit();
 		})
 	})
 </script>

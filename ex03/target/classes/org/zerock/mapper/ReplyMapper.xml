@@ -5,8 +5,8 @@
 <mapper namespace="org.zerock.mapper.ReplyMapper">
 	<!-- 댓글 작성 -->
 	<insert id="insert">
-		insert into tbl_reply(rno, bno, reply, replyer, id)
-		values(seq_reply.nextval, #{bno}, #{reply}, #{replyer}, #{id})
+		insert into tbl_reply(rno, bno, reply, replyer)
+		values(seq_reply.nextval, #{bno}, #{reply}, #{replyer})
 	</insert>
 	<!-- 댓글 읽기 -->
 	<select id="read" resultType="org.zerock.domain.ReplyVO">

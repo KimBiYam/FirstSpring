@@ -1,3 +1,7 @@
 
 3월 26, 2020 15:37:08.23 NEW SESSION
 3월 26, 2020 15:37:08.23 [6832:5996:0326/153708.237:ERROR:CONSOLE(109)] "Uncaught (in promise) TypeError: Cannot read property 'parentNode' of null", source: devtools://devtools/bundled/elements/ElementsPanel.js (109)
+
+4월 01, 2020 11:59:05.77 NEW SESSION
+4월 01, 2020 11:59:05.77 [6584:9436:0401/115905.775:ERROR:CONSOLE(208)] "Uncaught (in promise) TypeError: Cannot read property 'searchableView' of undefined", source: devtools://devtools/bundled/shell.js (208)
+4월 01, 2020 12:02:45.76 [6584:9436:0401/120245.762:ERROR:CONSOLE(82)] "Uncaught TypeError: Cannot read property 'element' of null", source: devtools://devtools/bundled/network/network_module.js (82)

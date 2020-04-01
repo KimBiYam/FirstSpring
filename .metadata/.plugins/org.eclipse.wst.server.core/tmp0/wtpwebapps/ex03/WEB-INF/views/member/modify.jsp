@@ -3,10 +3,86 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@include file="../board/includes/header.jsp"%>
+
+	<div class="row">
+		<div class="col-lg-12">
+			<h1 class="page-header">회원 정보 수정</h1>
+		</div>
+		<!-- col-lg-12  -->
+	</div>
+	<!-- /.row  -->
+
+	<div class="row">
+		<div class="col-lg-12">
+			<div class="panel panel-default">
+				<div class="panel-heading">회원 정보 수정</div>
+				<!-- /.panel-heading  -->
+				<div class="panel-body">
+					<form action="/member/modify" id="frm" role="form" method="post">
+					<input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
+						<input type="hidden" name="addr" id="addr" value="${member.addr }">
+						<input type="hidden" name="zipNo" id="zipNo" value="${member.zipNo }">
+						<input type="hidden" name="userid" id="userid" value="${member.userid }">
+						 
+						<div class="form-group">
+							<label>ID</label> <input class="form-control" type="text"
+								id="idView" disabled="disabled" value="${member.userid }">
+						</div>
+						<div class="form-group">
+							<label>PASSWORD</label> <input type="password" name="userpw"
+								id="userpw" class="form-control">
+						</div>
+						<div class="form-group">
+							<label>PASSWORD 확인</label> <input type="password" id="pwdcheck"
+								class="form-control">
+						</div>
+						<div class="form-group">
+							<label>이름</label> <input class="form-control" type="text"
+								name="username" id="username" value="${member.username }">
+						</div>
+						<div class="form-group">
+							<label>우편번호</label> <input
+								class="input-group-prepend form-control" type="text"
+								id="zipNoView" disabled="disabled" value="${member.zipNo }">
+						</div>
+						<div class="form-group">
+							<label>주소</label> <input class="input-group-prepend form-control"
+								type="text" id="addrView" disabled="disabled" value="${member.addr }">
+						</div>
+						<div class="form-group">
+							<label>회원 권한</label>
+							<label class="radio-inline">
+								<input type="radio" checked="checked" name="auth" value="ROLE_ADMIN">관리자						
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="auth" value="ROLE_MEMBER">멤버						
+							</label>
+							<label class="radio-inline">
+								<input type="radio" name="auth" value="ROLE_USERT">유저												
+							</label>					
+						</div>
+						<button type="button" id="addrBtn" onclick="javascript:goPopup()"
+							class="btn btn-default">주소 검색</button>
+						<br> <br>
+						<button type="button" id="submitBtn" class="btn btn-default">입력</button>
+						<button type="button" id="deleteBtn" class="btn btn-default">회원 탈퇴</button>
+						<button type="reset" class="btn btn-default">리셋</button>
+					</form>
+
+				</div>
+				<!-- end panel-body  -->
+			</div>
+			<!-- end panel  -->
+		</div>
+	</div>
+	<!-- ./row  -->
+</div>
+<!-- ./page-wrapper  -->
+
 <script type="text/javascript">
 	$(function() {
 		$("#submitBtn").click(function() {
-			if ($("#password").val() == "") {
+			if ($("#userpw").val() == "") {
 				alert("패스워드를 입력해주세요");
 				return false;
 			}
@@ -14,11 +90,15 @@
 				alert("패스워드 확인을 입력해주세요");
 				return false;
 			}
-			if ($("#addr").val() == "") {
-				alert("주소를 입력해주세요");
+			if ($("#username").val() == "") {
+				alert("이름을 입력해주세요");
 				return false;
 			}
-			if ($("#password").val() != $("#pwdcheck").val()) {
+			/* if ($("#addr").val() == "") {
+				alert("주소를 입력해주세요");
+				return false;
+			} */
+			if ($("#userpw").val() != $("#pwdcheck").val()) {
 				alert("패스워드가 틀립니다");
 				return false;
 			}
@@ -27,7 +107,7 @@
 		})
 
 		$("#deleteBtn").click(function(){
-			var id = "${member.id}";
+			var id = "${member.userid}";
 			if(confirm("정말 탈퇴하시겠습니까?")){
 				location.href="/member/delete?id="+id;
 				}
@@ -56,68 +136,6 @@
 		$("#zipNoView").val(zipNo);
 	}
 </script>
-
-	<div class="row">
-		<div class="col-lg-12">
-			<h1 class="page-header">회원 정보 수정</h1>
-		</div>
-		<!-- col-lg-12  -->
-	</div>
-	<!-- /.row  -->
-
-	<div class="row">
-		<div class="col-lg-12">
-			<div class="panel panel-default">
-				<div class="panel-heading">회원 정보 수정</div>
-				<!-- /.panel-heading  -->
-				<div class="panel-body">
-					<form action="/member/modify" id="frm" role="form" method="post">
-						<input type="hidden" name="addr" id="addr" value="${member.addr }">
-						<input type="hidden" name="zipNo" id="zipNo" value="${member.zipNo }">
-						<input type="hidden" name="id" id="id" value="${member.id }">
-						 
-						<div class="form-group">
-							<label>ID</label> <input class="form-control" type="text"
-								id="idView" disabled="disabled" value="${member.id }">
-						</div>
-						<div class="form-group">
-							<label>PASSWORD</label> <input type="password" name="password"
-								id="password" class="form-control">
-						</div>
-						<div class="form-group">
-							<label>PASSWORD 확인</label> <input type="password" id="pwdcheck"
-								class="form-control">
-						</div>
-						<div class="form-group">
-							<label>이름</label> <input class="form-control" type="text"
-								name="name" id="name" value="${member.name }">
-						</div>
-						<div class="form-group">
-							<label>우편번호</label> <input
-								class="input-group-prepend form-control" type="text"
-								id="zipNoView" disabled="disabled" value="${member.zipNo }">
-						</div>
-						<div class="form-group">
-							<label>주소</label> <input class="input-group-prepend form-control"
-								type="text" id="addrView" disabled="disabled" value="${member.addr }">
-						</div>
-						<button type="button" id="addrBtn" onclick="javascript:goPopup()"
-							class="btn btn-default">주소 검색</button>
-						<br> <br>
-						<button type="button" id="submitBtn" class="btn btn-default">입력</button>
-						<button type="button" id="deleteBtn" class="btn btn-default">회원 탈퇴</button>
-						<button type="reset" class="btn btn-default">리셋</button>
-					</form>
-
-				</div>
-				<!-- end panel-body  -->
-			</div>
-			<!-- end panel  -->
-		</div>
-	</div>
-	<!-- ./row  -->
-</div>
-<!-- ./page-wrapper  -->
 
 
 <%@include file="../board/includes/footer.jsp"%>
