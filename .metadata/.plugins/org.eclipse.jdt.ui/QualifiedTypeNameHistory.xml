@@ -1,16 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <qualifiedTypeNameHistroy>
-<fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PathVariable"/>
-<fullyQualifiedTypeName name="org.zerock.mapper.BoardMapper"/>
-<fullyQualifiedTypeName name="org.zerock.mapper.ReplyMapper"/>
-<fullyQualifiedTypeName name="org.springframework.beans.factory.support.ReplaceOverride"/>
-<fullyQualifiedTypeName name="org.springframework.web.util.UriComponentsBuilder"/>
-<fullyQualifiedTypeName name="java.util.ServiceConfigurationError"/>
-<fullyQualifiedTypeName name="org.zerock.domain.Criteria"/>
-<fullyQualifiedTypeName name="org.apache.taglibs.standard.lang.jstl.Logger"/>
-<fullyQualifiedTypeName name="org.slf4j.Logger"/>
-<fullyQualifiedTypeName name="org.slf4j.LoggerFactory"/>
-<fullyQualifiedTypeName name="org.springframework.web.multipart.MultipartFile"/>
 <fullyQualifiedTypeName name="com.myapp.myapp.UploadController"/>
 <fullyQualifiedTypeName name="java.io.File"/>
 <fullyQualifiedTypeName name="java.util.UUID"/>
@@ -34,7 +23,6 @@
 <fullyQualifiedTypeName name="org.springframework.test.context.junit4.SpringJUnit4ClassRunner"/>
 <fullyQualifiedTypeName name="org.springframework.test.context.ContextConfiguration"/>
 <fullyQualifiedTypeName name="org.springframework.stereotype.Controller"/>
-<fullyQualifiedTypeName name="org.springframework.security.core.Authentication"/>
 <fullyQualifiedTypeName name="org.zerock.mapper.MemberTests"/>
 <fullyQualifiedTypeName name="lombok.Getter"/>
 <fullyQualifiedTypeName name="lombok.extern.log4j.Log4j2"/>
@@ -59,5 +47,17 @@
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.PostMapping"/>
 <fullyQualifiedTypeName name="org.springframework.web.bind.annotation.GetMapping"/>
 <fullyQualifiedTypeName name="javax.servlet.http.HttpSession"/>
+<fullyQualifiedTypeName name="javax.annotation.security.PermitAll"/>
+<fullyQualifiedTypeName name="org.springframework.security.web.util.matcher.RequestMatcher"/>
+<fullyQualifiedTypeName name="org.springframework.stereotype.Component"/>
+<fullyQualifiedTypeName name="java.util.regex.Pattern"/>
+<fullyQualifiedTypeName name="org.springframework.security.web.util.matcher.RegexRequestMatcher"/>
+<fullyQualifiedTypeName name="org.springframework.web.servlet.mvc.support.RedirectAttributes"/>
 <fullyQualifiedTypeName name="org.springframework.ui.Model"/>
+<fullyQualifiedTypeName name="org.springframework.security.core.Authentication"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletRequest"/>
+<fullyQualifiedTypeName name="javax.servlet.http.HttpServletResponse"/>
+<fullyQualifiedTypeName name="java.lang.Exception"/>
+<fullyQualifiedTypeName name="org.springframework.security.core.context.SecurityContextHolder"/>
+<fullyQualifiedTypeName name="org.springframework.security.web.authentication.logout.SecurityContextLogoutHandler"/>
 </qualifiedTypeNameHistroy>

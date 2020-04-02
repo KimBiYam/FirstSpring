@@ -217,7 +217,7 @@ class Restager {&#xD;
   &lt;li&gt;Spring Data Elasticsearch now supports auditing and entity callbacks.&lt;/li&gt;
   &lt;li&gt;Support for query derivation in Spring Data R2DBC.&lt;/li&gt;
   &lt;li&gt;Dialect discovery for Spring Data JDBC, supporting H2, HSQLDB, Postgres, MariaDB, MySQL, and SQL Server.&lt;/li&gt;
-  &lt;li&gt;Upgrade to Querydsl 4.3.0.&lt;/li&gt;
+  &lt;li&gt;Upgrade to Querydsl 4.3.&lt;/li&gt;
   &lt;li&gt;Ready for JDK 14.&lt;/li&gt;
 &lt;/ul&gt;
 &lt;p&gt;We&amp;rsquo;re working now towards a second release candidate that is, at this point, scheduled for late April and a GA release in early May. Stay tuned for the first Spring Boot 2.3 release candidate in the next days.&lt;/p&gt;

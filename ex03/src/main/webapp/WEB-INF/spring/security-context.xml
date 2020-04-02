@@ -9,11 +9,11 @@
 		<!-- <bean id="customLoginSuccess" class="org.zerock.securitys.CustomLoginSuccessHandler"/> -->
 		<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
 		<bean id="customUserDetailsService" class="org.zerock.securitys.CustomUserDetailsService"/>
-		
+		<bean id="csrfSecurityRequestMatcher" class="org.zerock.securitys.CsrfSecurityRequestMatcher"/>	
 		
 		<security:http>
 		
-			<security:intercept-url pattern="/sample/all" access="permitAll"/>
+			<!-- <security:intercept-url pattern="/member/popup" access="permitAll"/> -->
 			
 			<security:intercept-url pattern="/sample/member" access="hasRole('ROLE_MEMBER')"/>
 			
@@ -24,14 +24,17 @@
 			<!-- <security:form-login login-page="/customLogin" authentication-success-handler-ref="customLoginSuccess"/> -->
 			<security:form-login login-page="/customLogin"/>
 			
-			<security:logout logout-url="/customLogout" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID"/>
+			<security:logout logout-url="/customLogout" logout-success-url="/" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID"/>
 			
 			<!-- 자동로그인 설정  -->
 			<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
+					
+			<security:csrf request-matcher-ref="csrfSecurityRequestMatcher"/>
 			
 			
-		</security:http>				
-			
+		</security:http>
+	
+		
 		<security:authentication-manager>
 			
 			<security:authentication-provider user-service-ref="customUserDetailsService">

@@ -1,7 +1,5 @@
 package org.zerock.web;
 
-import javax.servlet.http.HttpSession;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
@@ -10,7 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.support.SessionStatus;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import org.zerock.domain.AuthVO;
 import org.zerock.domain.MemberVO;
 import org.zerock.service.MemberService;
@@ -38,12 +36,13 @@ public class MemberController {
 	@GetMapping("/popup")
 	public String popup() {
 		return "/member/popup/jusoPopup";
-	}	
+	}
+
 	@PostMapping("/popup")
 	public String popupPost() {
 		return "/member/popup/jusoPopup";
-	}	
-	
+	}
+
 //	아이디 중복 체크
 	@GetMapping("/idcheck")
 	@ResponseBody
@@ -79,13 +78,13 @@ public class MemberController {
 
 //	회원 탈퇴
 	@GetMapping("/delete")
-	public String delete(String id) {
+	public String delete(String id, Model model) {
 		MemberVO member = service.get(id);
 		service.delete(member);
+		model.addAttribute("tmp","yes");
 		return "redirect:/customLogout";
 	}
-	
-	
+
 //	로그인 체크	
 	@GetMapping("/loginCheck")
 	@ResponseBody

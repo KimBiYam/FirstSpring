@@ -94,10 +94,10 @@
 				alert("이름을 입력해주세요");
 				return false;
 			}
-			/* if ($("#addr").val() == "") {
+			if ($("#addr").val() == "") {
 				alert("주소를 입력해주세요");
 				return false;
-			} */
+			}
 			if ($("#userpw").val() != $("#pwdcheck").val()) {
 				alert("패스워드가 틀립니다");
 				return false;
@@ -109,6 +109,7 @@
 		$("#deleteBtn").click(function(){
 			var id = "${member.userid}";
 			if(confirm("정말 탈퇴하시겠습니까?")){
+				alert("탈퇴가 완료되었습니다");
 				location.href="/member/delete?id="+id;
 				}
 

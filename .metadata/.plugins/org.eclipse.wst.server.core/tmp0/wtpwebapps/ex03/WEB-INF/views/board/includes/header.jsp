@@ -72,9 +72,6 @@
 			<!-- /.navbar-header -->
 
 			<ul class="nav navbar-top-links navbar-right">
-<!-- 					<li class="nav-item"><a href="/customLogin">로그인</a></li>
-						<li class="nav-item"><a href="/customLogout">로그아웃</a></li>	
-					<li class="nav-item"><a href="/member/register">회원가입</a></li> -->
                 <!-- /.dropdown -->
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown" href="#">
@@ -87,7 +84,8 @@
                         <li class="divider"></li>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
-                        <li><a href="/customLogout"><i class="fa fa-sign-out fa-fw"></i> 로그아웃</a>
+                        <li>
+							<a href="#" id="logoutBtn"><i class="fa fa-sign-out fa-fw"></i> 로그아웃</a>
                         </li>
                         </sec:authorize>
                         
@@ -124,5 +122,14 @@
 			</div>
 			<!-- /.navbar-static-side -->
 		</nav>
+		<script type="text/javascript">
+			$(function(){
+				$("#logoutBtn").click(function(){
+					alert("로그아웃 되었습니다.");
+					location.href = "/customLogout";
+					})
+				})
+		
+		</script>
 		
 		<div id="page-wrapper">

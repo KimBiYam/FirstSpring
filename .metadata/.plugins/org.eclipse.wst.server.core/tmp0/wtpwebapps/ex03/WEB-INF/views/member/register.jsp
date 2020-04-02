@@ -105,10 +105,10 @@
 				alert("이름을 입력해주세요");
 				return false;
 			}
-/*  			if ($("#addr").val() == "") {
+  			if ($("#addr").val() == "") {
 				alert("주소를 입력해주세요");
 				return false;
-			} */
+			}
 			if ($("#password").val() != $("#pwdcheck").val()) {
 				alert("패스워드가 틀립니다");
 				return false;
