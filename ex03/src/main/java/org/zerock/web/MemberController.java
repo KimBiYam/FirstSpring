@@ -81,27 +81,26 @@ public class MemberController {
 	public String delete(String id, Model model) {
 		MemberVO member = service.get(id);
 		service.delete(member);
-		model.addAttribute("tmp","yes");
 		return "redirect:/customLogout";
 	}
 
 //	로그인 체크	
-	@GetMapping("/loginCheck")
-	@ResponseBody
-	public String login(String userid, String password) {
-		String chkId = service.idcheck(userid);
-
-		if (chkId == null) {
-			return "no";
-		} else {
-			MemberVO member = service.get(userid);
-			if (member.getUserpw().equals(password)) {
-				return "success";
-			} else {
-				return "fail";
-			}
-		}
-
-	}
+//	@GetMapping("/loginCheck")
+//	@ResponseBody
+//	public String login(String userid, String password) {
+//		String chkId = service.idcheck(userid);
+//
+//		if (chkId == null) {
+//			return "no";
+//		} else {
+//			MemberVO member = service.get(userid);
+//			if (member.getUserpw().equals(password)) {
+//				return "success";
+//			} else {
+//				return "fail";
+//			}
+//		}
+//
+//	}
 
 }

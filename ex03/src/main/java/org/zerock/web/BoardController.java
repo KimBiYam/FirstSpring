@@ -38,7 +38,7 @@ public class BoardController {
 
 	@GetMapping("/register")
 	@PreAuthorize("isAuthenticated()")
-	public void register() {
+	public void reg1ister() {
 
 	}
 
