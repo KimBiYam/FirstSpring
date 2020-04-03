@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myapp.mapper.BoardMapper">
+
+	<insert id="register">
+		insert into myboard_board(bno,title,content,writer)
+		values (MYBOARD_BOARD_SEQ.nextval,#{title},#{content},#{writer})
+	</insert>
+	
+	<select id="list" resultType="com.myapp.domain.BoardVO">
+		select * from myboard_board
+		order by bno desc
+	</select>
+	
+	<select id="get" resultType="com.myapp.domain.BoardVO" >
+		select * from myboard_board
+		where bno = #{bno}
+	</select>
+</mapper>
