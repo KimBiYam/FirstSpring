@@ -7,8 +7,13 @@ elearning.dont.show.until=1585527156075
 iconcolormode=primary
 iconreplacement=false
 includeThemingInOomph=false
+<<<<<<< HEAD
 last.download.attempt.time=1585986984057
 lastConfiguration=1585986973807
+=======
+last.download.attempt.time=1585786350760
+lastConfiguration=1585791776813
+>>>>>>> 7e28bc388d7a284dc6b285bd19e95b3225dbd6e0
 newinstall=false
 showWelcomeDialog=false
 workbench.theme=Dark Gray

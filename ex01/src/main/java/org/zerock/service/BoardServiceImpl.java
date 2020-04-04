@@ -21,7 +21,7 @@ import lombok.Setter;
 @Service
 @AllArgsConstructor
 public class BoardServiceImpl implements BoardService {
-	private static final Logger log = LoggerFactory.getLogger(SampleController.class);
+	private static final Logger log = LoggerFactory.getLogger(BoardServiceImpl.class);
 	
 	@Setter(onMethod_= @Autowired)
 	private BoardMapper mapper;

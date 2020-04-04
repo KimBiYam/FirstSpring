@@ -1,0 +1,46 @@
+package org.zerock.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.zerock.domain.MemberVO;
+import org.zerock.mapper.MemberMapper;
+
+
+@Service
+public class MemberServiceImpl implements MemberService {
+	@Autowired
+	private MemberMapper mapper;
+	
+	@Override
+	public void register(MemberVO member) {
+		// TODO Auto-generated method stub
+			
+		mapper.register(member);
+		mapper.registerAuth(member);
+	}
+
+	@Override
+	public MemberVO get(String userid) {
+		// TODO Auto-generated method stub
+		return mapper.read(userid);
+	}
+	
+	public String idcheck(String userid) {
+		return mapper.idcheck(userid);
+	}
+
+	@Override
+	public void modify(MemberVO member) {
+		// TODO Auto-generated method stub
+		mapper.modify(member);
+	}
+
+	@Override
+	public void delete(MemberVO member) {
+		// TODO Auto-generated method stub
+		mapper.delete(member);
+	}
+
+	
+
+}

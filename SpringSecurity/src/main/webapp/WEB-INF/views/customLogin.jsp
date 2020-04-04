@@ -13,10 +13,13 @@
 	<h2><c:out value="${logout }"/></h2>
 	<form role="form" action="/security/login" method="post">
 		<div>
-			<input name="username" type="text">
+			<input name="username" type="text" placeholder="Userid" autofocus="autofocus">
 		</div>
 		<div>
-			<input name="password" type="password">
+			<input name="password" type="password" placeholder="Password">
+		</div>
+		<div>
+			<input type="checkbox" name="remember-me"> Remember Me
 		</div>
 		<div>
 			<input type="submit">
