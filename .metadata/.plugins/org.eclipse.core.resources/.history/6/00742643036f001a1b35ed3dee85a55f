@@ -1,6 +1,0 @@
-package org.zerock.util;
-
-@data
-public class Criteria {
-
-}
