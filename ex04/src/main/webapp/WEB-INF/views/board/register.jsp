@@ -28,7 +28,7 @@
                                    	    	     	<a class="btn btn-outline-primary btn-block" id="btnWrite" href="#">작성</a>
                                             	</div>
                                    	            <div class="col-md-6">
-                                          		  	<a class="btn btn-outline-danger btn-block" href="/myapp">취소</a>
+                                          		  	<a class="btn btn-outline-secondary btn-block" href="/myapp">리스트</a>
                                        		  	</div>
                                               </div>
                                            	</div>

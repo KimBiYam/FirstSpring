@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.myapp.domain.BoardVO;
+import com.myapp.domain.Criteria;
 import com.myapp.mapper.BoardMapper;
 
 import lombok.Setter;
@@ -45,6 +46,25 @@ public class BoardServiceImpl implements BoardService{
 		// TODO Auto-generated method stub
 		boardMapper.delete(bno);
 	}
+
+	@Override
+	public List<BoardVO> getList(Criteria cri) {
+		// TODO Auto-generated method stub
+		return boardMapper.getListWithPaging(cri);
+	}
+
+	@Override
+	public int getTotal(Criteria cri) {
+		// TODO Auto-generated method stub
+		return boardMapper.getTotalCount(cri);
+	}
+
+	@Override
+	public void viewcnt(Long bno) {
+		// TODO Auto-generated method stub
+		boardMapper.viewcnt(bno);
+	}
+	
 	
 
 }

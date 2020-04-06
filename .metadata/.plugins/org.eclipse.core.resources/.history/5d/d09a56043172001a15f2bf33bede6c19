@@ -1,7 +1,0 @@
-package org.zerock.domain;
-
-public class AuthVO {
-	private String userid;
-	private String auth;
-
-}
