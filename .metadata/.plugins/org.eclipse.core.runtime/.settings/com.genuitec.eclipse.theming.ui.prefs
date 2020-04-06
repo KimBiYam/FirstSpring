@@ -1,3 +1,6 @@
+=\=\=\=\=\=\=
+<<<<<<<=HEAD
+>>>>>>>=3a8978cf46ead5268622d87b739488cd8866cb33
 applyBackground=false
 approved.defs.file.last.changed.time=1585005899000
 codemix.dont.show.upsell.until=1584417231580
@@ -7,13 +10,8 @@ elearning.dont.show.until=1585527156075
 iconcolormode=primary
 iconreplacement=false
 includeThemingInOomph=false
-<<<<<<< HEAD
-last.download.attempt.time=1585986984057
-lastConfiguration=1585986973807
-=======
-last.download.attempt.time=1585786350760
-lastConfiguration=1585791776813
->>>>>>> 7e28bc388d7a284dc6b285bd19e95b3225dbd6e0
+last.download.attempt.time=1586150735624
+lastConfiguration=1586158602061
 newinstall=false
 showWelcomeDialog=false
 workbench.theme=Dark Gray

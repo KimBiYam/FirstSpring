@@ -1,8 +1,12 @@
 #Tomcat publish data
 <<<<<<< HEAD
+<<<<<<< HEAD
 #Mon Mar 30 23:19:17 KST 2020
 org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\hot99\\.m2\\repository\\org\\springframework\\spring-web\\5.0.7.RELEASE\\spring-web-5.0.7.RELEASE.jar=WEB-INF/lib/spring-web-5.0.7.RELEASE.jar
 =======
 #Thu Apr 02 14:15:45 KST 2020
+=======
+#Mon Apr 06 15:12:39 KST 2020
+>>>>>>> 3a8978cf46ead5268622d87b739488cd8866cb33
 org.eclipse.jst.jee.server\:/binary\:C\:\\Users\\admin\\.m2\\repository\\org\\springframework\\spring-web\\5.0.7.RELEASE\\spring-web-5.0.7.RELEASE.jar=WEB-INF/lib/spring-web-5.0.7.RELEASE.jar
 >>>>>>> 7e28bc388d7a284dc6b285bd19e95b3225dbd6e0

@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.myapp.mapper.BoardMapper">
+<sql id="criteria">
+<trim prefix="(" suffix=") AND " prefixOverrides="OR">
+			<foreach  item="type" collection="typeArr">
+				<trim prefix="OR">
+					<choose>
+						<when test="type == 'T'.toString()">
+							title like '%'||#{keyword}||'%'	
+						</when>
+						<when test="type == 'C'.toString()">
+							content like '%'||#{keyword}||'%'	
+						</when>					
+						<when test="type == 'W'.toString()">
+							writer like '%'||#{keyword}||'%'	
+						</when>										
+					</choose>
+				</trim>
+			</foreach>
+		</trim>
+</sql>
+
+	<insert id="register">
+		insert into myboard_board(bno,title,content,writer)
+		values (MYBOARD_BOARD_SEQ.nextval,#{title},#{content},#{writer})
+	</insert>
+	
+	<select id="list" resultType="com.myapp.domain.BoardVO">
+		select * from myboard_board
+		order by bno desc
+	</select>
+	
+	<select id="getListWithPaging" resultType="com.myapp.domain.BoardVO">
+		<![CDATA[
+			select
+				bno, title, content, writer, regDate, viewcnt
+			from
+				(
+				select /*+INDEX_DESC(myboard_board myboard_board_pk) */
+					rownum rn, bno, title, content, writer, regDate, viewcnt
+				from
+					myboard_board
+				where
+		]]>
+		
+		<include refid="criteria"></include>
+				
+		<![CDATA[		
+		rownum <= #{pageNum} * #{amount}
+				)
+			where rn > (#{pageNum} -1) * #{amount}				
+		]]>
+	</select>
+		
+	<select id="get" resultType="com.myapp.domain.BoardVO" >
+		select * from myboard_board
+		where bno = #{bno}
+	</select>
+	
+	<update id="modify">
+		update myboard_board
+		set title=#{title}, content=#{content}
+		where bno = #{bno}
+	</update>
+	
+	<delete id="delete">
+		delete from myboard_board
+		where bno = #{bno}
+	</delete>
+	
+	<select id="getTotalCount" resultType="int">
+		select count(*) from myboard_board where
+		<include refid="criteria"></include>
+	 	bno > 0
+	</select>
+	
+	<update id="viewcnt">
+		update myboard_board
+		set viewcnt = viewcnt+1
+		where bno = #{bno}
+	</update>
+	
+</mapper>
