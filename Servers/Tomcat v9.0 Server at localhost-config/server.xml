@@ -153,19 +153,7 @@
              Note: The pattern used is equivalent to using pattern="common" -->
         <Valve className="org.apache.catalina.valves.AccessLogValve" directory="logs" pattern="%h %l %u %t &quot;%r&quot; %s %b" prefix="localhost_access_log" suffix=".txt"/>
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-      <Context docBase="SpringSecurity" path="/security" reloadable="true" source="org.eclipse.jst.jee.server:SpringSecurity"/></Host>
-=======
-      <Context docBase="ex01" path="/" reloadable="true" source="org.eclipse.jst.jee.server:ex01"/></Host>
->>>>>>> Stashed changes
-=======
-      <Context docBase="ex03" path="/" reloadable="true" source="org.eclipse.jst.jee.server:ex03"/><Context docBase="ex01" path="/guest" reloadable="true" source="org.eclipse.jst.jee.server:ex01"/></Host>
->>>>>>> 7e28bc388d7a284dc6b285bd19e95b3225dbd6e0
-=======
-      <Context docBase="ex03" path="/" reloadable="true" source="org.eclipse.jst.jee.server:ex03"/><Context docBase="ex01" path="/guest" reloadable="true" source="org.eclipse.jst.jee.server:ex01"/><Context docBase="ex04" path="/myapp" reloadable="true" source="org.eclipse.jst.jee.server:ex04"/></Host>
->>>>>>> 3a8978cf46ead5268622d87b739488cd8866cb33
+      <Context docBase="ex04" path="/myapp" reloadable="true" source="org.eclipse.jst.jee.server:ex04"/></Host>
     </Engine>
   </Service>
 </Server>
