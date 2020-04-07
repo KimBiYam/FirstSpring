@@ -5,3 +5,6 @@
 4월 01, 2020 11:59:05.77 NEW SESSION
 4월 01, 2020 11:59:05.77 [6584:9436:0401/115905.775:ERROR:CONSOLE(208)] "Uncaught (in promise) TypeError: Cannot read property 'searchableView' of undefined", source: devtools://devtools/bundled/shell.js (208)
 4월 01, 2020 12:02:45.76 [6584:9436:0401/120245.762:ERROR:CONSOLE(82)] "Uncaught TypeError: Cannot read property 'element' of null", source: devtools://devtools/bundled/network/network_module.js (82)
+
+4월 07, 2020 12:17:15.26 NEW SESSION
+4월 07, 2020 12:17:15.26 [4480:3224:0407/121715.261:ERROR:database.cc(1584)] Passwords sqlite error 2067, errno 0: UNIQUE constraint failed: logins.origin_url, logins.username_element, logins.username_value, logins.password_element, logins.signon_realm, sql: INSERT INTO logins (origin_url, action_url, username_element, username_value, password_element, password_value, submit_element, signon_realm, preferred, date_created, blacklisted_by_user, scheme, password_type, times_used, form_data, date_synced, display_name, icon_url, federation_url, skip_zero_click, generation_upload_status, possible_username_pairs, id, date_last_used) VALUES (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)

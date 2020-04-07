@@ -51,18 +51,6 @@
                     </div>
 <script type="text/javascript">
 $(function(){
-	$("#btnWrite").click(function(){
-		if($("#title").val()==""){
-			alert("제목을 입력하세요");
-			return;
-			}
-		if($("#content").val()==""){
-			alert("내용을 입력하세요");
-			return;
-			}		
-		$("form").submit();
-		})
-
 	var formObj = $("form");
 
 	$('button').on("click",function(e){
@@ -71,6 +59,8 @@ $(function(){
 		var operation = $(this).data("oper");	
 
 		if(operation == 'delete'){
+			if(confirm("정말 삭제하시겠습니까?")){
+				
 			formObj.attr("action", "/myapp/board/delete");
 			}else if(operation == 'list'){
 				formObj.attr("action","/myapp/board/list").attr("method","get");
@@ -85,6 +75,15 @@ $(function(){
 				formObj.append(keywordTag);
 				formObj.append(typeTag);
 				}
+		}
+		if($("#title").val()==""){
+			alert("제목을 입력하세요");
+			return;
+			}
+		if($("#content").val()==""){
+			alert("내용을 입력하세요");
+			return;
+			}
 		formObj.submit();
 		})
 		

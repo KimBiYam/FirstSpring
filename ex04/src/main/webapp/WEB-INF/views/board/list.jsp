@@ -13,7 +13,7 @@
 		<i class="fas fa-table mr-1"></i>게시판</div>
 	<div class="card-body">
 		<div class="table-responsive">
-			<table class="table table-bordered" id="dataTable" width="100%">
+			<table class="table table-bordered" id="dataTable">
 				<thead>
 					<tr>
 						<th style="width: 10%">글 번호</th>
@@ -73,6 +73,7 @@
 	</div>
 </div>
 </div>
+
 <script type="text/javascript">
 	$(function() {
 

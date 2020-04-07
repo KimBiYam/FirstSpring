@@ -47,13 +47,10 @@
 						<input type="hidden" name="keyword" value='<c:out value="${cri.keyword }"/>'>
                         </form>
 					</div>
+<script type="text/javascript" src="/myapp/resources/dist/js/reply.js"></script>
 <script type="text/javascript">
 	$(function(){
-		$("#btnDelete").click(function(){
-			if(confirm("정말 삭제하시겠습니까?")){
-				location.href = "/myapp/board/delete?bno=${board.bno}";
-				}
-			})
+
 	var operForm = $("#operForm");
 		$("button[data-oper='modify']").on("click", function(e) {
 			operForm.attr("action", "/myapp/board/modify").submit();
