@@ -5,21 +5,21 @@
 		<item key="DIALOG_Y_ORIGIN" value="403"/>
 	</section>
 	<section name="org.eclipse.ui.texteditor.FindReplaceDialog">
-		<item key="selection" value=""/>
+		<item key="selection" value="token"/>
 		<item key="casesensitive" value="false"/>
 		<item key="wholeword" value="false"/>
 		<item key="isRegEx" value="false"/>
 		<item key="wrap" value="true"/>
 		<item key="incremental" value="false"/>
 		<list key="findhistory">
+			<item value="token"/>
+			<item value="GrantedAuthority"/>
 			<item value="gson"/>
 			<item value="id"/>
 			<item value="i"/>
 			<item value="username"/>
 			<item value="lombok"/>
 			<item value="modalInputReply"/>
-			<item value="-"/>
-			<item value="modalModBtn"/>
 		</list>
 		<list key="replacehistory">
 		</list>

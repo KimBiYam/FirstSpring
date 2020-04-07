@@ -1,7 +1,39 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+	xmlns:security="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/security http://www.springframework.org/schema/security/spring-security.xsd
+		http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+		
+	<bean id="customAccessDenied" class="com.myapp.securitys.CustomAccessDeniedHandler"/>
+	<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder"/>
+	<bean id="customUserDetailsService" class="com.myapp.securitys.CustomUserDetailsService"/>
+	<bean id="csrfSecurityRequestMatcher" class="com.myapp.securitys.CsrfSecurityRequestMatcher"/>
 
+	<security:http>
+	
+		<security:access-denied-handler ref="customAccessDenied"/>
+
+		<security:form-login login-page="/member/login" />
+		
+		<security:logout logout-url="/logout" logout-success-url="/" invalidate-session="true" delete-cookies="remember-me,JSESSION_ID"/>
+		
+		<!-- 자동로그인 설정  -->
+		<security:remember-me data-source-ref="dataSource" token-validity-seconds="604800"/>
+					
+		<security:csrf request-matcher-ref="csrfSecurityRequestMatcher"/>
+		
+	</security:http>
+	
+	<security:authentication-manager>
+	
+		<security:authentication-provider user-service-ref="customUserDetailsService">
+				
+			<security:password-encoder ref="bcryptPasswordEncoder"/>
+		
+		</security:authentication-provider>
+
+	
+	</security:authentication-manager>
 
 </beans>
