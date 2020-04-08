@@ -24,11 +24,11 @@
 												<textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력하세요"></textarea>
 											</div>
                                             <div class="form-group mt-4 mb-0">
-                           	                  <div class="form-row">
-                                                <div class="col-md-6">
+                           	                  <div class="form-row justify-content-center">
+                                                <div class="col-md-2">
                                    	    	     	<button class="btn btn-outline-primary btn-block" id="btnWrite">작성</button>
                                             	</div>
-                                   	            <div class="col-md-6">
+                                   	            <div class="col-md-2">
                                           		  	<a class="btn btn-outline-secondary btn-block" href="/myapp">리스트</a>
                                        		  	</div>
                                               </div>

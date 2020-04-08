@@ -49,6 +49,8 @@
 								<div class="panel-heading">
 									<sec:authorize access="isAuthenticated()">
 									<button id='addReplyBtn' class='btn btn-primary btn-xs float-right'>댓글 쓰기</button>
+									<br><br><br>
+			                        <div class="dropdown-divider"></div>
 									</sec:authorize>
 								</div>
 								<!-- /.panel-heading -->
@@ -144,12 +146,14 @@
 													replyUL.html("");
 												}
 
+												
 												for (var i = 0, len = list.length || 0; i < len; i++) {
 													str += "<li class='left clearfix' data-rno='"+list[i].rno+"'>";
 													str += "<div><div class='header'><strong class='primary-font'>["+eval(1+i)+"]"
 															+list[i].replyer+"</strong>";
-													str += "<small class='pull-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small></div>";
+													str += "<small class='float-right text-muted'>"+replyService.displayTime(list[i].replyDate)+"</small></div>";
 													str += "<p>"+list[i].reply+"</p></div></li>";
+													str += "<div class='dropdown-divider'></div>";
 												}
 
 												replyUL.html(str);

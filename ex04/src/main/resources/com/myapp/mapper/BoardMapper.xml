@@ -41,11 +41,11 @@
 	<select id="getListWithPaging" resultType="com.myapp.domain.BoardVO">
 		<![CDATA[
 			select
-				bno, title, content, writer, regDate, viewcnt
+				bno, title, content, writer, regDate, viewcnt, replycnt
 			from
 				(
 				select /*+INDEX_DESC(myboard_board myboard_board_pk) */
-					rownum rn, bno, title, content, writer, regDate, viewcnt
+					rownum rn, bno, title, content, writer, regDate, viewcnt, replycnt
 				from
 					myboard_board
 				where
@@ -86,6 +86,10 @@
 		update myboard_board
 		set viewcnt = viewcnt+1
 		where bno = #{bno}
+	</update>
+	
+	<update id="updateReplyCnt">
+		update myboard_board set replycnt = replycnt + #{amount} where bno = #{bno}
 	</update>
 	
 </mapper>
