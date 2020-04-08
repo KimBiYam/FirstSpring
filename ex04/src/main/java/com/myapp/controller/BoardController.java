@@ -3,6 +3,7 @@ package com.myapp.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -23,6 +24,7 @@ public class BoardController {
 	@Autowired
 	BoardService service;
 
+	@PreAuthorize("isAuthenticated()")
 	@GetMapping("/register")
 	public void getRegister() {
 
@@ -30,6 +32,7 @@ public class BoardController {
 
 	@PostMapping("/register")
 	public String register(BoardVO board) {
+		System.out.println(board.getWriter());
 		service.register(board);
 		return "redirect:/board/list";
 	}
@@ -59,6 +62,7 @@ public class BoardController {
 		model.addAttribute("board", board);
 	}
 
+	@PreAuthorize("principal.username == #board.writer")
 	@PostMapping("/modify")
 	public String modify(BoardVO board, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
 		service.modify(board);
@@ -66,8 +70,10 @@ public class BoardController {
 		return "redirect:/board/list" + cri.getListLink();
 	}
 
+	@PreAuthorize("principal.username == #writer")
 	@PostMapping("/delete")
-	public String modify(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr) {
+	public String modify(@RequestParam("bno") Long bno, @ModelAttribute("cri") Criteria cri, RedirectAttributes rttr,
+			String writer) {
 		service.delete(bno);
 
 		return "redirect:/board/list" + cri.getListLink();

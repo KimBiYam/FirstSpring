@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.myapp.domain.Criteria;
+import com.myapp.domain.ReplyPageDTO;
 import com.myapp.domain.ReplyVO;
 import com.myapp.mapper.ReplyMapper;
 
@@ -40,15 +41,13 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyMapper.delete(rno);
 	}
 
-	
 	@Override
-	public List<ReplyVO> getList(Criteria cri, Long bno) {
+	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
 		// TODO Auto-generated method stub
-		System.out.println(bno);
-		System.out.println(cri.getAmount());
-		System.out.println(cri.getPageNum());
-		return replyMapper.getListWithPaging(cri, bno);
-		
+		return new ReplyPageDTO(
+				replyMapper.getCountByBno(bno),
+				replyMapper.getListWithPaging(cri, bno)
+				);
 	}
 	
 	

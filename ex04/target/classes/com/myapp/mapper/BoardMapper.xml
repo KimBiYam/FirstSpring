@@ -24,8 +24,13 @@
 </sql>
 
 	<insert id="register">
+		<selectKey keyProperty="bno" order="BEFORE"
+			resultType="long">
+			select seq_board.nextval from dual
+		</selectKey>
+	
 		insert into myboard_board(bno,title,content,writer)
-		values (MYBOARD_BOARD_SEQ.nextval,#{title},#{content},#{writer})
+		values (#{bno},#{title},#{content},#{writer})
 	</insert>
 	
 	<select id="list" resultType="com.myapp.domain.BoardVO">
