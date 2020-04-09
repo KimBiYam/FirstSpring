@@ -15,3 +15,6 @@
 
 4월 09, 2020 13:03:19.59 NEW SESSION
 4월 09, 2020 13:03:19.59 [15400:27644:0409/130319.592:ERROR:content_settings_pref.cc(261)] Invalid pattern strings: ,*
+
+4월 09, 2020 17:28:46.12 NEW SESSION
+4월 09, 2020 17:28:46.12 [2400:8768:0409/172846.125:ERROR:content_settings_pref.cc(261)] Invalid pattern strings: ,*
