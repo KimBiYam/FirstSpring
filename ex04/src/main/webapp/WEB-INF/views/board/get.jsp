@@ -100,10 +100,13 @@
 				</div>
 			</div>
 			<div class="modal-footer">
+			<sec:authorize access="isAuthenticated()">
 				<button id='modalModBtn' type="button" class="btn btn-warning">수정하기</button>
 				<button id='modalRemoveBtn' type="button" class="btn btn-danger">삭제하기</button>
 				<button id='modalRegisterBtn' type="button" class="btn btn-primary">글쓰기</button>
+			</sec:authorize>
 				<button id='modalCloseBtn' type="button" class="btn btn-outline-secondary">닫기</button>
+			
 			</div>
 		</div>
 		<!-- /.modal-content -->

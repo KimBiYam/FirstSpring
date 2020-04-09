@@ -49,7 +49,6 @@ public class ReplyController {
 			@PathVariable("bno") Long bno){
 		
 		Criteria cri = new Criteria(page,10);
-		ReplyPageDTO dto = service.getListPage(cri, bno);
 		
 		return new ResponseEntity<>(service.getListPage(cri, bno),HttpStatus.OK);		
 	}

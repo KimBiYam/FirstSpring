@@ -78,8 +78,8 @@
                             </nav>
                             </div>
                             <div class="sb-sidenav-menu-heading">기타</div>
-                            <a class="nav-link" href="charts.html">
-                            	<div class="sb-nav-link-icon"><i class="fas fa-chart-area"></i></div>날씨 정보
+                            <a class="nav-link" href="/myapp/board/weather">
+                            	<div class="sb-nav-link-icon"><i class="fa fa-cloud"></i></div>오늘의 날씨
                            	</a>
                         </div>
                     </div>
