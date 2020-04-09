@@ -42,7 +42,6 @@
                         <a class="dropdown-item" href="javascript:register()">회원가입</a>
                         </sec:authorize>
                         <sec:authorize access="isAuthenticated()">
-                        <a class="dropdown-item" href="/myapp/member/modify">회원정보</a>
                      	<a class="dropdown-item logoutBtn" href="#">로그아웃</a>
                         </sec:authorize>
                     </div>
@@ -58,18 +57,21 @@
                             <a class="nav-link" href="/myapp/board/register">
                             <div class="sb-nav-link-icon"><i class="fas fa-tachometer-alt"></i></div>
 	                       	글쓰기</a>
-                            <div class="sb-sidenav-menu-heading">회원정보</div>
+                            <div class="sb-sidenav-menu-heading">회원관련</div>
                             <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseLayouts" aria-expanded="false" aria-controls="collapseLayouts"
                                 ><div class="sb-nav-link-icon"><i class="fas fa-columns"></i></div>
-                          		회원정보
+                          		회원관련
                                 <div class="sb-sidenav-collapse-arrow"><i class="fas fa-angle-down"></i></div
                             ></a>                            
                             <div class="collapse" id="collapseLayouts" aria-labelledby="headingOne" data-parent="#sidenavAccordion">
                                 <nav class="sb-sidenav-menu-nested nav">
+                                <sec:authorize access="isAnonymous()">
                                 <a class="nav-link" href="/myapp/member/login">로그인</a>                                
-                                <a class="nav-link" href="javascript:register()">회원가입</a>                                
-                                <a class="nav-link" href="/myapp/member/modify">회원정보</a>
+                                <a class="nav-link" href="javascript:register()">회원가입</a>
+                                </sec:authorize>
+                                <sec:authorize access="isAuthenticated()">                                
                                 <a class="nav-link logoutBtn" href="#">로그아웃</a>
+                                </sec:authorize>
                                 <form id="logoutForm" action="/myapp/logout" method="post">
                                 <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
                                 </form>
@@ -82,8 +84,13 @@
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">
+                    <sec:authorize access="isAuthenticated()">
                         <div class="small">해당 사용자로 로그인 됨:</div>
-                        Start Bootstrap
+                        <sec:authentication property="principal.username"/>
+                    </sec:authorize>
+                    <sec:authorize access="isAnonymous()">
+                    	<div class="small">비 로그인 상태</div>
+                    </sec:authorize>
                     </div>
                 </nav>
                </div>
@@ -98,14 +105,11 @@
 			<div class="modal-body">
 	            <form id="registerForm" action="/myapp/member/register" method="post">
 	            <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
-	            <input type="hidden" class="regsiterInput" name="userid" id="userid">
-	            <input type="hidden" class="regsiterInput" name="addr" id="addr">
-	            <input type="hidden" class="regsiterInput" name="zipNo" id="zipNo">
 	            <input type="hidden" name="idcheck" id="idcheck" value="0">
 	                <div class="form-group">
 	              	  <label class="small mb-1" for="userid">ID</label>
 					  <div class="input-group">
-	              	  	<input class="form-control input-group-prepend regsiterInput" name="idView" id="idView" type="text" placeholder="아이디를 입력하세요" />
+	              	  	<input class="form-control input-group-prepend regsiterInput" name="userid" id="userid" type="text" placeholder="아이디를 입력하세요" />
 	               	 	<button type="button" id="idcheckBtn" class="btn btn-outline-info input-group-append">중복체크</button>
 		              </div>
 	                </div>
@@ -123,12 +127,12 @@
 	                </div>
 					<div class="form-group">
 						<label class="small mb-1">우편번호</label>
-						<input class="form-control regsiterInput" type="text" name="zipNoView" id="zipNoView" disabled="disabled">
+						<input class="form-control regsiterInput" type="text" name="zipNo" id="zipNo" readonly="readonly">
 					</div>						
 					<div class="form-group">
 						<label class="small mb-1">주소</label>
 						<div class="input-group">
-							<input class="form-control input-group-prepend regsiterInput" type="text" name="addrView" id="addrView" disabled="disabled">
+							<input class="form-control input-group-prepend regsiterInput" type="text" name="addr" id="addr" readonly="readonly">
 							<button type="button" id="addrBtn" onclick="javascript:goPopup()"
 							class="btn btn-outline-primary input-group-apeend">주소 검색</button>
 						</div>
@@ -170,10 +174,8 @@
                 alert("로그아웃 되었습니다.");
                 $("#logoutForm").submit();                                
                 })
-
-            
             $("#registerBtn").click(function(){
-            	if ($("#idView").val() == "") {
+            	if ($("#userid").val() == "") {
     				alert("ID를 입력해주세요");
     				return false;
     			}
@@ -205,18 +207,18 @@
                 $("#registerForm").submit();
             })
       		$("#idcheckBtn").click(function() {
-			if ($("#idView").val() == "") {
+			if ($("#userid").val() == "") {
 				alert("ID를 입력해주세요");
 				return false;
 			}
 			if ($("#idcheck").val() == "1") {
-				$("#idView").removeAttr("disabled");
-				$("#idView").val("");
+				$("#userid").removeAttr("readonly");
+				$("#userid").val("");
 				$("#idcheck").val("0");
 				return false;
 			}
 			$.get("/myapp/member/idcheck", {
-				"id" : $("#idView").val()
+				"id" : $("#userid").val()
 			}, function(data) {
 				//alert(data);
 				if (data == "no") {
@@ -226,17 +228,17 @@
 				} else {
 					alert("사용 가능한 아이디 입니다!");
 					$("#idcheck").val("1");
-					$("#userid").val($("#idView").val());
-					$("#idView").attr("disabled", true);
+					$("#userid").attr("readonly", "readonly");
 				}
 			})
 		})
      })
+     
 			function register(){
 				$(".regsiterInput").val("");
 				
 				$("#registerModal").modal("show");
-				$("#idView").removeAttr("disabled");
+				$("#userid").removeAttr("disabled");
 				$("#idcheck").val("0");
 				}
 			function goPopup() {
@@ -255,8 +257,6 @@
 					buldMnnm, buldSlno, mtYn, lnbrMnnm, lnbrSlno, emdNo) {
 				// 팝업페이지에서 주소입력한 정보를 받아서, 현 페이지에 정보를 등록합니다.
 				$("#addr").val(roadFullAddr);
-				$("#addrView").val(roadFullAddr);
 				$("#zipNo").val(zipNo);
-				$("#zipNoView").val(zipNo);
 			}
         </script>

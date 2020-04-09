@@ -26,7 +26,7 @@
 				<c:forEach items="${list }" var="list" varStatus="st">
 					<tr>
 						<td><c:out value="${rowNo - st.index }"/></td>
-						<td><a class="move" href="${list.bno }">${list.title }</a></td>
+						<td><a class="move" href="${list.bno }">${list.title }</a><b>[ <c:out value="${list.replycnt }"/> ]</b></td>
 						<td>${list.writer }</td>
 						<td><fmt:formatDate value="${list.regDate }" pattern="yyyy-MM-dd"/></td>
 						<td>${list.viewcnt }</td>

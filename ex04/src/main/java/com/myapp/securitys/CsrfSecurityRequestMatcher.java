@@ -12,8 +12,8 @@ import org.springframework.stereotype.Component;
 public class CsrfSecurityRequestMatcher implements RequestMatcher {
 	private Pattern allowedMethods = Pattern.compile("^(GET|HEAD|TRACE|OPTIONS)$");
 //	해당 url에선 csrf을 사용하지 않음
-	private RegexRequestMatcher unprotectedMatcher = new RegexRequestMatcher("/member/popup", null);
-
+	private RegexRequestMatcher unprotectedMatcher = new RegexRequestMatcher("/member/popup", null) ;
+		
 	@Override
 	public boolean matches(HttpServletRequest request) {
 		// TODO Auto-generated method stub

@@ -1,24 +1,32 @@
 package com.myapp.service;
 
-import java.util.List;
-
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.myapp.domain.Criteria;
+import com.myapp.domain.ReplyPageDTO;
 import com.myapp.domain.ReplyVO;
+import com.myapp.mapper.BoardMapper;
 import com.myapp.mapper.ReplyMapper;
 
 import lombok.AllArgsConstructor;
+import lombok.Setter;
 
 @Service
 @AllArgsConstructor
 public class ReplyServiceImpl implements ReplyService {
 	
+	@Setter(onMethod_ = @Autowired)
 	private ReplyMapper replyMapper;
+	@Setter(onMethod_ = @Autowired)
+	private BoardMapper boardMapper;
 	
+	@Transactional
 	@Override	
 	public int register(ReplyVO vo) {
 		// TODO Auto-generated method stub
+		boardMapper.updateReplyCnt(vo.getBno(), 1);
 		return replyMapper.insert(vo);
 	}
 
@@ -34,21 +42,23 @@ public class ReplyServiceImpl implements ReplyService {
 		return replyMapper.update(vo);
 	}
 
+	@Transactional
 	@Override
 	public int remove(Long rno) {
 		// TODO Auto-generated method stub
+		ReplyVO vo = replyMapper.read(rno);
+		
+		boardMapper.updateReplyCnt(vo.getBno(), -1);
 		return replyMapper.delete(rno);
 	}
 
-	
 	@Override
-	public List<ReplyVO> getList(Criteria cri, Long bno) {
+	public ReplyPageDTO getListPage(Criteria cri, Long bno) {
 		// TODO Auto-generated method stub
-		System.out.println(bno);
-		System.out.println(cri.getAmount());
-		System.out.println(cri.getPageNum());
-		return replyMapper.getListWithPaging(cri, bno);
-		
+		return new ReplyPageDTO(
+				replyMapper.getCountByBno(bno),
+				replyMapper.getListWithPaging(cri, bno)
+				);
 	}
 	
 	

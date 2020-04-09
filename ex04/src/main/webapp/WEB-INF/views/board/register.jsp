@@ -9,25 +9,26 @@
                     <div class="container">
                         <div class="row justify-content-center">
                             <div class="col-lg-9 my-5">
-                                        <form action="/myapp/board/register" method="post">
+                                        <form id="boardRegister" action="/myapp/board/register" method="post">
+                                        <input type="hidden" name="${_csrf.parameterName }" value="${_csrf.token }">
                                             <div class="form-group">
                                             	<label class="small mb-1" for="title">제목</label>
                                             	<input class="form-control py-4" name="title" id="title" type="text" placeholder="제목을 입력하세요" />
                                            	</div>
 	                                        <div class="form-group">
 	                                        	<label class="small mb-1" for="writer">작성자</label>
-	                                        	<input class="form-control py-4" name="writer" id="writer" type="text" placeholder="작성자를 입력하세요" />
+	                                        	<input class="form-control py-4" name="writer" id="writer" type="text" value='<sec:authentication property="principal.username"/>' readonly="readonly" />
                                         	</div>
                      						<div class="form-group">
 												<label class="small mb-1" for="content">내용</label>
 												<textarea class="form-control" rows="5" name="content" id="content" placeholder="내용을 입력하세요"></textarea>
 											</div>
                                             <div class="form-group mt-4 mb-0">
-                           	                  <div class="form-row">
-                                                <div class="col-md-6">
-                                   	    	     	<a class="btn btn-outline-primary btn-block" id="btnWrite" href="#">작성</a>
+                           	                  <div class="form-row justify-content-center">
+                                                <div class="col-md-2">
+                                   	    	     	<button class="btn btn-outline-primary btn-block" id="btnWrite">작성</button>
                                             	</div>
-                                   	            <div class="col-md-6">
+                                   	            <div class="col-md-2">
                                           		  	<a class="btn btn-outline-secondary btn-block" href="/myapp">리스트</a>
                                        		  	</div>
                                               </div>
@@ -48,7 +49,7 @@ $(function(){
 			alert("내용을 입력하세요");
 			return;
 			}		
-		$("form").submit();
+		$("#boardRegister").submit();
 		})
 		
 })

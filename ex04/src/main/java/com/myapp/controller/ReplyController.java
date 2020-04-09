@@ -1,10 +1,9 @@
 package com.myapp.controller;
 
-import java.util.List;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.myapp.domain.Criteria;
+import com.myapp.domain.ReplyPageDTO;
 import com.myapp.domain.ReplyVO;
 import com.myapp.service.ReplyService;
 
@@ -27,6 +27,7 @@ public class ReplyController {
 	
 	private ReplyService service;
 	
+	@PreAuthorize("isAuthenticated()")
 	@PostMapping(value = "/new",
 			consumes = "application/json",
 			produces = { MediaType.TEXT_PLAIN_VALUE})
@@ -43,13 +44,14 @@ public class ReplyController {
 			produces = {
 					MediaType.APPLICATION_XML_VALUE,
 					MediaType.APPLICATION_JSON_UTF8_VALUE})
-	public ResponseEntity<List<ReplyVO>> getList(
+	public ResponseEntity<ReplyPageDTO> getList(
 			@PathVariable("page") int page,
 			@PathVariable("bno") Long bno){
 		
-		Criteria cri = new Criteria(page,15);
+		Criteria cri = new Criteria(page,10);
+		ReplyPageDTO dto = service.getListPage(cri, bno);
 		
-		return new ResponseEntity<>(service.getList(cri, bno),HttpStatus.OK);		
+		return new ResponseEntity<>(service.getListPage(cri, bno),HttpStatus.OK);		
 	}
 	
 	@GetMapping(value = "/{rno}",
@@ -61,14 +63,16 @@ public class ReplyController {
 		return new ResponseEntity<>(service.get(rno),HttpStatus.OK);
 	}
 	
+	@PreAuthorize("principal.username == #vo.replyer")
 	@DeleteMapping(value = "/{rno}", produces = { MediaType.TEXT_PLAIN_VALUE })
-	public ResponseEntity<String> remove(@PathVariable("rno") Long rno){
+	public ResponseEntity<String> remove(@RequestBody ReplyVO vo, @PathVariable("rno") Long rno){
 		
 		return service.remove(rno) == 1
 				? new ResponseEntity<String>("success",HttpStatus.OK)
 				: new ResponseEntity<String>(HttpStatus.INTERNAL_SERVER_ERROR);
 	}
 	
+	@PreAuthorize("principal.username == #vo.replyer")
 	@RequestMapping(method = {RequestMethod.PUT, RequestMethod.PATCH },
 			value = "/{rno}",
 			consumes = "application/json",
