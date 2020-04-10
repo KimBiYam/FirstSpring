@@ -5,7 +5,27 @@
   <link rel="self" href="https://spring.io/blog.atom" />
   <id>http://spring.io/blog.atom</id>
   <icon>https://spring.io/favicon.ico</icon>
-  <updated>2020-04-09T18:03:00Z</updated>
+  <updated>2020-04-10T02:31:39Z</updated>
+  <entry>
+    <title>A Bootiful Podcast: Microsoft¡¯s Kushagra Thapar on Spring Data Cosmosdb</title>
+    <link rel="alternate" href="https://spring.io/blog/2020/04/10/a-bootiful-podcast-microsoft-s-kushagra-thapar-on-spring-data-cosmosdb" />
+    <category term="engineering" label="Engineering" />
+    <author>
+      <name>Josh Long</name>
+    </author>
+    <id>tag:spring.io,2020-04-10:4028</id>
+    <updated>2020-04-10T02:31:39Z</updated>
+    <content type="html">&lt;p&gt;Hi, Spring fans! In this episode, we talk to Kushagra Thapar who is a senior software engineer at Microsoft working on the world-class, and world-wide Azure CosmosDB. &lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href="https://www.linkedin.com/in/kushagrathapar"&gt;Kushagra&amp;rsquo;s LinkedIn&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="http://start.spring.io"&gt;The Spring Initializr&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://azure.microsoft.com/en-us/services/cosmos-db/"&gt;Azure CosmosDB&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://azure.microsoft.com/en-us/services/spring-cloud/"&gt;Azure Spring Cloud&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="https://github.com/microsoft/spring-data-cosmosdb"&gt;Spring Data CosmosDB&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;iframe title="Microsoft's Kushagra Thapar on Spring Data CosmosDB" src="https://www.podbean.com/media/player/waujw-d8c5d0?from=usersite&amp;vjs=1&amp;skin=1&amp;fonts=Helvetica&amp;auto=0&amp;download=1" height="315" width="100%" style="border: none;" scrolling="no" data-name="pb-iframe-player"&gt;&lt;/iframe&gt;
+&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
+  </entry>
   <entry>
     <title>Spring Graal Native 0.6.0 released</title>
     <link rel="alternate" href="https://spring.io/blog/2020/04/09/spring-graal-native-0-6-0-released" />
@@ -64,7 +84,7 @@ INFO: Started TomcatApplication in 0.044 seconds (JVM running for 0.62)
 &lt;p&gt;Spring Integration has been around for a long time - 13 years at least - and it serves a timeless use case: the integration of disparate systems and services. It&amp;rsquo;s patterned after the seminal tome by Gregor Hohpe and Bobby Woolf, &lt;a href="https://www.amazon.com/Enterprise-Integration-Patterns-Designing-Deploying/dp/0321200683"&gt;&lt;em&gt;Enterprise Integration Patterns&lt;/em&gt;&lt;/a&gt;. It&amp;rsquo;s a fantastic tome, and I couldn&amp;rsquo;t more enthusiastically recommend it as it serves, after a fashion, as the documentation required for understanding Spring Integration. Spring Integration codifies the patterns from the book; API elements are named for the relevant patterns in the book. &lt;/p&gt;
 &lt;p&gt;Integration is necessarily high-level work. It&amp;rsquo;s about different plumbing systems in terms of their inputs and outputs. You don&amp;rsquo;t want to spend too long at the lowest level working at the level of object graphs to make this work. It&amp;rsquo;s much easier to decouple these systems and services in terms of the inputs and outputs they support. Spring Integration gives you a way to do this.&lt;/p&gt;
 &lt;p&gt;Over the years, the DSL for Spring Integration has changed. We started the project with XML based DSL, later introduced a Java configuration component model, and later still introduced the Java DSL. There was even a brief flirtation with a Scala DSL. And now we have the Kotlin DSL. The Kotlin DSL builds upon the foundations laid down years ago in the Spring Integration Java DSL. It extends the DSL to make it more Kotlin-native. &lt;/p&gt;
-&lt;p&gt;In this application, we&amp;rsquo;re going to build an app to monitor a file system. I show thee examples because they don&amp;rsquo;t require you the audience to install anything on or local machines except a file system which, presumably, you already have. Spring Integration provides a rich toolbox of integrations. You can talk to file systems (remote and local), databases, message queues, and a myriad of other protocols and integrations. &lt;/p&gt;
+&lt;p&gt;In this application, we&amp;rsquo;re going to build an app to monitor a file system. I show these examples because they don&amp;rsquo;t require you the audience to install anything on or local machines except a file system which, presumably, you already have. Spring Integration provides a rich toolbox of integrations. You can talk to file systems (remote and local), databases, message queues, and a myriad of other protocols and integrations. &lt;/p&gt;
 &lt;p&gt;Let&amp;rsquo;s build a new application. Go to the &lt;a href="http://start.spring.io"&gt;Spring Initializr&lt;/a&gt; and make sure to choose &lt;code&gt;Kotlin&lt;/code&gt; for the choice of language. Also, make sure to use Spring Boot 2.3.x or later. &lt;/p&gt;
 &lt;p&gt;Then in the dependency combo box, choose &lt;code&gt;Spring Integration&lt;/code&gt;. We&amp;rsquo;ll also need to add a Spring Integration-specific dependency. While this dependency isn&amp;rsquo;t discoverable on the Spring Initializr, it &lt;em&gt;is&lt;/em&gt; managed by Spring Boot so we can easily add it to our build manually. &lt;/p&gt;
 &lt;p&gt;Click &lt;code&gt;Generate&lt;/code&gt; and then open the project up in your favorite IDE. &lt;/p&gt;
@@ -1176,42 +1196,6 @@ class ConfiguredWebClientRunner {&#xD;
 &lt;p&gt;Now, &lt;em&gt;that&lt;/em&gt; is convenient. &lt;/p&gt;
 &lt;p&gt;The load balancer uses round-robin load balancing, where it randomly distributes the load across any of a number co configured instances, using the &lt;code&gt;org.springframework.cloud.loadbalancer.core.RoundRobinLoadBalancer&lt;/code&gt; strategy. The nice thing about this is that this is pluggable. You can plugin in other heuristics if you wanted as well. &lt;/p&gt;&lt;h3&gt;&lt;a href="#next-steps" class="anchor" name="next-steps"&gt;&lt;/a&gt;Next Steps&lt;/h3&gt;
 &lt;p&gt;In this Spring Tip installment, we&amp;rsquo;ve only begun to scratch the surface of the load balancing abstraction, but we have already achieved immense flexibility and conciseness. If you&amp;rsquo;re further interested in customizing the load balancer, you might look into the &lt;code&gt;@LoadBalancedClient&lt;/code&gt; annotation. &lt;/p&gt;
-&lt;!-- rendered by Sagan Renderer Service --&gt;</content>
-  </entry>
-  <entry>
-    <title>This Week in Spring - March 24th, 2020</title>
-    <link rel="alternate" href="https://spring.io/blog/2020/03/24/this-week-in-spring-march-24th-2020" />
-    <category term="engineering" label="Engineering" />
-    <author>
-      <name>Josh Long</name>
-    </author>
-    <id>tag:spring.io,2020-03-24:4007</id>
-    <updated>2020-03-24T23:51:26Z</updated>
-    <content type="html">&lt;p&gt;Hi, Spring fans! Welcome to another installment of &lt;em&gt;This Week in Spring&lt;/em&gt;! It&amp;rsquo;s a beautiful Tuesday for any number of reasons. I presented in the &lt;a href="https://www.devdotnext.com/digital"&gt;DevDotNext digital edition show just a few hours ago&lt;/a&gt; - that was a &lt;em&gt;lot&lt;/em&gt; of fun and I highly recommend you consider attending the next editions (online or - assuming we get past this pandemic - online). &lt;/p&gt;
-&lt;p&gt;Today is &lt;em&gt;also&lt;/em&gt; the 16th birthday of Spring Framework 1.0 - released this day in 2004! What a journey! And of course, the person who announced that that version, the amazing &lt;a href="http://twitter.com/trisberg"&gt;Thomas Risberg (@trisberg)&lt;/a&gt;, is one of many people who were there then and are still here on the Spring team now. Spring&amp;rsquo;s come a long way since then! &lt;a href="https://spring.io/blog/2004/03/24/spring-framework-1-0-final-released"&gt;Check out the blog itself&lt;/a&gt;. If you want to see the original blog in all of its early-2000s glory, it&amp;rsquo;s here on the &lt;a href="https://web.archive.org/web/20040330131500/http://www.springframework.org/"&gt;Internet Wayback machine&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;I mentioned the birthday on &lt;a href="https://twitter.com/starbuxman/status/1242353917691719680"&gt;Twitter&lt;/a&gt; and got some nice replies about people&amp;rsquo;s use of the Framework in the replies. I love this sort of stuff. :-) &lt;/p&gt;
-&lt;p&gt;Anyway, let&amp;rsquo;s get to this week&amp;rsquo;s roundup. There is a &lt;em&gt;ton&lt;/em&gt; of stuff to get to! I&amp;rsquo;ve been doing this roundup every week since January 2011, and there&amp;rsquo;s &lt;em&gt;always&lt;/em&gt; something interesting to review. As there had been for the six years before that since the 1.0 release. What a wonderful problem to have :)&lt;/p&gt;
-&lt;ul&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2020/03/24/spring-framework-5-2-5-available-now"&gt;Spring Framework 5.2.5 available now&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2020/03/23/spring-boot-for-apache-geode-pivotal-gemfire-1-3-0-m3-released"&gt;Spring Boot for Apache Geode &amp;amp; Pivotal GemFire 1.3.0.M3 Released&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2020/03/23/getting-started-with-rsocket-spring-boot-request-stream"&gt;Getting Started With RSocket: Spring Boot Request-Stream&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2020/03/20/spring-cloud-data-flow-2-5-0-m1-released"&gt;Spring Cloud Data Flow 2.5.0.M1 Released&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://spring.io/blog/2020/03/20/spring-tools-4-6-0-released"&gt;Spring Tools 4.6.0 released&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;How cool is this? There&amp;rsquo;s a new Secrets Manager integration in Spring Cloud Google Cloud Platform - &lt;a href="https://cloud.spring.io/spring-cloud-static/spring-cloud-gcp/1.2.2.RELEASE/reference/html/#secret-manager"&gt;check it out&lt;/a&gt;!&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://twitter.com/java/status/1242555278643482624"&gt;Take a look at the new NetBeans features&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Check out &lt;a href="https://twitter.com/confluentinc/status/1242542977433718784"&gt;Confluent&amp;rsquo;s ksqlDB&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Learn how to do fully remote and &lt;a href="https://twitter.com/VMwareTanzu/status/1242498168400601088"&gt;distributed software with this expertise from Pivotal Labs&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://twitter.com/confluentinc/status/1242497264981094401"&gt;I love this post on the lessons Confluent itself learned when building Confluent Cloud&lt;/a&gt; - worth a read!&lt;/li&gt;
-  &lt;li&gt;I love this - two of my favorite data-centric engineers - &lt;a href="https://www.youtube.com/watch?v=H4sN34-nxEE&amp;feature=emb_title"&gt;Thorben Janssen talks to Spring Data lead Mark Paluch &lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://twitter.com/cloudfoundry/status/1242474089408679938"&gt;You should try out KubeCF - a Cloud Foundry distribution for Kubernetes&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;Last week&amp;rsquo;s &amp;lsquo;Spring Live&amp;rsquo; was an amazing show and we are so grateful for everyone who turned up! &lt;a href="https://twitter.com/rseroter/status/1242218927532290048?s=12"&gt;As promised, we donated $20,000 to charity as a result&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;A great blog by Matt Raible over on the Okta Developer about &lt;a href="https://developer.okta.com/blog/2020/03/23/microservice-security-patterns"&gt;Security Patterns for Microservice Architectures&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://twitter.com/eddumelendez/status/1241448301431525376?s=12"&gt;Community legend Edd? Mel?ndez has a great list of projects that are ideal for novice contributions&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;I like this post: &lt;a href="https://www.marcobehler.com/guides/spring-boot"&gt;&lt;em&gt;What is Spring Boot Autoconfigurations&lt;/em&gt;&lt;/a&gt;?&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://blog.ik.am/entries/515"&gt;Tanzu&amp;rsquo;s very own Toshiaki Maki has a great post on using Azure Files with Cloud Foundry&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;&lt;a href="https://twitter.com/ritam/status/1241052489446649862?s=12"&gt;I love Redmonk&amp;rsquo;s James Governors perspective on VMWare Tanzu&lt;/a&gt;&lt;/li&gt;
-  &lt;li&gt;I love the new features in &lt;a href="https://devblogs.microsoft.com/java/java-on-visual-studio-code-update-march-2020/"&gt;the Microsoft Visual Studio Code for Java editor plugin&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
 &lt;!-- rendered by Sagan Renderer Service --&gt;</content>
   </entry>
 </feed>
