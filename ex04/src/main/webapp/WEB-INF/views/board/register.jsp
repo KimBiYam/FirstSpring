@@ -43,11 +43,11 @@ $(function(){
 	$("#btnWrite").click(function(){
 		if($("#title").val()==""){
 			alert("제목을 입력하세요");
-			return;
+			return false;
 			}
 		if($("#content").val()==""){
 			alert("내용을 입력하세요");
-			return;
+			return false;
 			}		
 		$("#boardRegister").submit();
 		})

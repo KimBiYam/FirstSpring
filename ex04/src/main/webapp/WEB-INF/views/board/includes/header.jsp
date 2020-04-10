@@ -226,7 +226,7 @@
 				//alert(data);
 				if (data == "no") {
 					alert("이미 가입된 아이디 입니다!");
-					$("#idView").val("");
+					$("#userid").val("");
 					return false;
 				} else {
 					alert("사용 가능한 아이디 입니다!");
@@ -239,9 +239,8 @@
      
 			function register(){
 				$(".regsiterInput").val("");
-				
 				$("#registerModal").modal("show");
-				$("#userid").removeAttr("disabled");
+				$("#userid").removeAttr("readonly");
 				$("#idcheck").val("0");
 				}
 			function goPopup() {
