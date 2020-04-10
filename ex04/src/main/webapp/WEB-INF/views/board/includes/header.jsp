@@ -81,6 +81,9 @@
                             <a class="nav-link" href="/myapp/board/weather">
                             	<div class="sb-nav-link-icon"><i class="fa fa-cloud"></i></div>오늘의 날씨
                            	</a>
+                 	        <a class="nav-link" href="/myapp/board/map">
+                           		<div class="sb-nav-link-icon"><i class="fa fa-map"></i></div>지도
+                           	</a>
                         </div>
                     </div>
                     <div class="sb-sidenav-footer">

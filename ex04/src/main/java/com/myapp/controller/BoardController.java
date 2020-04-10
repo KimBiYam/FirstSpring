@@ -98,9 +98,9 @@ public class BoardController {
 		SimpleDateFormat dateFormat = new SimpleDateFormat("yyyyMMdd");
 
 		List<Weather> list = new ArrayList<Weather>();
-		String[] nxArr = { "60", "98", "89", "55", "58", "67", "102", "73", "92", "69", "63", "95" };
-		String[] nyArr = { "127", "76", "90", "124", "74", "100", "84", "134", "131", "106", "89", "77" };
-		String[] areaArr = { "서울특별시", "부산광역시", "대구광역시", "인천광역시", "광주광역시", "대전광역시", "울산광역시", "강원도 춘천시", "강원도 강릉시" , "충청북도 청주시", "전라북도 전주시", "경상남도 김해시" };
+		String[] nxArr = { "60", "98", "89", "55", "58", "67", "102", "73", "92", "69", "63", "95",  "102" , "52" };
+		String[] nyArr = { "127", "76", "90", "124", "74", "100", "84", "134", "131", "106", "89", "77", "94", "38" };
+		String[] areaArr = { "서울특별시", "부산광역시", "대구광역시", "인천광역시", "광주광역시", "대전광역시", "울산광역시", "강원도 춘천시", "강원도 강릉시" , "충청북도 청주시", "전라북도 전주시", "경상남도 김해시", "경상북도 포항시" , "제주특별자치도" };
 		for (int i = 0; i < nxArr.length; i++) {
 			// 주소 시작
 			String apiUrl = "http://apis.data.go.kr/1360000/VilageFcstInfoService/getVilageFcst?";
@@ -121,7 +121,7 @@ public class BoardController {
 			apiBuilder.append("&base_time=" + baseTime);
 			apiBuilder.append("&nx=" + nxArr[i]);
 			apiBuilder.append("&ny=" + nyArr[i]);
-//		System.out.println(apiBuilder.toString());
+//			System.out.println(apiBuilder.toString());
 
 			URL url = new URL(apiBuilder.toString());
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -143,7 +143,7 @@ public class BoardController {
 			rd.close();
 			conn.disconnect();
 			String result = sb.toString();
-//		System.out.println(result);
+			//		System.out.println(result);
 
 			JSONParser parser = new JSONParser();
 			JSONObject obj = (JSONObject) parser.parse(result);
@@ -210,6 +210,11 @@ public class BoardController {
 			list.add(wt);
 		}
 		model.addAttribute("weather", list);
+	}
+	
+	@GetMapping("/map")
+	public void getMap() {
+		
 	}
 
 }

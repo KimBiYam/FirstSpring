@@ -17,12 +17,12 @@
 				<table class="table table-bordered" id="dataTable">
 					<thead>
 						<tr>
-							<th>지역</th>
-							<th>예보일자</th>
-							<th>강수확률</th>
-							<th>습도</th>
-							<th>최저기온</th>
-							<th>최고기온</th>
+							<th style="width: 20%">지역</th>
+							<th style="width: 20%">예보일자</th>
+							<th style="width: 15%">강수확률</th>
+							<th style="width: 15%">습도</th>
+							<th style="width: 15%">최저기온</th>
+							<th style="width: 15%">최고기온</th>
 						</tr>
 					</thead>
 					<c:forEach items="${weather }" var="weather">
